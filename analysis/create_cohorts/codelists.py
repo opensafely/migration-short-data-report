@@ -7,7 +7,7 @@ from ehrql import codelist_from_csv
 
 all_migrant_codes = codelist_from_csv("codelists/opensafely-migration-status.csv", column="code")
 
-UK_cob = codelist_from_csv("codelists/opensafely-born-in-the-uk.csv", column="code")
+uk_cob_codes = codelist_from_csv("codelists/opensafely-born-in-the-uk.csv", column="code")
 
 cob_migrant_codes = codelist_from_csv("codelists/opensafely-born-outside-the-uk.csv", column="code")
 
