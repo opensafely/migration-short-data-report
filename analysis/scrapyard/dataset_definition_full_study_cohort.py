@@ -22,7 +22,7 @@ from pathlib import Path
 from ehrql import create_dataset, codelist_from_csv, show, case, when
 from ehrql.tables.tpp import addresses, patients, practice_registrations, clinical_events, ons_deaths
 
-from analysis.create_cohorts.codelists import all_migrant_codes, cob_migrant_codes, asylum_refugee_migrant_codes, interpreter_migrant_codes, ethnicity_codelist
+from analysis.codelists import all_migrant_codes, cob_migrant_codes, asylum_refugee_migrant_codes, interpreter_migrant_codes, ethnicity_codelist
 
 # Dates
 

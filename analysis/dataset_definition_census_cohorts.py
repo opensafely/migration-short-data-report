@@ -51,8 +51,6 @@ dataset.define_population(was_registered_on_census_date &
                           has_possible_age & 
                           was_alive_on_census_date)
 
-show(dataset)
-
 # add variables 
 
 # age
@@ -76,29 +74,44 @@ dataset.sex = patients.sex
 
 # migration status 
 
-dataset.migrant = clinical_events.where(clinical_events.snomedct_code.is_in(codelists.all_migrant_codes)).exists_for_patient()
-dataset.born_in_uk = clinical_events.where(clinical_events.snomedct_code.is_in(codelists.uk_cob_codes)).exists_for_patient()
-dataset.not_born_in_uk = clinical_events.where(clinical_events.snomedct_code.is_in(codelists.cob_migrant_codes)).exists_for_patient()
-dataset.immig_status_excl_refugee_asylum = clinical_events.where(clinical_events.snomedct_code.is_in(codelists.immigra_status_excl_ref_and_asylum_codes)).exists_for_patient()
-dataset.refugee_asylum_status = clinical_events.where(clinical_events.snomedct_code.is_in(codelists.asylum_refugee_migrant_codes)).exists_for_patient()
-dataset.english_not_main_language = clinical_events.where(clinical_events.snomedct_code.is_in(codelists.english_not_main_language_excl_interpreter_migrant_codes)).exists_for_patient()
-dataset.interpreter_required = clinical_events.where(clinical_events.snomedct_code.is_in(codelists.interpreter_migrant_codes)).exists_for_patient()
+migrant = clinical_events.where(clinical_events.snomedct_code.is_in(codelists.all_migrant_codes)).exists_for_patient()
+dataset.migrant = migrant
+
+born_in_uk = clinical_events.where(clinical_events.snomedct_code.is_in(codelists.uk_cob_codes)).exists_for_patient()
+dataset.born_in_uk = born_in_uk
+
+not_born_in_uk = clinical_events.where(clinical_events.snomedct_code.is_in(codelists.cob_migrant_codes)).exists_for_patient()
+dataset.not_born_in_uk = not_born_in_uk
+
+immig_status_excl_refugee_asylum = clinical_events.where(clinical_events.snomedct_code.is_in(codelists.immigra_status_excl_ref_and_asylum_codes)).exists_for_patient()
+dataset.immig_status_excl_refugee_asylum = immig_status_excl_refugee_asylum
+
+refugee_asylum_status = clinical_events.where(clinical_events.snomedct_code.is_in(codelists.asylum_refugee_migrant_codes)).exists_for_patient()
+dataset.refugee_asylum_status = refugee_asylum_status
+
+english_not_main_language = clinical_events.where(clinical_events.snomedct_code.is_in(codelists.english_not_main_language_excl_interpreter_migrant_codes)).exists_for_patient()
+dataset.english_not_main_language = english_not_main_language 
+
+interpreter_required = clinical_events.where(clinical_events.snomedct_code.is_in(codelists.interpreter_migrant_codes)).exists_for_patient()
+dataset.interpreter_required = interpreter_required
 
 # ethnicity 
 
-dataset.latest_ethnicity_code = (
+latest_ethnicity_code = (
     clinical_events.where(clinical_events.snomedct_code.is_in(codelists.ethnicity_16_level_codelist))
     .sort_by(clinical_events.date)
     .last_for_patient()
-    .snomedct_code
-)
-dataset.latest_ethnicity_16_level_group = dataset.latest_ethnicity_code.to_category(
-    codelists.ethnicity_16_level_codelist
-)
+    .snomedct_code)
+dataset.latest_ethnicity_code = latest_ethnicity_code
 
-dataset.latest_ethnicity_6_level_group = dataset.latest_ethnicity_code.to_category(
-    codelists.ethnicity_6_level_codelist
-)
+latest_ethnicity_16_level_group = latest_ethnicity_code.to_category(
+    codelists.ethnicity_16_level_codelist)
+dataset.latest_ethnicity_16_level_group = latest_ethnicity_16_level_group
+
+latest_ethnicity_6_level_group = latest_ethnicity_code.to_category(
+    codelists.ethnicity_6_level_codelist)
+dataset.latest_ethnicity_6_level_group = latest_ethnicity_6_level_group
+
 
 # Practice region
 
@@ -111,8 +124,31 @@ address = addresses.for_patient_on(census_date)
 dataset.imd_decile = address.imd_decile
 dataset.imd_quintile = address.imd_quintile
 
+# migration status - 2 categories (migrant, non-migrant)
 
+dataset.mig_status_2_cat = case(
+    when(migrant == True).then("Migrant"),
+    otherwise="Non-migrant"
+)
 
+# migrant status - 3 catogories (migrant, non-migrant, unknown)
+
+dataset.mig_status_3_cat = case(
+    when(migrant == True).then("Migrant"),
+    when((born_in_uk == True) | (latest_ethnicity_16_level_group == "White - British")).then("Non-migrant"),
+    otherwise="Unknown"
+)
+
+# migrant status - 6 categories (definite migrant, highly likely migrant, likely migrant, definite non-migrant, likely non-migrant, unknown)
+
+dataset.mig_status_6_cat = case(
+    when(not_born_in_uk == True).then("Definite migrant"), 
+    when((immig_status_excl_refugee_asylum == True) | (refugee_asylum_status == True)).then("Highly likely migrant"),
+    when((english_not_main_language == True) | (interpreter_required == True)).then("Likely migrant"),
+    when(born_in_uk == True).then("Definite non-migrant"),
+    when(latest_ethnicity_16_level_group == "White - British").then("Likely non-migrant"),
+    otherwise="Unknown"
+)
 
 
 # date_of_first_migration_code = (
