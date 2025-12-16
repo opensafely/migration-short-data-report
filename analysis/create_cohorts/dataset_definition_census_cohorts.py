@@ -1,14 +1,13 @@
 # This is a script to create the following migrant cohort with basic demographics:
 # - Select anyone with 
-#         1) a migration-related code at any time point on or before the Census date AND 
-#         2) who was registered on the Census date AND
-#         3) who does not have a disclosive sex AND
-#         4) had not died before the start of the study period AND 
-#         5) was not over 100 years old at the Census  date 
+#         1) who was registered with a TPP practice on the Census date AND
+#         2) was alive on the census date
+#         3) who does not have a disclosive sex AND 
+#         4) has a plausible age (i.e. not >110 years old at the date of the census)
 
 from ehrql import create_dataset, codelist_from_csv, show, case, when
-from ehrql.tables.tpp import addresses, patients, practice_registrations, clinical_events, ons_deaths
-from utilities import load_all_codelists 
+from ehrql.tables.tpp import addresses, patients, practice_registrations, clinical_events
+from codelists import *
 from argparse import ArgumentParser
 
 # Below code from https://github.com/opensafely/disease_incidence/blob/main/analysis/dataset_definition_demographics.py
@@ -19,21 +18,18 @@ parser.add_argument("--census-date", type=str)
 args = parser.parse_args()
 
 #######
-census_date = args.census_date
+# census_date = args.census_date
+census_date = "2021-03-21"
 
-# load codelists 
-(all_migrant_codes,
-    cob_migrant_codes,
-    asylum_refugee_migrant_codes,
-    interpreter_migrant_codes,
-    ethnicity_codelist
-) = load_all_codelists().values()
+# # load codelists 
+# (all_migrant_codes,
+#     cob_migrant_codes,
+#     asylum_refugee_migrant_codes,
+#     interpreter_migrant_codes,
+#     ethnicity_codelist
+# ) = load_all_codelists().values()
 
 # define population
-has_any_migrant_code = (
-    clinical_events.where(clinical_events.snomedct_code.is_in(all_migrant_codes)
-                          ).where(clinical_events.date.is_on_or_before(census_date)
-                                  ).exists_for_patient())
 
 was_registered_on_census_date = (
     practice_registrations.exists_for_patient_on(census_date)
@@ -47,20 +43,20 @@ was_alive_on_census_date = (
     (patients.is_alive_on(census_date))
 )
 
-was_not_over_100_on_census_date = (
-    patients.age_on(census_date) <= 100
-)
+has_possible_age= ((patients.age_on(census_date) < 110) & (patients.age_on(census_date) > 0))
 
 dataset = create_dataset()
-dataset.define_population(has_any_migrant_code & 
-                          was_registered_on_census_date & 
-                          has_non_disclosive_sex & 
-                          was_alive_on_census_date & 
-                          was_not_over_100_on_census_date)
+dataset.define_population(was_registered_on_census_date & 
+                          has_non_disclosive_sex &
+                          has_possible_age & 
+                          was_alive_on_census_date)
 
 show(dataset)
 
 # add variables 
+
+# migration status variables
+
 
 date_of_first_migration_code = (
     clinical_events.where(clinical_events.snomedct_code.is_in(all_migrant_codes))
@@ -77,6 +73,7 @@ dataset.number_of_migration_codes = (
 dataset.sex = patients.sex
 
 # Add variables to indicate the type of migration code
+
 
 dataset.has_cob_migrant_code = clinical_events.where(clinical_events.snomedct_code.is_in(cob_migrant_codes)).exists_for_patient()
 dataset.has_asylum_or_refugee_migrant_code = clinical_events.where(clinical_events.snomedct_code.is_in(asylum_refugee_migrant_codes)).exists_for_patient()
@@ -154,11 +151,6 @@ dataset.imd_quintile = address.imd_quintile
 # Add practice region (at study start)
 
 dataset.region = practice_registrations.for_patient_on(census_date).practice_nuts1_region_name
-
-# Add date of death (if died)
-
-dataset.TPP_death_date = patients.date_of_death
-dataset.ons_death_date = ons_deaths.date
 
 show(dataset)
 

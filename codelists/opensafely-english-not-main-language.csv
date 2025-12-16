@@ -1,0 +1,1478 @@
+code,term
+1036381000000101,Main spoken language Romany
+1036391000000104,Main spoken language Romanes 
+1047281000000107,Does not speak English
+107751000000106,Main spoken language Pashto
+1264278006,Iranian Persian language
+1300106003,Completed English as a second language program
+1300111001,Education toward completion of learning objectives of English as a second language program
+1332074008,Anuak language
+1332075009,Dan language
+1332076005,Mandingo language
+1332077001,Mandinka language
+138443000,World languages
+138444006,Vietnamese language
+138447004,Creole language
+138448009,Mirpuri language
+138660000,Main spoken language
+138661001,Main spoken language Arabic
+138662008,Main spoken language Bengali
+138663003,Main spoken language Cantonese
+138664009,Main spoken language Czech
+138666006,Main spoken language French
+138667002,Main spoken language Gujerati
+138668007,Main spoken language Hausa
+138669004,Main spoken language Hindi
+138670003,Main spoken language Iba
+138671004,Main spoken language Kutchi
+138673001,Main spoken language Mandarin
+138674007,Main spoken language Polish
+138675008,Main spoken language Portuguese
+138676009,Main spoken language Punjabi
+138677000,Main spoken language Russian
+138678005,Main spoken language Somali
+138679002,Main spoken language Spanish
+138680004,Main spoken language Swahili
+138681000,Main spoken language Sylheti
+138682007,Main spoken language Tamil
+138683002,Main spoken language Urdu
+138684008,Main spoken language Yoruba
+161141008,Bengali language
+161142001,Gujarati language
+161143006,Hindi language
+161144000,Pashtu language
+161145004,Punjabi language
+161146003,Urdu language
+161172007,World languages
+161173002,Vietnamese language
+161176005,Creole language
+161177001,Mirpuri language
+161389008,Main spoken language
+161390004,Main spoken language Arabic
+161391000,Main spoken language Bengali
+161392007,Main spoken language Cantonese
+161393002,Main spoken language Czech
+161395009,Main spoken language French
+161396005,Main spoken language Gujerati
+161397001,Main spoken language Hausa
+161398006,Main spoken language Hindi
+161399003,Main spoken language Iba
+161400005,Main spoken language Kutchi
+161401009,Main spoken language Mandarin
+161402002,Main spoken language Polish
+161403007,Main spoken language Portuguese
+161404001,Main spoken language Punjabi
+161405000,Main spoken language Russian
+161406004,Main spoken language Somali
+161407008,Main spoken language Spanish
+161408003,Main spoken language Swahili
+161409006,Main spoken language Sylheti
+161410001,Main spoken language Tamil
+161411002,Main spoken language Urdu
+161412009,Main spoken language Yoruba
+212241000000100,English as a second language
+212251000000102,English as a second language
+224628009,Hinko language
+297289008,World languages
+297290004,Afro-Asiatic language
+297291000,Berber language
+297292007,Kabyle language
+297293002,Riffian language
+297294008,Shawia language
+297295009,Shluh language
+297296005,Tamazight language
+297297001,Tuareg language
+297298006,Chadic language
+297299003,Hausa language
+297300006,Cushitic language
+297301005,Afar language
+297302003,Beja language
+297303008,Oromo language
+297304002,Saho language
+297305001,Sidamo language
+297306000,Somali language
+297308004,Egyptian language
+297309007,Coptic language
+297310002,Semitic language
+297311003,Aramaic language
+297312005,Assyrian language
+297313000,Syriac language
+297314006,Canaanitic language
+297315007,Hebrew language
+297316008,Ethiopic language
+297317004,Amharic language
+297318009,Geez language
+297319001,Gurage language
+297320007,Harari language
+297321006,Tigre language
+297322004,Tigrinya language
+297323009,North Arabic language
+297324003,Arabic language
+297325002,Classical Arabic language
+297326001,South Arabic language
+297327005,Maltese language
+297328000,Altaic language
+297329008,Mongolian language
+297330003,Buryat language
+297331004,Kalmyk language
+297332006,Tungusic language
+297333001,Northern Tungusic language
+297334007,Evenki language
+297335008,Even language
+297336009,Southern Tungusic language
+297337000,Manchu language
+297338005,Nanai language
+297339002,Sibo language
+297340000,Turkic language
+297341001,Chuvash language
+297342008,Northeastern Turkic language
+297343003,Altai language
+297344009,Khakass language
+297345005,Tuvinian language
+297346006,Northwestern Turkic language
+297347002,Balkar language
+297348007,Bashkir language
+297349004,Kara-Kalpak language
+297350004,Karachai language
+297351000,Kazakh language
+297352007,Kirgiz language
+297353002,Kumyk language
+297354008,Nogai language
+297355009,Tatar language
+297356005,Southeastern Turkic language
+297358006,Salar language
+297359003,Uigur language
+297360008,Uzbek language
+297361007,Southwestern Turkic language
+297362000,Azerbaijani language
+297363005,Turkish language
+297364004,Turkmen language
+297365003,Yakut language
+297366002,Artificial language
+297367006,Esperanto language
+297368001,Interlingua language
+297369009,Occidental language
+297370005,Australian language
+297371009,Aranda language
+297372002,Murngin language
+297373007,Caucasian language
+297374001,Dagestan Caucasian language
+297375000,Avar language
+297376004,Dargin language
+297377008,Lak language
+297378003,Lezgin language
+297379006,Tabasaran language
+297380009,Eastern Caucasian language
+297381008,Chechen language
+297382001,Ingush language
+297383006,Southern Caucasian language
+297384000,Georgian language
+297385004,Western Caucasian language
+297386003,Abazinian language
+297387007,Abkhazian language
+297388002,Adygei language
+297389005,Circassian language
+297390001,Kabardian language
+297391002,Central and South American Indian language
+297392009,Andean equatorial language
+297393004,Araucanian language
+297394005,Arawak language
+297395006,Aymara language
+297396007,Guarani language
+297397003,Jivaro language
+297398008,Quechua language
+297399000,Tupi language
+297400007,Ge-Pano-Carib language
+297401006,Carib language
+297402004,Chiquito language
+297403009,Ge language
+297404003,Panoan language
+297405002,Tacana language
+297406001,Macro-Chibchan language
+297407005,Bribri language
+297408000,Cabecar language
+297409008,Cuna language
+297410003,Guaymi language
+297411004,Lenca language
+297412006,Miskito language
+297413001,Chari-Nile language
+297414007,Central Sudanic language
+297415008,Lugbara language
+297416009,Madi language
+297417000,Mangbetu language
+297418005,Sara language
+297419002,Eastern Sudanic language
+297420008,Nilotic language
+297421007,Eastern Nilotic language
+297422000,Bari language
+297423005,Karamojong language
+297424004,Lotuko language
+297425003,Masai language
+297426002,Teso language
+297427006,Turkana language
+297428001,Southern Nilotic language
+297429009,Kalenjin language
+297430004,Suk language
+297431000,Western Nilotic language
+297432007,Acholi language
+297433002,Alur language
+297434008,Dinka language
+297435009,Lango language
+297436005,Luo language
+297437001,Nuer language
+297438006,Shilluk language
+297439003,Nubian language
+297440001,Djerma language
+297441002,Dravidian language
+297442009,Brahui language
+297443004,Gondi language
+297444005,Kanarese language
+297445006,Kui language
+297446007,Kurukh language
+297447003,Malayalam language
+297448008,Tamil language
+297449000,Telugu language
+297450000,Tulu language
+297451001,Eskimo-Aleut language
+297452008,Aleut language
+297453003,Eskimo language
+297454009,Fur language
+297456006,Ainu language
+297457002,Barushaski language
+297459004,Basque language
+297460009,Japanese language
+297461008,Korean language
+297462001,Muong language
+297463006,Vietnamese language
+297464000,Indo-European language
+297465004,Albanian language
+297466003,Armenian language
+297467007,Baltic language
+297468002,Latvian language
+297469005,Lithuanian language
+297470006,Celtic language
+297471005,Brythonic Celtic language
+297472003,Breton language
+297474002,Goidelic Celtic language
+297475001,Irish Gaelic language
+297477009,Germanic language
+297478004,Northern Germanic language
+297479007,Danish language
+297480005,Faroese language
+297481009,Icelandic language
+297482002,Norwegian language
+297483007,Swedish language
+297484001,Western Germanic language
+297485000,Afrikaans language
+297486004,Dutch language
+297488003,Flemish language
+297489006,Frisian language
+297490002,German language
+297491003,Luxembourgian language
+297492005,Yiddish language
+297493000,Hellenic language
+297494006,Greek language
+297495007,Italic language
+297496008,Latin language
+297497004,Romance language
+297498009,Catalan language
+297499001,French language
+297501009,Swiss French dialect
+297502002,Italian language
+297503007,Moldavian language
+297504001,Portuguese language
+297505000,Galician Portuguese dialect
+297506004,Provencal language
+297507008,Rhaeto-Romanic language
+297508003,Rumanian language
+297509006,Sardinian language
+297510001,Spanish language
+297511002,Slavic language
+297512009,Eastern Slavic language
+297513004,Belorussian language
+297514005,Russian language
+297515006,Ukrainian language
+297516007,Southern Slavic language
+297517003,Bulgarian language
+297518008,Macedonian language
+297519000,Serbo-Croatian language
+297520006,Slovenian language
+297521005,Western Slavic language
+297522003,Czech language
+297523008,Polish language
+297524002,Slovak language
+297525001,Sorbian language
+297526000,Indo-Iranian language
+297527009,Indic language
+297528004,Assamese language
+297529007,Bhili language
+297530002,Sylhety
+297531003,Bihari language
+297532005,Hindustani language
+297533000,Kashmiri language
+297534006,Konkani language
+297535007,Maldivian language
+297536008,Marathi language
+297537004,Nepali language
+297538009,Oriya language
+297539001,Pakistani punjabi language
+297540004,Lehnda punjabi language
+297541000,Sikh punjabi language
+297542007,Rajasthani language
+297543002,Romany language
+297544008,Sanskrit language
+297545009,Sindhi language
+297546005,Sinhalese language
+297547001,Iranian language
+297548006,Baluchi language
+297549003,Gilaki language
+297550003,Kurdish language
+297551004,Mazanderani language
+297552006,Ossetian language
+297553001,Persian language
+297554007,Tajik language
+297555008,Khoisan language
+297556009,Bushman language
+297557000,Hatsa language
+297558005,Hottentot language
+297559002,Sandawe language
+297561006,Maban language
+297562004,Maba language
+297563009,Malayo-Polynesian language
+297564003,Indonesian language
+297565002,Achinese language
+297566001,Balinese language
+297567005,Batak language
+297568000,Bikol language
+297569008,Buginese language
+297570009,Cham language
+297571008,Chamorro language
+297572001,Hocano language
+297573006,Igorot language
+297574000,Jarai language
+297575004,Javanese language
+297576003,Madurese language
+297577007,Malagasy language
+297578002,Malay language
+297579005,Maranao language
+297580008,Minangkabau language
+297581007,Palau language
+297582000,Pampangan language
+297583005,Pangasinan language
+297584004,Rhade language
+297585003,Sundanese language
+297586002,Tagalog language
+297587006,Visayan language
+297588001,Micronesian language
+297589009,Gilbertese language
+297590000,Marshallese language
+297591001,Nauruan language
+297592008,Ponapean language
+297593003,Trukese language
+297594009,Yapese language
+297595005,Melanesian language
+297596006,Fijian language
+297597002,Motu language
+297598007,Tolai language
+297599004,Yabim language
+297600001,Polynesian language
+297601002,Hawaiian language
+297602009,Māori language
+297603004,Marquesan language
+297604005,Niuean language
+297605006,Rarotongan language
+297606007,Samoan language
+297607003,Tahitian language
+297608008,Tongan language
+297609000,Tuamotu language
+297610005,Uvea language
+297611009,Mon-Khmer language
+297612002,Bahnar language
+297613007,Khasi language
+297614001,Khmer language
+297615000,Mon language
+297616004,Nicobarese language
+297617008,Palaung language
+297618003,Sedang language
+297619006,Wa language
+297620000,Munda language
+297621001,Ho language
+297622008,Korku language
+297623003,Mundari language
+297624009,Santali language
+297625005,Savara language
+297626006,Niger-Congo language
+297627002,Adamawa-Eastern language
+297628007,Adamawa language
+297629004,Mbum language
+297630009,Eastern language (Niger-Congo)
+297631008,Banda language
+297632001,Gbaya language
+297633006,Sango language
+297634000,Zande language
+297635004,Benue-Congo language
+297636003,Ambo language
+297637007,Bemba language
+297638002,Bubi language
+297639005,Bulu language
+297640007,Chagga language
+297641006,Chiga language
+297642004,Chokwe language
+297643009,Duala language
+297644003,Fang language
+297645002,Ganda language
+297646001,Gisu language
+297647005,Hehe language
+297648000,Herero language
+297649008,Kamba language
+297650008,Kikuyu language
+297651007,Kisii language
+297652000,Kongo language
+297653005,Lingala language
+297654004,Lomwe language
+297655003,Lozi language
+297656002,Luba language
+297657006,Luhya language
+297658001,Lunda language
+297659009,Lwea language
+297661000,Makonde language
+297662007,Makua language
+297663002,Mbundu language
+297664008,Meru language
+297665009,Mongo language
+297666005,Ndebele language
+297667001,Ngala language
+297668006,Nkole language
+297669003,Nyamwezi language
+297670002,Nyanja language
+297671003,Nyoro language
+297672005,Pedi language
+297673000,Ruanda language
+297674006,Rundi language
+297675007,Shona language
+297676008,Sotho language
+297677004,Sukuma language
+297678009,Swahili language
+297679001,Swazi language
+297680003,Tonga language
+297681004,Toro language
+297682006,Tsonga language
+297683001,Tswana language
+297684007,Tumbuka language
+297685008,Venda language
+297686009,Xhosa language
+297687000,Yao language - Bantu
+297688005,Yaunde language
+297689002,Zulu language
+297690006,Efik language
+297691005,Ibibio language
+297692003,Tiv language
+297693008,Ijo language
+297694002,Western Sudanic language
+297695001,Gur language
+297696000,Bariba language
+297697009,Dagomba language
+297698004,Gurma language
+297699007,Kabre language
+297700008,Mossi language
+297701007,Senufo language
+297702000,Kwa language
+297703005,Adangme language
+297704004,Agni language
+297705003,Bassa language
+297706002,Baule language
+297707006,Edo language
+297708001,Ewe language
+297710004,Fanti language
+297711000,Fon language
+297712007,Ga language
+297714008,Grebo language
+297715009,Ibo language
+297716005,Idoma language
+297717001,Kru language
+297718006,Nupe language
+297719003,Twi language
+297720009,Urhobo language
+297721008,Yoruba language
+297722001,Mande language
+297723006,Bambara language
+297724000,Dyula language
+297725004,Kpelle language
+297726003,Loma language
+297727007,Malinke language
+297728002,Mende language
+297729005,Soninke language
+297730000,Susu language
+297731001,Vai language
+297732008,West Atlantic language
+297733003,Balante language
+297734009,Dyola language
+297735005,Fulani language
+297736006,Gola language
+297737002,Kissi language
+297738007,Serer language
+297739004,Temne language
+297740002,Wolof language
+297741003,Native North American language
+297742005,Algonkian language
+297743000,Arapaho language
+297744006,Blackfoot language
+297745007,Cheyenne language
+297746008,Cree language
+297747004,Delaware language
+297748009,Fox language
+297749001,Micmac language
+297750001,Naskapi language
+297752009,Ojibwa language
+297753004,Passamaquoddy language
+297754005,Athapascan language
+297755006,Apache language
+297756007,Carrier language
+297757003,Chilcotin language
+297758008,Chipewyan language
+297759000,Navajo language
+297760005,Caddoan language
+297761009,Caddo language
+297762002,Pawnee language
+297763007,Haida language
+297765000,Iroquoian language
+297766004,Cherokee language
+297767008,Mohawk language
+297768003,Oneida language
+297769006,Seneca language
+297770007,Keresan language
+297771006,Mayan language
+297772004,Cakchiquel language
+297773009,Chol language
+297774003,Chontal language
+297775002,Huastec language
+297776001,Kekchi language
+297777005,Mam language
+297778000,Maya language
+297779008,Quiche language
+297780006,Tzeltal language
+297781005,Tzotzil language
+297782003,Muskogean language
+297783008,Chickasaw language
+297784002,Choctaw language
+297785001,Creek language
+297786000,Seminole language
+297787009,Oto-Manguean language
+297788004,Chinantec language
+297789007,Mazahua language
+297790003,Mazatec language
+297791004,Mixtec language
+297792006,Otomi language
+297793001,Zapotec language
+297794007,Penutian language
+297795008,Klamath language
+297796009,Nez Perce language
+297797000,Tsimshian language
+297798005,Yakima language
+297799002,Salishan language
+297800003,Flathead language
+297801004,Lillooet language
+297802006,Okanagan language
+297803001,Shuswap language
+297804007,Thompson language
+297805008,Siouan language
+297806009,Assiniboin language
+297807000,Crow language
+297808005,Omaha language
+297809002,Osage language
+297810007,Sioux language
+297811006,Winnebago language
+297812004,Tanoan language
+297813009,Tewa language
+297814003,Tiwa language
+297815002,Towa language
+297816001,Tarasco language
+297817005,Tlingit language
+297818000,Totonac language
+297819008,Uto-Aztecan language
+297820002,Comanche language
+297821003,Hopi language
+297822005,Kiowa language
+297823000,Mayo language
+297824006,Nahuatl language
+297825007,Paiute language
+297826008,Papago language
+297827004,Pima language
+297828009,Shoshone language
+297829001,Tarahumara language
+297830006,Ute language
+297831005,Wakashan language
+297832003,Kwakiutl language
+297833008,Nootka language
+297834002,Yuman language
+297835001,Mohave language
+297836000,Yuma language
+297837009,Zoquean language
+297838004,Mixe language
+297839007,Zoque language
+297841008,Zunian language
+297842001,Zuni language
+297843006,Paleo-Asiatic language
+297844000,Chukchi language
+297845004,Itelmen language
+297846003,Ket language
+297847007,Koryak language
+297848002,Nivkh language
+297849005,Yukagir language
+297850005,Papuan language
+297851009,Baining language
+297852002,Chimbu language
+297853007,Enga language
+297854001,Hagen language
+297855000,Kate language
+297856004,Marind language
+297857008,Nimboran language
+297858003,Pidgin and Créole language
+297859006,Fanakalo language
+297860001,French Créole language
+297861002,Kituba language
+297862009,Krio language
+297863004,Papiamento language
+297864005,Pidgin English language
+297865006,Police Motu language
+297867003,Saramacca language
+297868008,Taki-Taki language
+297869000,Saharan language
+297870004,Kanuri language
+297871000,Teda language
+297872007,Sino-Tibetan language
+297873002,Miao-Yao language
+297874008,Miao language
+297875009,Sinitic language
+297876005,Chinese language
+297877001,Cantonese Chinese dialect
+297878006,Fukienese dialect
+297879003,Northern Fukienese dialect
+297880000,Southern Fukienese dialect
+297881001,Hakka dialect
+297882008,Hsiang dialect
+297883003,Mandarin dialect
+297884009,Wu dialect
+297885005,Tai language
+297886006,Chuang language
+297887002,Lao language
+297888007,Nung language
+297889004,Puyi language
+297890008,Shan language
+297891007,Thai language
+297892000,Tung language
+297893005,Tibeto-Burman language
+297894004,Bodo language
+297895003,Burmese language
+297896002,Chin language
+297897006,Garo language
+297898001,Jonkha language
+297899009,Kachin language
+297900004,Karen language
+297901000,Lahu language
+297902007,Lepcha language
+297903002,Lisu language
+297904008,Lushei language
+297905009,Meithei language
+297906005,Murmi language
+297907001,Nakhi language
+297908006,Newari language
+297909003,Tibetan language
+297910008,Yi language
+297911007,Songhai language
+297912000,Uralic language
+297913005,Finno-Ugric language
+297914004,Finnic language
+297915003,Estonian language
+297916002,Finnish language
+297917006,Komi language
+297918001,Lappish language
+297919009,Mari language
+297920003,Mordvin language
+297921004,Udmurt language
+297922006,Ugric language
+297923001,Hungarian language
+297924007,Ostyak language
+297925008,Vogul language
+297926009,Samoyed language
+297927000,Enets language
+297928005,Nenets language
+297929002,Nganasan language
+297930007,Selkup language
+297931006,Language commonly spoken in Europe
+297933009,Yao language - Sino-Tibet
+297934003,Swiss German dialect
+298018001,Kashubian Polish dialect
+313421002,Créole language
+313422009,Mirpuri language
+315566006,Main spoken language Arabic
+315567002,Main spoken language Bengali
+315568007,Main spoken language Cantonese
+315569004,Main spoken language Czech
+315571004,Main spoken language French
+315572006,Main spoken language Gujerati
+315574007,Main spoken language Hausa
+315575008,Main spoken language Hindi
+315576009,Main spoken language Iba
+315577000,Main spoken language Kutchi
+315578005,Main spoken language Mandarin
+315579002,Main spoken language Polish
+315580004,Main spoken language Portuguese
+315581000,Main spoken language Punjabi
+315582007,Main spoken language Russian
+315583002,Main spoken language Somali
+315584008,Main spoken language Spanish
+315585009,Main spoken language Swahili
+315586005,Main spoken language Sylheti
+315587001,Main spoken language Tamil
+315588006,Main spoken language Urdu
+315589003,Main spoken language Yoruba
+343981000000106,Main spoken language Bulgarian
+343991000000108,Main spoken language Romanian
+344001000000103,Main spoken language Romanian 
+344011000000101,Main spoken language Romanian 
+352891000000107,Main spoken language Slovak
+352921000000104,Main spoken language Ndebele
+356281000000105,Main spoken language Oromo
+356291000000107,Main spoken language Oromo 
+356301000000106,Main spoken language Oromo 
+356311000000108,Main spoken language Abkhazian
+356321000000102,Main spoken language Abkhazian 
+356331000000100,Main spoken language Abkhazian 
+356341000000109,Main spoken language Afar
+356351000000107,Main spoken language Afar 
+356361000000105,Main spoken language Afar 
+356371000000103,Main spoken language Afrikaans
+356381000000101,Main spoken language Afrikaans 
+356391000000104,Main spoken language Afrikaans 
+356401000000101,Main spoken language Armenian
+356411000000104,Main spoken language Armenian 
+356421000000105,Main spoken language Armenian 
+356431000000107,Main spoken language Assamese
+356441000000103,Main spoken language Assamese 
+356451000000100,Main spoken language Assamese 
+356461000000102,Main spoken language Aymara
+356471000000109,Main spoken language Aymara 
+356481000000106,Main spoken language Aymara 
+356501000000102,Main spoken language Azerbaijani
+356511000000100,Main spoken language Azerbaijani 
+356521000000106,Main spoken language Azerbaijani 
+356531000000108,Main spoken language Bashkir
+356541000000104,Main spoken language Bashkir 
+356551000000101,Main spoken language Bashkir 
+356561000000103,Main spoken language Basque
+356571000000105,Main spoken language Basque 
+356581000000107,Main spoken language Basque 
+356591000000109,Main spoken language Dzongkha
+356601000000103,Main spoken language Bhutani 
+356611000000101,Main spoken language Bhutani 
+356631000000109,Main spoken language Bihari
+356641000000100,Main spoken language Bihari 
+356651000000102,Main spoken language Bihari 
+356661000000104,Main spoken language Bislama
+356671000000106,Main spoken language Bislama 
+356681000000108,Main spoken language Bislama 
+356691000000105,Main spoken language Breton
+356701000000105,Main spoken language Breton 
+356711000000107,Main spoken language Breton 
+356721000000101,Main spoken language Burmese
+356731000000104,Main spoken language Burmese 
+356741000000108,Main spoken language Burmese 
+356751000000106,Main spoken language Belarusian
+356761000000109,Main spoken language Byelorussian 
+356771000000102,Main spoken language Byelorussian 
+356781000000100,Main spoken language Central Khmer
+356791000000103,Main spoken language Cambodian 
+356801000000104,Main spoken language Cambodian 
+356811000000102,Main spoken language Catalan
+356821000000108,Main spoken language Catalan 
+356831000000105,Main spoken language Catalan 
+356881000000109,Main spoken language Corsican
+356891000000106,Main spoken language Corsican 
+356901000000107,Main spoken language Corsican 
+356911000000109,Main spoken language Danish
+356921000000103,Main spoken language Danish 
+356931000000101,Main spoken language Danish 
+356941000000105,Main spoken language Esperanto
+356951000000108,Main spoken language Esperanto 
+356961000000106,Main spoken language Esperanto 
+356971000000104,Main spoken language Estonian
+356981000000102,Main spoken language Estonian 
+356991000000100,Main spoken language Estonian 
+357001000000106,Main spoken language Faeroese
+357011000000108,Main spoken language Faeroese 
+357021000000102,Main spoken language Faeroese 
+357041000000109,Main spoken language Fijian
+357051000000107,Main spoken language Fiji 
+357061000000105,Main spoken language Fiji 
+357071000000103,Main spoken language Finnish
+357081000000101,Main spoken language Finnish 
+357091000000104,Main spoken language Finnish 
+357111000000109,Main spoken language Frisian
+357121000000103,Main spoken language Frisian 
+357131000000101,Main spoken language Frisian 
+357141000000105,Main spoken language Galician
+357151000000108,Main spoken language Galician 
+357161000000106,Main spoken language Galician 
+357171000000104,Main spoken language Georgian
+357181000000102,Main spoken language Georgian 
+357191000000100,Main spoken language Georgian 
+357201000000103,Main spoken language Kalaallisut
+357211000000101,Main spoken language Greenlandic 
+357221000000107,Main spoken language Greenlandic 
+357231000000109,Main spoken language Guarani
+357241000000100,Main spoken language Guarani 
+357251000000102,Main spoken language Guarani 
+357261000000104,Main spoken language Hungarian
+357271000000106,Main spoken language Hungarian 
+357281000000108,Main spoken language Hungarian 
+357291000000105,Main spoken language Icelandic
+357301000000109,Main spoken language Icelandic 
+357311000000106,Main spoken language Icelandic 
+357321000000100,Main spoken language Indonesian
+357331000000103,Main spoken language Indonesian 
+357341000000107,Main spoken language Indonesian 
+357351000000105,Main spoken language Interlingua
+357361000000108,Main spoken language Interlingua 
+357371000000101,Main spoken language Interlingua 
+357381000000104,Main spoken language Interlingue
+357391000000102,Main spoken language Interlingue 
+357401000000104,Main spoken language Interlingue 
+357411000000102,Main spoken language Inupiaq
+357421000000108,Main spoken language Inupiak 
+357431000000105,Main spoken language Inupiak 
+357441000000101,Main spoken language Inuktitut
+357451000000103,Main spoken language Inuktitut 
+357461000000100,Main spoken language Inuktitut 
+357471000000107,Main spoken language Irish
+357481000000109,Main spoken language Irish 
+357491000000106,Main spoken language Irish 
+357501000000100,Main spoken language Javanese
+357511000000103,Main spoken language Javanese 
+357521000000109,Main spoken language Javanese 
+357531000000106,Main spoken language Kannada
+357541000000102,Main spoken language Kannada 
+357551000000104,Main spoken language Kannada 
+357561000000101,Main spoken language Kashmiri
+357571000000108,Main spoken language Kashmiri 
+357581000000105,Main spoken language Kashmiri 
+357591000000107,Main spoken language Kazakh
+357601000000101,Main spoken language Kazakh 
+357611000000104,Main spoken language Kazakh 
+357621000000105,Main spoken language Kinyarwanda
+357631000000107,Main spoken language Kinyarwanda 
+357641000000103,Main spoken language Kinyarwanda 
+357651000000100,Main spoken language Kirghiz
+357661000000102,Main spoken language Kirghiz 
+357671000000109,Main spoken language Kirghiz 
+357681000000106,Main spoken language Rundi
+357691000000108,Main spoken language Kirundi 
+357701000000108,Main spoken language Kirundi 
+357711000000105,Main spoken language Lao
+357721000000104,Main spoken language Laothian 
+357731000000102,Main spoken language Laothian 
+357771000000100,Main spoken language Latvian
+357781000000103,Main spoken language Latvian 
+357791000000101,Main spoken language Latvian 
+357801000000102,Main spoken language Macedonian
+357811000000100,Main spoken language Macedonian 
+357821000000106,Main spoken language Macedonian 
+357831000000108,Main spoken language Malagasy
+357841000000104,Main spoken language Malagasy 
+357851000000101,Main spoken language Malagasy 
+357861000000103,Main spoken language Malay
+357871000000105,Main spoken language Malay 
+357881000000107,Main spoken language Malay 
+357891000000109,Main spoken language Maltese
+357901000000105,Main spoken language Maltese 
+357911000000107,Main spoken language Maltese 
+357921000000101,Main spoken language Maori
+357931000000104,Main spoken language Maori 
+357941000000108,Main spoken language Maori 
+357951000000106,Main spoken language Marathi
+357961000000109,Main spoken language Marathi 
+357971000000102,Main spoken language Marathi 
+357981000000100,Main spoken language Moldavian
+357991000000103,Main spoken language Moldavian 
+358001000000107,Main spoken language Moldavian 
+358011000000109,Main spoken language Mongolian
+358021000000103,Main spoken language Mongolian 
+358031000000101,Main spoken language Mongolian 
+358041000000105,Main spoken language Nauru
+358051000000108,Main spoken language Nauru 
+358061000000106,Main spoken language Nauru 
+358071000000104,Main spoken language Nepali
+358081000000102,Main spoken language Nepali 
+358091000000100,Main spoken language Nepali 
+358101000000108,Main spoken language Occitan
+358111000000105,Main spoken language Occitan 
+358121000000104,Main spoken language Occitan 
+358131000000102,Main spoken language Oriya
+358141000000106,Main spoken language Oriya 
+358151000000109,Main spoken language Oriya 
+358191000000101,Main spoken language Quechua
+358201000000104,Main spoken language Quechua 
+358211000000102,Main spoken language Quechua 
+358221000000108,Main spoken language Romansh
+358231000000105,Main spoken language Rhaeto-Romance 
+358241000000101,Main spoken language Rhaeto-Romance 
+358251000000103,Main spoken language Samoan
+358261000000100,Main spoken language Samoan 
+358271000000107,Main spoken language Samoan 
+358281000000109,Main spoken language Sango
+358291000000106,Main spoken language Sangro 
+358301000000105,Main spoken language Sangro 
+358371000000102,Main spoken language Southern Sotho
+358381000000100,Main spoken language Sesotho 
+358391000000103,Main spoken language Sesotho 
+358401000000100,Main spoken language Tswana
+358411000000103,Main spoken language Setswana 
+358421000000109,Main spoken language Setswana 
+358431000000106,Main spoken language Sindhi
+358441000000102,Main spoken language Sindhi 
+358451000000104,Main spoken language Sindhi 
+358491000000107,Main spoken language Swati
+358501000000101,Main spoken language Siswati 
+358511000000104,Main spoken language Siswati 
+358521000000105,Main spoken language Slovenian
+358531000000107,Main spoken language Slovenian 
+358541000000103,Main spoken language Slovenian 
+358551000000100,Main spoken language Sundanese
+358561000000102,Main spoken language Sudanese 
+358571000000109,Main spoken language Sudanese 
+358581000000106,Main spoken language Tajik
+358591000000108,Main spoken language Tajik 
+358601000000102,Main spoken language Tajik 
+358611000000100,Main spoken language Tatar
+358621000000106,Main spoken language Tatar 
+358631000000108,Main spoken language Tatar 
+358641000000104,Main spoken language Telugu
+358651000000101,Main spoken language Tegulu 
+358661000000103,Main spoken language Tegulu 
+358671000000105,Main spoken language Tibetan
+358681000000107,Main spoken language Tibetan 
+358691000000109,Main spoken language Tibetan 
+358701000000109,Main spoken language Tongan
+358711000000106,Main spoken language Tonga 
+358721000000100,Main spoken language Tonga 
+358731000000103,Main spoken language Tsonga
+358741000000107,Main spoken language Tsonga 
+358751000000105,Main spoken language Tsonga 
+358761000000108,Main spoken language Turkmen
+358771000000101,Main spoken language Turkmen 
+358781000000104,Main spoken language Turkmen 
+358791000000102,Main spoken language Twi
+358801000000103,Main spoken language Twi 
+358811000000101,Main spoken language Twi 
+358821000000107,Main spoken language Uighur
+358831000000109,Main spoken language Uigur 
+358841000000100,Main spoken language Uigur 
+358851000000102,Main spoken language Uzbek
+358861000000104,Main spoken language Uzbek 
+358871000000106,Main spoken language Uzbek 
+358911000000108,Main spoken language Wolof
+358921000000102,Main spoken language Wolof 
+358931000000100,Main spoken language Wolof 
+358941000000109,Main spoken language Xhosa
+358951000000107,Main spoken language Xhosa 
+358961000000105,Main spoken language Xhosa 
+358971000000103,Main spoken language Yiddish
+358981000000101,Main spoken language Yiddish 
+358991000000104,Main spoken language Yiddish 
+359001000000104,Main spoken language Zhuang
+359011000000102,Main spoken language Zhuang 
+359021000000108,Main spoken language Zhuang 
+359031000000105,Main spoken language Zulu
+359041000000101,Main spoken language Zulu 
+359051000000103,Main spoken language Zulu 
+359081000000109,Main spoken language N - Z
+359091000000106,Main spoken language A - M
+369541000000100,Main spoken language Bulgarian 
+370721000000100,Main spoken language Bulgarian 
+392702006,Main spoken language Kurdish
+392703001,Main spoken language Farsi
+392704007,Main spoken language Shona
+393657009,Main spoken language Kurdish
+393658004,Main spoken language Farsi
+393659007,Main spoken language Shona
+395108007,Main spoken language Farsi
+395109004,Main spoken language Kurdish
+395110009,Main spoken language Shona
+407642001,Main spoken language Italian
+407643006,Main spoken language German
+407648002,Main spoken language Albanian
+407650005,Main spoken language Croatian
+407652002,Main spoken language Greek
+407654001,Main spoken language Japanese
+407655000,Main spoken language Korean
+407656004,Main spoken language Lithuanian
+407657008,Main spoken language Turkish
+407659006,Main spoken language Ukrainian
+407661002,Main spoken language Vietnamese
+408507007,Main spoken language Amharic
+408513003,Main spoken language Brawa
+408514009,Main spoken language Igbo
+408515005,Main spoken language Ethiopian
+408516006,Main spoken language Swedish
+408517002,Main spoken language Tagalog
+408518007,Main spoken language Sinhala
+408519004,Main spoken language Thai
+408520005,Main spoken language Flemish
+408521009,Main spoken language French Créole
+408523007,Main spoken language Hakka
+408524001,Main spoken language Hebrew
+408525000,Main spoken language Akan
+408526004,Main spoken language Lingala
+408527008,Main spoken language Luganda
+408528003,Main spoken language Dutch
+408529006,Main spoken language Malayalam
+408530001,Main spoken language Norwegian
+408531002,Main spoken language Pashto
+408533004,Main spoken language Tigrinya
+408534005,Main spoken language Patois
+408535006,Main spoken language Serbian
+414640006,Main spoken language Finnish
+438566004,Occitan language
+438893008,Inupiaq language
+439222005,Kalaallisut language
+439265006,Corsican language
+439314001,Central Khmer language
+439316004,Iban language
+439317008,Inuktitut language
+439399007,Southern Sotho language
+439766008,Kutchi language
+439813003,Gaelic language
+439997000,Romansh language
+440162008,Bislama language
+440684009,Brawa language
+440703007,Galician language
+444847000,Fulah language
+444852005,Norwegian Nynorsk language
+444853000,Western Frisian language
+444871007,Norwegian Bokmål language
+444872000,South Ndebele language
+444947004,Bosnian language
+444960005,Walloon language
+445016000,Croatian language
+445038003,Kuanyama language
+445070003,Northern Sami language
+445134004,Akan language
+445186008,Bamun language
+445189001,Nousu language
+445356005,Aragonese language
+445357001,Limburgan language
+445446007,Ndonga language
+445482002,Serbian language
+445530002,North Ndebele language
+446094006,Tetum language
+446973006,Dari language
+503511000000100,Main spoken language Filipino
+503521000000106,Main spoken language Filipino 
+503531000000108,Main spoken language Filipino 
+511841000000102,Main spoken language Hindko
+511851000000104,Main spoken language Hindko 
+517701000000104,Aragonese language
+517711000000102,Bosnian language
+517721000000108,Serbian language
+517741000000101,Western Frisian language
+517791000000106,Haitian language
+517801000000105,Croatian language
+517871000000102,Ido language
+517891000000103,Sichuan Yi language
+517921000000106,Kuanyama language
+517931000000108,Limburgan language
+517981000000107,South Ndebele language
+517991000000109,North Ndebele language
+518011000000103,Ndonga language
+518021000000109,Norwegian Nynorsk language
+518041000000102,Walloon language
+518051000000104,Akan language
+518071000000108,Fulah language
+518131000000105,Northern Sami language
+518341000000104,Avestan language
+518351000000101,Church Slavic language
+518361000000103,Norwegian Bokmål language
+518371000000105,Pali language
+518381000000107,Volapuk language
+519551000000101,American Sign Language
+519561000000103,Australian Sign Language
+522561000000103,Main spoken language Bamun
+522571000000105,Main spoken language Bamun 
+609092003,Main spoken language Bamun
+609093008,Main spoken language Dari
+609094002,Main spoken language Konkani
+609095001,Main spoken language Tetum
+621391000124107,Referral to English as a second language program
+651321000124106,Education about English as a second language program
+661891000124107,Assistance with application for English as a second language program
+698651000,Main spoken language Abkhazian
+698652007,Main spoken language Afar
+698653002,Main spoken language Afrikaans
+698654008,Main spoken language Basque
+698655009,Main spoken language Belarusian
+698656005,Main spoken language Bihari
+698657001,Main spoken language Breton
+698658006,Main spoken language Corsican
+698659003,Main spoken language Estonian
+698660008,Main spoken language Faroese
+698661007,Main spoken language Frisian
+698662000,Main spoken language Galician
+698663005,Main spoken language Icelandic
+698664004,Main spoken language Interlingua
+698665003,Main spoken language Inuktitut
+698666002,Main spoken language Inupiaq
+698667006,Main spoken language Irish
+698668001,Main spoken language Kazakh
+698669009,Main spoken language Lao
+698670005,Main spoken language Macedonian
+698671009,Main spoken language Malagasy
+698672002,Main spoken language Malay
+698673007,Main spoken language Māori
+698674001,Main spoken language Marathi
+698675000,Main spoken language Mongolian
+698676004,Main spoken language Nepali
+698677008,Main spoken language Quechua
+698678003,Main spoken language Romanian
+698679006,Main spoken language Rundi
+698680009,Main spoken language Samoan
+698681008,Main spoken language Sundanese
+698682001,Main spoken language Tajik
+698683006,Main spoken language Tsonga
+698684000,Main spoken language Tswana
+698685004,Main spoken language Twi
+698885002,Main spoken language Armenian
+698886001,Main spoken language Assamese
+698887005,Main spoken language Aymara
+698888000,Main spoken language Azerbaijani
+698889008,Main spoken language Bashkir
+698890004,Main spoken language Bislama
+698891000,Main spoken language Burmese
+698892007,Main spoken language Catalan
+698893002,Main spoken language Central Khmer
+698894008,Main spoken language Danish
+698895009,Main spoken language Jonkha
+698896005,Main spoken language Esperanto
+698897001,Main spoken language Fijian
+698898006,Main spoken language Georgian
+698899003,Main spoken language Guarani
+698900008,Main spoken language Hungarian
+698901007,Main spoken language Indonesian
+698902000,Main spoken language Occidental
+698903005,Main spoken language Javanese
+698904004,Main spoken language Kalaallisut
+698905003,Main spoken language Kanarese
+698906002,Main spoken language Kashmiri
+698907006,Main spoken language Ruanda
+698908001,Main spoken language Kirgiz
+698909009,Main spoken language Latvian
+698910004,Main spoken language Maltese
+698911000,Main spoken language Moldavian
+698912007,Main spoken language Nauruan
+698913002,Main spoken language Ndebele
+698914008,Main spoken language Occitan
+698915009,Main spoken language Oriya
+698916005,Main spoken language Oromo
+698917001,Main spoken language Romansh
+698918006,Main spoken language Sango
+698919003,Main spoken language Sindhi
+698920009,Main spoken language Slovak
+698921008,Main spoken language Slovenian
+698922001,Main spoken language Southern Sotho
+698923006,Main spoken language Swazi
+698924000,Main spoken language Tatar
+698925004,Main spoken language Telugu
+698926003,Main spoken language Tibetan
+698927007,Main spoken language Tongan
+698928002,Main spoken language Turkmen
+698929005,Main spoken language Uigur
+698930000,Main spoken language Uzbek
+698932008,Main spoken language Wolof
+698933003,Main spoken language Xhosa
+698934009,Main spoken language Yiddish
+698935005,Main spoken language Chuang
+698936006,Main spoken language Zulu
+699945003,Main spoken language Bulgarian
+704504004,African sign language
+704505003,European sign language
+704506002,Middle Eastern sign language
+704507006,Asian and Pacific sign language
+704508001,Sign language of the Americas
+704509009,Algerian sign language
+704510004,Bamako sign language
+704511000,Bura sign language
+704512007,Chadian sign language
+704513002,Congolese sign language
+704514008,Egyptian sign language
+704515009,Ethiopian sign language
+704516005,Franco-American sign language
+704517001,Ghanian sign language
+704518006,Adamorobe sign language
+704519003,Guinean sign language
+704520009,Hausa sign language
+704521008,Kenyan sign language
+704522001,Libyan sign language
+704523006,Malagasy sign language
+704524000,Moroccan sign language
+704525004,Mozambican sign language
+704526003,Mbour sign language
+704527007,Namibian sign language
+704528002,Nigerian sign language
+704529005,Sierra Leone sign language
+704530000,Somali sign language
+704531001,South African sign language
+704532008,Tanzanian sign language
+704533003,Tunisian sign language
+704534009,Ugandan sign language
+704535005,Zambian sign language
+704536006,Zimbabwe sign language
+704537002,Albanian sign language
+704538007,Armenian sign language
+704539004,Austrian sign language
+704540002,Belgian-French sign language
+704542005,Catalan sign language
+704543000,Croatian sign language
+704544006,Czech sign language
+704545007,Danish sign language
+704546008,Dutch sign language
+704547004,Estonian sign language
+704548009,Finnish sign language
+704549001,Finland-Swedish sign language
+704550001,Flemish sign language
+704551002,French sign language
+704552009,Swiss-French sign language
+704553004,Lyons sign language
+704554005,German sign language
+704555006,Swiss-German sign language
+704556007,Greek sign language
+704557003,Hungarian sign language
+704558008,Icelandic sign language
+704559000,Irish sign language
+704560005,Italian sign language
+704561009,Latvian sign language
+704562002,Lithuanian sign language
+704563007,Maltese sign language
+704564001,Moldova sign language
+704565000,Norwegian sign language
+704566004,Polish sign language
+704567008,Portuguese sign language
+704568003,Romanian sign language
+704569006,Russian sign language
+704570007,Slovakian sign language
+704571006,Spanish sign language
+704572004,Valencian sign language
+704573009,Swedish sign language
+704574003,Turkish sign language
+704575002,Ukrainian sign language
+704576001,Yugoslavian sign language
+704577005,Slovenian sign language
+704578000,Al-Sayyid Bedouin sign language
+704580006,Israeli sign language
+704581005,Yiddish sign language
+704582003,Jordanian sign language
+704583008,Kuwaiti sign language
+704584002,Palestinian sign language
+704585001,Persian sign language
+704586000,Saudi Arabian sign language
+704587009,Lebanese sign language
+704588004,Omani sign language
+704589007,Qatari sign language
+704590003,United Arab Emirates sign language
+704591004,Australian sign language
+704592006,Bali sign language
+704593001,Bengali sign language
+704594007,Chinese sign language
+704595008,Philippine sign language
+704596009,Hawaii Pidgin sign language
+704597000,Hong Kong sign language
+704598005,Indian sign language
+704599002,Indonesian sign language
+704600004,Japanese sign language
+704601000,Laos sign language
+704602007,Korean sign language
+704603002,Macao sign language
+704604008,Malaysian sign language
+704605009,Selangor sign language
+704606005,Penang sign language
+704607001,Mongolian sign language
+704608006,Nepalese sign language
+704609003,New Zealand sign language
+704610008,Pakistan sign language
+704611007,Samoa sign language
+704612000,Singapore sign language
+704613005,Sri Lankan sign language
+704614004,Taiwanese sign language
+704615003,Tibetan sign language
+704616002,Thai sign language
+704617006,Ban Khor sign language
+704618001,Chiangmai sign language
+704619009,American Sign Language
+704620003,Argentine sign language
+704621004,Bolivian sign language
+704622006,Brazilian sign language
+704623001,Urubú-Kaapor sign language
+704624007,Chilean sign language
+704625008,Colombian sign language
+704626009,Costa Rican sign language
+704627000,Cuba sign language
+704628005,Dominican sign language
+704629002,Ecuadorian sign language
+704630007,French Canadian sign language
+704631006,Guatemalan sign language
+704632004,Honduran sign language
+704633009,Inuit sign language
+704634003,Jamaican Country sign language
+704635002,Maritime sign language
+704636001,Mayan sign language
+704637005,Mexican sign language
+704638000,Nicaraguan sign language
+704639008,Panamanian sign language
+704640005,Peruvian sign language
+704641009,Plains Indian sign language
+704642002,Providencia sign language
+704643007,Puerto Rican sign language
+704644001,Salvadoran sign language
+704645000,Uruguayan sign language
+704646004,Venezuelan sign language
+706601000000108,Main spoken language Slovak
+708032007,Volapuk language
+708033002,Pali language
+708034008,Church Slavic language
+708035009,Avestan language
+708036005,Ido language
+708892009,Hmong language
+718512007,Main spoken language Romany
+729041000000101,Main spoken language Nyanja
+729051000000103,Main spoken language Fulani
+729061000000100,Main spoken language Kikuyu
+733052007,Oji-Cree language
+733076004,Cayuga language
+733077008,Odawa language
+733098008,Menominee language
+733099000,Tuscarora language
+753851000000106,Main spoken language Tetum
+753861000000109,Main spoken language Tetum 
+753891000000103,Main spoken language Konkani
+753901000000102,Main spoken language Konkani 
+755081000000105,Main spoken language Dari
+755091000000107,Main spoken language Dari 
+807711000000104,Main spoken language Ndebele
+809341000000106,Main spoken language Aragonese
+809351000000109,Main spoken language Aragonese 
+85621000000107,Main spoken language Vietnamese
+85921000000103,Main spoken language Korean
+85931000000101,Main spoken language Igbo
+910251000000104,First language not English 
+945161000000108,Difficulty understanding verbal language
+945211000000103,Does not understand verbal language 
+94601000000103,Main spoken language Italian
+94611000000101,Main spoken language German
+94621000000107,Main spoken language Albanian
+94631000000109,Main spoken language Croatian
+94641000000100,Main spoken language Greek
+94651000000102,Main spoken language Japanese
+94661000000104,Main spoken language Korean
+94671000000106,Main spoken language Lithuanian
+94681000000108,Main spoken language Turkish
+94691000000105,Main spoken language Ukrainian
+94701000000105,Main spoken language Akan
+94711000000107,Main spoken language Amharic
+94721000000101,Main spoken language Brawa
+94731000000104,Main spoken language Dutch
+94741000000108,Main spoken language Ethiopian
+94751000000106,Main spoken language Flemish
+94761000000109,Main spoken language French Creole
+94781000000100,Main spoken language Hakka
+94791000000103,Main spoken language Hebrew
+94801000000104,Main spoken language Igbo
+94811000000102,Main spoken language Lingala
+94821000000108,Main spoken language Luganda
+94831000000105,Main spoken language Malayalam
+94841000000101,Main spoken language Norwegian
+94851000000103,Main spoken language Patois
+94861000000100,Main spoken language Serbian
+94871000000107,Main spoken language Sinhala
+94881000000109,Main spoken language Swedish
+94891000000106,Main spoken language Tagalog
+94901000000107,Main spoken language Thai
+94911000000109,Main spoken language Tigrinya
+950951000000102,Does not comprehend language 
+970441000000105,Main spoken language Avaric
+970451000000108,Main spoken language Avestan
+970461000000106,Main spoken language Bambara
+970471000000104,Main spoken language Bosnian
+970481000000102,Main spoken language Chamorro
+970491000000100,Main spoken language Chechen
+970501000000106,Main spoken language Chinese
+970511000000108,Main spoken language Church Slavic
+970521000000102,Main spoken language Chuvash
+970541000000109,Main spoken language Cree
+970551000000107,Main spoken language Dhivehi
+970561000000105,Main spoken language Ewe
+970601000000105,Main spoken language Haitian
+970611000000107,Main spoken language Herero
+970621000000101,Main spoken language Hiri Motu
+970631000000104,Main spoken language Ido
+970641000000108,Main spoken language Kanuri
+970651000000106,Main spoken language Komi
+970661000000109,Main spoken language Kongo
+970681000000100,Main spoken language Kuanyama
+970691000000103,Main spoken language Latin
+970701000000103,Main spoken language Limburgan
+970711000000101,Main spoken language Luba-Katanga
+970721000000107,Main spoken language Luxembourgish
+970751000000102,Main spoken language Marshallese
+970771000000106,Main spoken language Navajo
+970781000000108,Main spoken language Ndonga
+970801000000109,Main spoken language Northern Ndebele
+970811000000106,Main spoken language Northern Sami
+970821000000100,Main spoken language Norwegian Bokmål
+970831000000103,Main spoken language Norwegian Nynorsk
+970851000000105,Main spoken language Ojibwa
+970871000000101,Main spoken language Ossetian
+970881000000104,Main spoken language Pali
+970901000000101,Main spoken language Persian
+970911000000104,Main spoken language Pushto
+970921000000105,Main spoken language Sanskrit
+970931000000107,Main spoken language Sardinian
+970961000000102,Main spoken language Nuosu
+970971000000109,Main spoken language South Ndebele
+970991000000108,Main spoken language Tahitian
+971011000000109,Main spoken language Venda
+971021000000103,Main spoken language Volapük
+971031000000101,Main spoken language Walloon
+971041000000105,Main spoken language Western Frisian
+974821000000105,Main spoken language T - Z
+974831000000107,Main spoken language N - S
+974841000000103,Main spoken language G - M
+974851000000100,Main spoken language A - F
+99471000000105,Main spoken language Italian
+99481000000107,Main spoken language German
+99491000000109,Main spoken language Albanian
+99501000000103,Main spoken language Croatian
+99511000000101,Main spoken language Greek
+99521000000107,Main spoken language Japanese
+99531000000109,Main spoken language Lithuanian
+99541000000100,Main spoken language Turkish
+99551000000102,Main spoken language Ukrainian
+99561000000104,Main spoken language Vietnamese
+99571000000106,Main spoken language Akan
+99581000000108,Main spoken language Amharic
+99591000000105,Main spoken language Brawa
+99601000000104,Main spoken language Dutch
+99611000000102,Main spoken language Ethiopian
+99621000000108,Main spoken language Flemish
+99631000000105,Main spoken language French Creole
+99651000000103,Main spoken language Hakka
+99661000000100,Main spoken language Hebrew
+99671000000107,Main spoken language Lingala
+99681000000109,Main spoken language Luganda
+99691000000106,Main spoken language Malayalam
+99701000000106,Main spoken language Norwegian
+99711000000108,Main spoken language Pashto
+99721000000102,Main spoken language Patois
+99731000000100,Main spoken language Serbian
+99741000000109,Main spoken language Sinhala
+99751000000107,Main spoken language Swedish
+99761000000105,Main spoken language Tagalog
+99771000000103,Main spoken language Thai
+99781000000101,Main spoken language Tigrinya

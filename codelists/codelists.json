@@ -1,46 +1,52 @@
 {
   "files": {
-    "user-YaminaB-english-not-main-language.csv": {
-      "id": "user/YaminaB/english-not-main-language/2e48fb38",
-      "url": "https://www.opencodelists.org/codelist/user/YaminaB/english-not-main-language/2e48fb38/",
-      "downloaded_at": "2025-07-17 13:26:27.273838Z",
-      "sha": "5cf69e1a7b01b74b0897c9f6d6fe55bd9d600f84"
+    "opensafely-interpreter-required.csv": {
+      "id": "opensafely/interpreter-required/556e6040",
+      "url": "https://www.opencodelists.org/codelist/opensafely/interpreter-required/556e6040/",
+      "downloaded_at": "2025-12-16 13:47:00.356076Z",
+      "sha": "a40c90d5145744c3c6e447a818c10b2e3aca3a75"
+    },
+    "opensafely-english-not-main-language.csv": {
+      "id": "opensafely/english-not-main-language/6e7dd375",
+      "url": "https://www.opencodelists.org/codelist/opensafely/english-not-main-language/6e7dd375/",
+      "downloaded_at": "2025-12-16 13:34:14.270457Z",
+      "sha": "91c6b3d109bcd1b04ddae255ed287bd42b3bddc9"
+    },
+    "opensafely-asylum-or-refugee-status.csv": {
+      "id": "opensafely/asylum-or-refugee-status/209cb9e0",
+      "url": "https://www.opencodelists.org/codelist/opensafely/asylum-or-refugee-status/209cb9e0/",
+      "downloaded_at": "2025-12-16 13:33:27.752510Z",
+      "sha": "ecd46bc32ff596afcb298dc249588fbe0efc907b"
+    },
+    "opensafely-immigration-status-excl-refugee-asylum.csv": {
+      "id": "opensafely/immigration-status-excl-refugee-asylum/52bba04a",
+      "url": "https://www.opencodelists.org/codelist/opensafely/immigration-status-excl-refugee-asylum/52bba04a/",
+      "downloaded_at": "2025-12-16 13:32:27.992012Z",
+      "sha": "0c9df0d94cfd6fe978f3bb04cfc5f24fc0f56904"
+    },
+    "opensafely-born-outside-the-uk.csv": {
+      "id": "opensafely/born-outside-the-uk/1d23465b",
+      "url": "https://www.opencodelists.org/codelist/opensafely/born-outside-the-uk/1d23465b/",
+      "downloaded_at": "2025-12-16 13:30:41.107400Z",
+      "sha": "667afb120ab5f45df6280eae0ee8fdfa9d955b2e"
+    },
+    "opensafely-born-in-the-uk.csv": {
+      "id": "opensafely/born-in-the-uk/4aa36068",
+      "url": "https://www.opencodelists.org/codelist/opensafely/born-in-the-uk/4aa36068/",
+      "downloaded_at": "2025-12-16 13:28:50.316628Z",
+      "sha": "43b8618968d5a6baf9ce130ea54c27b6a6aa2716"
+    },
+    "opensafely-migration-status.csv": {
+      "id": "opensafely/migration-status/5ba3fcb8",
+      "url": "https://www.opencodelists.org/codelist/opensafely/migration-status/5ba3fcb8/",
+      "downloaded_at": "2025-12-16 13:26:55.499346Z",
+      "sha": "02213a1be8085fd021d1ac756df763be49bf4421"
     },
     "opensafely-ethnicity-snomed-0removed.csv": {
       "id": "opensafely/ethnicity-snomed-0removed/22911876",
       "url": "https://www.opencodelists.org/codelist/opensafely/ethnicity-snomed-0removed/22911876/",
       "downloaded_at": "2025-03-06 13:25:50.816165Z",
       "sha": "d95a2f826299563aa57f6fa99009e6e13a65151b"
-    },
-    "user-YaminaB-migration-status.csv": {
-      "id": "user/YaminaB/migration-status/1f473d49",
-      "url": "https://www.opencodelists.org/codelist/user/YaminaB/migration-status/1f473d49/",
-      "downloaded_at": "2025-06-04 09:16:30.627814Z",
-      "sha": "b55c9a00163311a281bb93d6cc89047d1f8ed961"
-    },
-    "user-YaminaB-born-outside-the-uk.csv": {
-      "id": "user/YaminaB/born-outside-the-uk/0637ca14",
-      "url": "https://www.opencodelists.org/codelist/user/YaminaB/born-outside-the-uk/0637ca14/",
-      "downloaded_at": "2025-04-11 08:09:08.911168Z",
-      "sha": "f73120789fff7d9053ff8b5b8874bdd0145f5282"
-    },
-    "user-YaminaB-uk-visa.csv": {
-      "id": "user/YaminaB/uk-visa/4eb363bd",
-      "url": "https://www.opencodelists.org/codelist/user/YaminaB/uk-visa/4eb363bd/",
-      "downloaded_at": "2025-04-11 08:09:33.403155Z",
-      "sha": "8e536d9c24bbb4550690353c0ca7b9665915a8ce"
-    },
-    "user-YaminaB-asylum-seeker-or-refugee.csv": {
-      "id": "user/YaminaB/asylum-seeker-or-refugee/35a3f088",
-      "url": "https://www.opencodelists.org/codelist/user/YaminaB/asylum-seeker-or-refugee/35a3f088/",
-      "downloaded_at": "2025-04-11 08:09:49.346536Z",
-      "sha": "ecd46bc32ff596afcb298dc249588fbe0efc907b"
-    },
-    "user-YaminaB-interpreter-required.csv": {
-      "id": "user/YaminaB/interpreter-required/3856b07e",
-      "url": "https://www.opencodelists.org/codelist/user/YaminaB/interpreter-required/3856b07e/",
-      "downloaded_at": "2025-04-11 08:10:05.759560Z",
-      "sha": "344fee4358ef72a61fd0b0a8527aba0b90457cb7"
     }
   }
 }

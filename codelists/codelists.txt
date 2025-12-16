@@ -1,7 +1,8 @@
 opensafely/ethnicity-snomed-0removed/22911876/
-user/YaminaB/migration-status/1f473d49/
-user/YaminaB/born-outside-the-uk/0637ca14/
-user/YaminaB/uk-visa/4eb363bd/
-user/YaminaB/asylum-seeker-or-refugee/35a3f088/
-user/YaminaB/interpreter-required/3856b07e/
-user/YaminaB/english-not-main-language/2e48fb38/
+opensafely/migration-status/5ba3fcb8/
+opensafely/born-in-the-uk/4aa36068/
+opensafely/born-outside-the-uk/1d23465b/
+opensafely/immigration-status-excl-refugee-asylum/52bba04a/
+opensafely/asylum-or-refugee-status/209cb9e0/
+opensafely/english-not-main-language/6e7dd375/
+opensafely/interpreter-required/556e6040/
