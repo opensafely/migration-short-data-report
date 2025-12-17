@@ -1,21 +1,16 @@
+# #############################################################################
+# Number of migrants in OpenSAFELY-TPP from 2009-2025
+# - Author: Yamina Boukari
+# - Bennett Institute for Applied Data Science, University of Oxford, 2025
+#############################################################################
+
 # This is a script to create the following migrant cohort with basic demographics:
 # - Select anyone with 
-#         1) a migration-related code at any time point during the study period AND 
-#         2) who was registered at anytime (2009-2024) AND
+#         1) a migration-related code at any time point from 2009-2025 AND 
+#         2) who was registered at anytime (2009-2025) AND
 #         3) who does not have a disclosive sex AND
-#         4) had not died before the start of the study period AND 
-#         5) was not over 100 years old at the beginning of the study period
-# - Add a variable to indicate the date when they got their first migration code 
-# - Add a variable to indicate the number of migration codes in their record
-# - Add a variable to indicate the category of migration-related code 
-# - Add a sex variable
-# - Add date of first practice registration variable
-# - Add time from first practice registration to first migration code
-# - Add ethnicity variable (using SNOMED:2022 codelist)
-# - Add year of birth variable
-# - Add practice region variable (or equivalent)
-# - Add IMD variable 
-# - Add a date of death (if there is one)
+#         4) had not died before 2009 AND 
+#         4) has a plausible age (i.e. not >110 years old in 2009)
 
 from pathlib import Path
 

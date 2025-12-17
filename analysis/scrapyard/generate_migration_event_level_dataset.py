@@ -11,7 +11,7 @@ from ehrql.tables.tpp import (
 
 from analysis.codelists import *
 
-from analysis.scrapyard.dataset_definition_full_study_cohort import dataset
+from analysis.dataset_definition_full_study_cohort import dataset
 
 # all migration-related codes 
 migration_related_codes = (
