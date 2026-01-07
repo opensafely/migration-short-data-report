@@ -4,38 +4,23 @@
 # - Bennett Institute for Applied Data Science, University of Oxford, 2025
 #############################################################################
 
-# This is a script to create the following migrant cohort with basic demographics:
-# - Select anyone with 
-#         1) a migration-related code at any time point from 2009-2025 AND 
-#         2) who was registered at anytime (2009-2025) AND
-#         3) who does not have a disclosive sex AND
-#         4) had not died before 2009 AND 
-#         4) has a plausible age (i.e. not >110 years old in 2009)
+# This is a script to explore the migration status of all individuals who were:
+#         1) registered at anytime (2009-2025) AND
+#         2) do not have a disclosive sex AND
+#         4) alive on 1st Jan 2009 AND 
+#         4) had a plausible age at the beginning of the study period  (i.e. not >110 years old in 2009)
 
 from pathlib import Path
 
 from ehrql import create_dataset, codelist_from_csv, show, case, when
 from ehrql.tables.tpp import addresses, patients, practice_registrations, clinical_events, ons_deaths
-
-from analysis.codelists import all_migrant_codes, cob_migrant_codes, asylum_refugee_migrant_codes, interpreter_migrant_codes, ethnicity_codelist
+import codelists
+import migration_status_variables
 
 # Dates
 
 study_start_date = "2009-01-01"
-study_end_date = "2024-12-31"
-
-# Select all individuals who:
-#          1) had a migrant code during the entire study period AND 
-#          2) were registered at some point during the period AND 
-#          3) has a non-disclosive sex AND
-#          4) had not died before the start of the study period 
-#          5) was not over 100 years old at the beginning of the study period
-# Add a variable indicating the date of the first code 
-# Add a variable indicating how many migration-related codes they have
-
-has_any_migrant_code = (
-    clinical_events.where(clinical_events.snomedct_code.is_in(all_migrant_codes))
-    .exists_for_patient())
+study_end_date = "2025-10-17" # based on what I think is the latest data available, using the latest report run date here: https://reports.opensafely.org/reports/opensafely-tpp-database-history/#CodedEvent
 
 is_registered_during_study = (
     practice_registrations
@@ -52,70 +37,19 @@ is_alive_at_study_start = (
     ((ons_deaths.date >= study_start_date) | (ons_deaths.date.is_null()))
 )
 
-was_not_over_100_at_study_start = (
+was_not_over_110_at_study_start = (
     patients.age_on(study_start_date) <= 100
 )
 
-show(was_not_over_100_at_study_start)
-
 dataset = create_dataset()
-dataset.define_population(has_any_migrant_code & 
-                          is_registered_during_study & 
+dataset.define_population(is_registered_during_study & 
                           has_non_disclosive_sex & 
                           is_alive_at_study_start & 
-                          was_not_over_100_at_study_start)
+                          was_not_over_110_at_study_start)
 
-show(dataset)
+# add variables 
 
-date_of_first_migration_code = (
-    clinical_events.where(clinical_events.snomedct_code.is_in(all_migrant_codes))
-    .sort_by(clinical_events.date)
-    .first_for_patient().date)
-
-dataset.date_of_first_migration_code = date_of_first_migration_code
-
-dataset.number_of_migration_codes = (
-    clinical_events.where(clinical_events.snomedct_code.is_in(all_migrant_codes))
-    .count_for_patient()
-)
-
-dataset.sex = patients.sex
-
-# Add variables to indicate the type of migration code
-
-dataset.has_cob_migrant_code = clinical_events.where(clinical_events.snomedct_code.is_in(cob_migrant_codes)).exists_for_patient()
-dataset.has_asylum_or_refugee_migrant_code = clinical_events.where(clinical_events.snomedct_code.is_in(asylum_refugee_migrant_codes)).exists_for_patient()
-dataset.has_interpreter_migrant_code = clinical_events.where(clinical_events.snomedct_code.is_in(interpreter_migrant_codes)).exists_for_patient()
-
-# Add first practice registration date
-
-date_of_first_practice_registration = (
-    practice_registrations.sort_by(practice_registrations.start_date)
-    .first_for_patient().start_date
-)
-
-dataset.date_of_first_practice_registration = date_of_first_practice_registration
-
-# Calculate time from first registration to first migration code 
-
-time_to_first_migration_code  = (date_of_first_migration_code - date_of_first_practice_registration).days
-
-dataset.time_to_first_migration_code = time_to_first_migration_code
-
-# Add ethnicity variable
-
-dataset.latest_ethnicity_code = (
-    clinical_events.where(clinical_events.snomedct_code.is_in(ethnicity_codelist))
-    .sort_by(clinical_events.date)
-    .last_for_patient()
-    .snomedct_code
-)
-dataset.latest_ethnicity_group = dataset.latest_ethnicity_code.to_category(
-    ethnicity_codelist
-)
-
-# Add year of birth variable and categorise into bands 
-
+## year of birth
 year_of_birth = (patients.date_of_birth).year
 dataset.year_of_birth = year_of_birth
 
@@ -128,29 +62,109 @@ dataset.year_of_birth_band = case(
     when((year_of_birth > 2005) & (year_of_birth <= 2025)).then("2006-2025") 
 )
 
-# Add MSOA 
+## sex
 
-address = addresses.for_patient_on(study_start_date) 
+dataset.sex = patients.sex
 
-dataset.msoa_code = address.msoa_code
+## ethnicity
 
-# Add IMD based on patient's address 
+latest_ethnicity_code = (
+    clinical_events.where(clinical_events.snomedct_code.is_in(codelists.ethnicity_16_level_codelist))
+    .where(clinical_events.date.is_on_or_before(study_end_date)) # maybe this is redundant?
+    .sort_by(clinical_events.date)
+    .last_for_patient()
+    .snomedct_code)
+dataset.latest_ethnicity_code = latest_ethnicity_code
+
+latest_ethnicity_16_level_group = latest_ethnicity_code.to_category(
+    codelists.ethnicity_16_level_codelist)
+dataset.latest_ethnicity_16_level_group = latest_ethnicity_16_level_group
+
+latest_ethnicity_6_level_group = latest_ethnicity_code.to_category(
+    codelists.ethnicity_6_level_codelist)
+dataset.latest_ethnicity_6_level_group = latest_ethnicity_6_level_group
+
+## practice region (latest during the study period)
+
+dataset.region = practice_registrations.for_patient_on(study_end_date).practice_nuts1_region_name
+
+## imd
+
+address = addresses.for_patient_on(study_end_date) 
 
 dataset.imd_decile = address.imd_decile
 dataset.imd_quintile = address.imd_quintile
 
-# Add practice region (at study start)
+# migration status 
 
-dataset.region = practice_registrations.for_patient_on(study_start_date).practice_nuts1_region_name
+migrant_indicators = migration_status_variables.build_migrant_indicators(study_end_date)
 
-# Add date of death (if died)
+for name, indicator in migrant_indicators.items():
+    setattr(dataset, name, indicator)
 
-dataset.TPP_death_date = patients.date_of_death
-dataset.ons_death_date = ons_deaths.date
+## consolidate migration indiciators into 2-cat, 3-cat and 6-cat variables
 
-show(dataset)
+dataset.mig_status_2_cat = migration_status_variables.build_mig_status_2_cat(migrant_indicators)
+
+dataset.mig_status_3_cat = migration_status_variables.build_mig_status_3_cat(
+    migrant_indicators,
+    dataset.latest_ethnicity_16_level_group
+)
+
+dataset.mig_status_6_cat = migration_status_variables.build_mig_status_6_cat(
+    migrant_indicators,
+    dataset.latest_ethnicity_16_level_group
+)
+
+# date of entry to the UK (SNOMED CT code: 860021000000109)
+
+## has date of entry to the UK code 
+
+date_of_entry_code = ["860021000000109"]
+
+has_date_of_uk_entry = (
+    clinical_events.where(clinical_events.snomedct_code.is_in(date_of_entry_code))
+    .exists_for_patient()
+)
+dataset.has_date_of_uk_entry = has_date_of_uk_entry
+
+## number of uses of date of entry to the UK code 
+
+dataset.number_of_date_of_entry_to_the_UK_codes = (
+    clinical_events.where(clinical_events.snomedct_code.is_in(date_of_entry_code))
+    .count_for_patient()
+)
+
+## time from date of entry code - unsure if I can do this yet
+
+# number of migration codes per person
+
+dataset.number_of_migration_codes = (
+    clinical_events.where(clinical_events.snomedct_code.is_in(codelists.all_migrant_codes))
+    .count_for_patient()
+)
+
+# time from first practice registration to first migration code 
+
+date_of_first_migration_code = (
+    clinical_events.where(clinical_events.snomedct_code.is_in(codelists.all_migrant_codes))
+    .sort_by(clinical_events.date)
+    .first_for_patient().date)
+
+dataset.date_of_first_migration_code = date_of_first_migration_code
+
+date_of_first_practice_registration = (
+    practice_registrations.sort_by(practice_registrations.start_date)
+    .first_for_patient().start_date
+)
+
+dataset.date_of_first_practice_registration = date_of_first_practice_registration
+
+time_to_first_migration_code  = (date_of_first_migration_code - date_of_first_practice_registration).days
+
+dataset.time_to_first_migration_code = time_to_first_migration_code
 
 dataset.configure_dummy_data(population_size=1000)
-
+show(dataset)
 
 

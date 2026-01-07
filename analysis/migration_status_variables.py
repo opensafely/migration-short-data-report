@@ -14,19 +14,7 @@ migrant_flags = {
 }
 
 def build_migrant_indicators(date):
-    """
-    Build boolean migrant indicator expressions up to the given census date.
 
-    Parameters
-    ----------
-    census_date
-        EHRQL date expression used as an upper bound.
-
-    Returns
-    -------
-    Dict[str, ehrql expression]
-        Mapping of indicator name to boolean exists_for_patient() expression.
-    """
     return {
         name: (
             clinical_events
@@ -37,15 +25,12 @@ def build_migrant_indicators(date):
         for name, codes in migrant_flags.items()
     }
 
-
-
 def build_mig_status_2_cat(migrant_indicators):
     """
     2-category migrant status:
       - "Migrant" if migrant_indicators["migrant"] is True
       - "Non-migrant" otherwise
     """
-    # Use direct boolean expression; treat missing key as False (safer)
     migrant = migrant_indicators.get("migrant", False)
 
     return case(
@@ -53,18 +38,17 @@ def build_mig_status_2_cat(migrant_indicators):
         otherwise="Non-migrant"
     )
 
-
 def build_mig_status_3_cat(migrant_indicators, latest_ethnicity_expr):
     """
     3-category migrant status:
       - "Migrant" if migrant_indicators["migrant"]
-      - "Non-migrant" if born_in_uk OR ethnicity == "White - British"
+      - "Non-migrant" if born_in_uk OR (ethnicity == "White - British" AND no migrant code)
       - "Unknown" otherwise
     """
     migrant = migrant_indicators.get("migrant", False)
     born_in_uk = migrant_indicators.get("born_in_uk", False)
 
-    non_migrant_cond = born_in_uk | (latest_ethnicity_expr == "White - British")
+    non_migrant_cond = born_in_uk | ((latest_ethnicity_expr == "White - British") & ~migrant)
 
     return case(
         when(migrant).then("Migrant"),
@@ -79,11 +63,12 @@ def build_mig_status_6_cat(migrant_indicators, latest_ethnicity_expr=None):
       - Definite migrant: not_born_in_uk
       - Highly likely migrant: immig_status_excl_refugee_asylum OR refugee_asylum_status
       - Likely migrant: english_not_main_language OR interpreter_required
-      - Definite non-migrant: born_in_uk
-      - Likely non-migrant: latest_ethnicity == "White - British"  (if latest_ethnicity_expr supplied)
+      - Definite non-migrant: born_in_uk 
+      - Likely non-migrant: latest_ethnicity == "White - British"  (if latest_ethnicity_expr supplied) AND no migrant code 
       - Unknown: otherwise
     """
     # pull indicators, default to False if absent
+    migrant = migrant_indicators.get("migrant", False)
     not_born_in_uk = migrant_indicators.get("not_born_in_uk", False)
     immig_excl = migrant_indicators.get("immig_status_excl_refugee_asylum", False)
     refugee_asylum = migrant_indicators.get("refugee_asylum_status", False)
@@ -110,10 +95,8 @@ def build_mig_status_6_cat(migrant_indicators, latest_ethnicity_expr=None):
 
     # ethnicity clause if provided
     if latest_ethnicity_expr is not None:
-        case_args.append(when(latest_ethnicity_expr == "White - British").then("Likely non-migrant"))
+        case_args.append(when((latest_ethnicity_expr == "White - British") & (~migrant)).then("Likely non-migrant"))
 
-    # always add otherwise
-    # Note: ehrql.case accepts variable args and otherwise named parameter
     return case(
         *case_args,
         otherwise="Unknown"

@@ -1,10 +1,8 @@
-
-
-from ehrql import case, when, years
-from ehrql.tables.tpp import addresses, practice_registrations, clinical_events, patients
-import codelists
-
-# analysis/utilities.py
+# #############################################################################
+# Utilities 
+# - Author: Yamina Boukari
+# - Bennett Institute for Applied Data Science, University of Oxford, 2025
+#############################################################################
 
 from ehrql import case, when, years
 from ehrql.tables.tpp import addresses, practice_registrations, clinical_events, patients
@@ -81,7 +79,7 @@ def build_common_vars(INTERVAL):
     }
 
     # -------------------
-    # FIXED intervals (single source of truth)
+    # Intervals
     # -------------------
     intervals = years(16).starting_on("2009-01-01")
 

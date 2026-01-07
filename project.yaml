@@ -1,11 +1,11 @@
 version: '4.0'
 
 actions:
-  # generate_full_study_cohort:
-  #   run: ehrql:v1 generate-dataset analysis/create_cohorts/dataset_definition_full_study_cohort.py --output output/cohorts/full_study_cohort.arrow
-  #   outputs:
-  #     highly_sensitive:
-  #       dataset: output/cohorts/full_study_cohort.arrow
+  generate_full_study_cohort:
+    run: ehrql:v1 generate-dataset analysis/dataset_definition_full_study_cohort.py --output output/cohorts/full_study_cohort.arrow
+    outputs:
+      highly_sensitive:
+         dataset: output/cohorts/full_study_cohort.arrow
 
   generate_dataset_for_census_2021:
     run: ehrql:v1 generate-dataset analysis/dataset_definition_census_cohorts.py 
@@ -57,13 +57,13 @@ actions:
   #     moderately_sensitive:
   #       csv: output/tables/demographics_full_study_cohort.csv
 
-  # generate_demographics_census_2011_study_table:
-  #   run: r:latest analysis/generate_demographic_tables/demographics_table.r output/cohorts/census_2011_study_cohort.arrow output/tables/demographics_census_2011_study_cohort.csv
-  #   needs:
-  #   - generate_dataset_for_census_2011
-  #   outputs:
-  #     moderately_sensitive:
-  #       csv: output/tables/demographics_census_2011_study_cohort.csv
+  generate_demographics_census_2011_study_table:
+    run: r:latest analysis/process_data.r output/cohorts/census_2011_study_cohort.arrow 
+    needs:
+    - generate_dataset_for_census_2011
+    outputs:
+      moderately_sensitive:
+        csv: output/tables/demographics_census_2011_cohort.csv
 
   # generate_demographics_census_2021_study_table:
   #   run: r:latest analysis/generate_demographic_tables/demographics_table.r output/cohorts/census_2021_study_cohort.arrow output/tables/demographics_census_2021_study_cohort.csv
@@ -104,14 +104,6 @@ actions:
     outputs:
       moderately_sensitive:
         csv: output/tables/annual_migrant_counts_6cat.csv
-
-  # generate_migration_event_level_dataset:
-  #   run: ehrql:v1 generate-dataset analysis/code_usage/generate_migration_event_level_dataset.py
-  #     --output output/cohorts/migration_event_level_dataset:arrow
-  #     -- --keep-validator-happy output/cohorts/migration_event_level_dataset/*.arrow
-  #   outputs:
-  #     highly_sensitive:
-  #       dataset: output/cohorts/migration_event_level_dataset/*.arrow
 
 
  
