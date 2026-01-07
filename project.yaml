@@ -58,7 +58,7 @@ actions:
   #       csv: output/tables/demographics_full_study_cohort.csv
 
   generate_demographics_census_2011_study_table:
-    run: r:latest analysis/process_data.r output/cohorts/census_2011_study_cohort.arrow 
+    run: r:latest analysis/process_data.R output/cohorts/census_2011_study_cohort.arrow output/tables/demographics_census_2011_cohort.csv
     needs:
     - generate_dataset_for_census_2011
     outputs:
