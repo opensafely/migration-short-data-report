@@ -71,7 +71,12 @@ table_freq <- cohort %>%
     subgroup,
     category,
     name = "n"
-  )
+  ) %>%
+  group_by(migration_scheme, migration_status, subgroup) %>%
+  mutate(
+    percentage = 100 * n / sum(n)
+  ) %>%
+  ungroup()
 
 dir_create(path_dir(output_file))
 write_csv(table_freq, path = output_file)
