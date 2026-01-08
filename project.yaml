@@ -49,16 +49,16 @@ actions:
   #       contrasts: output/km_estimates/contrasts_rounded.csv
   #       plots: output/km_estimates/plot.png
 
-  # generate_demographics_full_study_table:
-  #   run: r:latest analysis/generate_demographic_tables/demographics_table.r output/cohorts/full_study_cohort.arrow output/tables/demographics_full_study_cohort.csv
-  #   needs:
-  #   - generate_full_study_cohort
-  #   outputs:
-  #     moderately_sensitive:
-  #       csv: output/tables/demographics_full_study_cohort.csv
+  generate_demographics_full_study_table:
+    run: r:latest analysis/process_full_cohort_data.R 
+    needs:
+    - generate_full_study_cohort
+    outputs:
+      moderately_sensitive:
+        csv: output/tables/demographics_full_study_cohort.csv
 
   generate_demographics_census_2011_study_table:
-    run: r:latest analysis/process_data.R output/cohorts/census_2011_study_cohort.arrow output/tables/demographics_census_2011_cohort.csv
+    run: r:latest analysis/process_census_cohort_data.R output/cohorts/census_2011_study_cohort.arrow output/tables/demographics_census_2011_cohort.csv
     needs:
     - generate_dataset_for_census_2011
     outputs:
@@ -66,7 +66,7 @@ actions:
         csv: output/tables/demographics_census_2011_cohort.csv
 
   generate_demographics_census_2021_study_table:
-    run: r:latest analysis/process_data.R output/cohorts/census_2021_study_cohort.arrow output/tables/demographics_census_2021_cohort.csv
+    run: r:latest analysis/process_census_cohort_data.R output/cohorts/census_2021_study_cohort.arrow output/tables/demographics_census_2021_cohort.csv
     needs:
     - generate_dataset_for_census_2021
     outputs:

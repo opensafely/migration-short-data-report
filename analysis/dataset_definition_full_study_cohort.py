@@ -33,12 +33,12 @@ has_non_disclosive_sex = (
 )
 
 is_alive_at_study_start = (
-    ((patients.date_of_death >= study_start_date) | (patients.date_of_death.is_null())) &
-    ((ons_deaths.date >= study_start_date) | (ons_deaths.date.is_null()))
+    ((patients.date_of_death > study_start_date) | (patients.date_of_death.is_null())) &
+    ((ons_deaths.date > study_start_date) | (ons_deaths.date.is_null()))
 )
 
 was_not_over_110_at_study_start = (
-    patients.age_on(study_start_date) <= 100
+    patients.age_on(study_start_date) <= 110
 )
 
 dataset = create_dataset()
@@ -95,6 +95,14 @@ address = addresses.for_patient_on(study_end_date)
 dataset.imd_decile = address.imd_decile
 dataset.imd_quintile = address.imd_quintile
 
+## date of first practice registration
+
+date_of_first_practice_registration = (
+    practice_registrations.sort_by(practice_registrations.start_date)
+    .first_for_patient().start_date
+)
+dataset.date_of_first_practice_registration = date_of_first_practice_registration
+
 # migration status 
 
 migrant_indicators = migration_status_variables.build_migrant_indicators(study_end_date)
@@ -116,32 +124,80 @@ dataset.mig_status_6_cat = migration_status_variables.build_mig_status_6_cat(
     dataset.latest_ethnicity_16_level_group
 )
 
+# number of migration codes per person
+
+number_of_migration_codes = (
+    clinical_events
+            .where(clinical_events.snomedct_code.is_in(codelists.all_migrant_codes))
+            .where(clinical_events.date.is_on_or_before(study_end_date))
+            .count_for_patient()
+)
+dataset.number_of_migration_codes = number_of_migration_codes
+
+number_of_migration_codes_at_any_time = (
+    clinical_events
+            .where(clinical_events.snomedct_code.is_in(codelists.all_migrant_codes))
+            .count_for_patient()
+)
+dataset.number_of_migration_codes_at_any_time = number_of_migration_codes
+
 # date of entry to the UK (SNOMED CT code: 860021000000109)
 
 ## has date of entry to the UK code 
 
 date_of_entry_code = ["860021000000109"]
 
+has_date_of_uk_entry_at_any_time = (
+    clinical_events
+    .where(clinical_events.snomedct_code.is_in(date_of_entry_code))
+    .exists_for_patient()
+)
+dataset.has_date_of_uk_entry_at_any_time = has_date_of_uk_entry_at_any_time
+
 has_date_of_uk_entry = (
-    clinical_events.where(clinical_events.snomedct_code.is_in(date_of_entry_code))
+    clinical_events
+    .where(clinical_events.snomedct_code.is_in(date_of_entry_code))
+    .where(clinical_events.date.is_on_or_before(study_end_date))
     .exists_for_patient()
 )
 dataset.has_date_of_uk_entry = has_date_of_uk_entry
 
 ## number of uses of date of entry to the UK code 
 
-dataset.number_of_date_of_entry_to_the_UK_codes = (
-    clinical_events.where(clinical_events.snomedct_code.is_in(date_of_entry_code))
+dataset.number_of_date_of_uk_entry_codes = (
+    clinical_events
+    .where(clinical_events.snomedct_code.is_in(date_of_entry_code))
+    .where(clinical_events.date.is_on_or_before(study_end_date))
     .count_for_patient()
 )
 
-## time from date of entry code - unsure if I can do this yet
-
-# number of migration codes per person
-
-dataset.number_of_migration_codes = (
-    clinical_events.where(clinical_events.snomedct_code.is_in(codelists.all_migrant_codes))
+dataset.number_of_date_of_UK_entry_codes_at_any_time = (
+    clinical_events
+    .where(clinical_events.snomedct_code.is_in(date_of_entry_code))
     .count_for_patient()
+)
+
+## date associated with earliest date of entry to the UK code 
+
+date_of_earliest_date_of_uk_entry_code = (
+    clinical_events.where(clinical_events.snomedct_code.is_in(date_of_entry_code))
+    .sort_by(clinical_events.date)
+    .first_for_patient().date)
+dataset.date_of_earliest_date_of_uk_entry_code = date_of_earliest_date_of_uk_entry_code
+
+## temporality of earliest date of entry to the UK code in relation to first practice registration date
+
+dataset.temporality_of_date_of_uk_entry_code = case(
+    when((date_of_earliest_date_of_uk_entry_code.is_null())).then("Missing"), 
+    when((date_of_earliest_date_of_uk_entry_code < date_of_first_practice_registration)).then("Before first practice registration"),
+    when((date_of_earliest_date_of_uk_entry_code >= date_of_first_practice_registration)).then("On or after first practice registration")
+)
+
+## number of individuals with a date of entry code and any other migration-related code 
+
+dataset.date_of_entry_and_other_migration_code = case(
+    when((has_date_of_uk_entry == True) & (number_of_migration_codes > 0)).then("True"),
+    otherwise="False"
 )
 
 # time from first practice registration to first migration code 
@@ -152,13 +208,6 @@ date_of_first_migration_code = (
     .first_for_patient().date)
 
 dataset.date_of_first_migration_code = date_of_first_migration_code
-
-date_of_first_practice_registration = (
-    practice_registrations.sort_by(practice_registrations.start_date)
-    .first_for_patient().start_date
-)
-
-dataset.date_of_first_practice_registration = date_of_first_practice_registration
 
 time_to_first_migration_code  = (date_of_first_migration_code - date_of_first_practice_registration).days
 

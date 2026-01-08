@@ -1,0 +1,102 @@
+###################################################
+# This script creates descriptive demographic tables for the overall full cohort 
+#
+# Author: Yamina Boukari
+#   Bennett Institute for Applied Data Science
+#   University of Oxford, 2026
+#
+###################################################
+
+library(tidyverse)
+library(lubridate)
+library(here)
+library(arrow)
+library(skimr)
+library(fs)
+
+## Create output directory
+output_dir <- here::here("output", "tables")
+fs::dir_create(output_dir)
+
+cohort_file <- "output/cohorts/full_study_cohort.arrow"
+output_file <- "output/tables/demographics_full_study_cohort.csv"
+
+# Import data ----
+cohort <- read_feather(cohort_file) %>%
+  mutate(
+    across(
+      where(is.ordered),
+      ~ factor(as.character(.x))
+    )
+  )
+
+# Summarize ----- 
+
+vars_to_summarise <- c(
+  "year_of_birth_band",
+  "sex",
+  "region",
+  "latest_ethnicity_6_level_group",
+  "imd_quintile"
+)
+
+mig_vars <- c(
+  "mig_status_2_cat",
+  "mig_status_3_cat",
+  "mig_status_6_cat")
+
+table_freq <- cohort %>%
+  pivot_longer(
+    cols = all_of(vars_to_summarise),
+    names_to = "subgroup",
+    values_to = "category"
+  ) %>%
+  pivot_longer(
+    cols = all_of(mig_vars),
+    names_to = "migration_scheme",
+    values_to = "migration_status"
+  ) %>%
+  # make missing explicit if needed
+  mutate(
+    category = fct_explicit_na(category, "unknown"),
+    migration_status = fct_explicit_na(migration_status, "unknown")
+  ) %>%
+  count(
+    migration_scheme,
+    migration_status,
+    subgroup,
+    category,
+    name = "n"
+  ) %>%
+  group_by(migration_scheme, migration_status, subgroup) %>%
+  mutate(
+    percentage = 100 * n / sum(n)
+  ) %>%
+  ungroup()
+
+# number of migration-related codes 
+
+frequency <- cohort %>%
+  pivot_longer(
+    cols = all_of(mig_vars),
+    names_to = "migration_scheme",
+    values_to = "migration_status"
+  ) %>%
+  group_by(migration_scheme, migration_status) %>%
+  summarise(
+    n = n(),
+    total_migration_codes = sum(number_of_migration_codes),
+    median_migration_codes = median(number_of_migration_codes, na.rm = TRUE),
+    q25 = quantile(number_of_migration_codes, 0.25, na.rm = TRUE),
+    q75 = quantile(number_of_migration_codes, 0.75, na.rm = TRUE),
+    .groups = "drop"
+  ) 
+
+
+dir_create(path_dir(output_file))
+write_csv(table_freq, path = output_file)
+
+
+test <- cohort %>%
+  filter(mig_status_2_cat == "Non-migrant" & number_of_migration_codes >0)
+
