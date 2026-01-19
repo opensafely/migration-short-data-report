@@ -19,7 +19,7 @@ output_dir <- here::here("output", "tables")
 fs::dir_create(output_dir)
 
 cohort_file <- "output/cohorts/full_study_cohort.arrow"
-output_file <- "output/tables/data_of_UK_entry_description.csv"
+output_file <- "output/tables/date_of_uk_entry_description.csv"
 
 # Import data ----
 cohort <- read_feather(cohort_file) %>%
@@ -50,19 +50,7 @@ summary_uk_entry_codes_any_time <- cohort %>%
             q25 = quantile(number_of_date_of_uk_entry_codes_at_any_time, 0.25, na.rm = TRUE),
             q75 = quantile(number_of_date_of_uk_entry_codes_at_any_time, 0.75, na.rm = TRUE),
             .groups = "drop") %>%
-  mutate(category == "Code at any time (including after study end date)")
-
-### To delete - UK not uk
-summary_uk_entry_codes_any_time <- cohort %>%
-  filter(number_of_date_of_UK_entry_codes_at_any_time == "TRUE") %>%
-  summarise(total_patients = n(),
-            total_date_of_uk_entry_codes = sum(number_of_date_of_UK_entry_codes_at_any_time),
-            median_date_of_uk_entry_codes = median(number_of_date_of_UK_entry_codes_at_any_time, na.rm = TRUE),
-            q25 = quantile(number_of_date_of_UK_entry_codes_at_any_time, 0.25, na.rm = TRUE),
-            q75 = quantile(number_of_date_of_UK_entry_codes_at_any_time, 0.75, na.rm = TRUE),
-            .groups = "drop") %>%
   mutate(category = "Code at any time (including after study end date)")
-########
 
 summary_uk_entry_codes <- cohort %>%
   filter(number_of_date_of_uk_entry_codes == "TRUE") %>%

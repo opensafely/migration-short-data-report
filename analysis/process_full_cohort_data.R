@@ -74,25 +74,6 @@ table_freq <- cohort %>%
   ) %>%
   ungroup()
 
-# number of migration-related codes 
-
-frequency <- cohort %>%
-  pivot_longer(
-    cols = all_of(mig_vars),
-    names_to = "migration_scheme",
-    values_to = "migration_status"
-  ) %>%
-  group_by(migration_scheme, migration_status) %>%
-  summarise(
-    n = n(),
-    total_migration_codes = sum(number_of_migration_codes),
-    median_migration_codes = median(number_of_migration_codes, na.rm = TRUE),
-    q25 = quantile(number_of_migration_codes, 0.25, na.rm = TRUE),
-    q75 = quantile(number_of_migration_codes, 0.75, na.rm = TRUE),
-    .groups = "drop"
-  ) 
-
-
 dir_create(path_dir(output_file))
 write_csv(table_freq, path = output_file)
 

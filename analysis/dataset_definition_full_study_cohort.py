@@ -209,9 +209,11 @@ date_of_first_migration_code = (
 
 dataset.date_of_first_migration_code = date_of_first_migration_code
 
-time_to_first_migration_code  = (date_of_first_migration_code - date_of_first_practice_registration).days
+time_to_first_migration_code_days  = (date_of_first_migration_code - date_of_first_practice_registration).days
+time_to_first_migration_code_months  = (date_of_first_migration_code - date_of_first_practice_registration).months
 
-dataset.time_to_first_migration_code = time_to_first_migration_code
+dataset.time_to_first_migration_code_days = time_to_first_migration_code_days
+dataset.time_to_first_migration_code_months = time_to_first_migration_code_months
 
 dataset.configure_dummy_data(population_size=1000)
 show(dataset)

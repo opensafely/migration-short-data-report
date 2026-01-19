@@ -55,7 +55,7 @@ actions:
     - generate_full_study_cohort
     outputs:
       moderately_sensitive:
-        csv: output/tables/data_of_UK_entry_description.csv
+        csv: output/tables/date_of_uk_entry_description.csv
 
   generate_annual_migrant_counts:
     run: ehrql:v1 generate-measures analysis/generate_annual_migrant_counts.py --output output/tables/annual_migrant_counts.csv
@@ -81,5 +81,26 @@ actions:
       moderately_sensitive:
         csv: output/tables/annual_migrant_counts_6cat.csv
 
+  generate_annual_migrant_counts_migration_status_types:
+    run: ehrql:v1 generate-measures analysis/generate_annual_migrant_counts_migration_status_types.py --output output/tables/annual_migrant_counts_migration_status_types.csv
+    outputs:
+      moderately_sensitive:
+        csv: output/tables/annual_migrant_counts_migration_status_types.csv
+
+  generate_migration_coding_summary:
+    run: r:latest analysis/migration_coding.R
+    needs:
+    - generate_full_study_cohort
+    outputs:
+      moderately_sensitive:
+        csv: output/tables/migration_coding_summary.csv
+
+  generate_migration_code_combinations_summary:
+    run: r:latest analysis/migration_coding_combinations.R
+    needs:
+    - generate_full_study_cohort
+    outputs:
+      moderately_sensitive:
+        csv: output/tables/migration_code_combinations_summary.csv
 
  
