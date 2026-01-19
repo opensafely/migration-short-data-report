@@ -36,6 +36,11 @@ cohort <- read_feather(cohort_file) %>%
     )
   )
 
+  rounding <- function(vars) {
+  case_when(vars == 0 ~ 0,
+            vars > 7 ~ round(vars / 5) * 5)
+}
+
 # Summarize ----- 
 
 vars_to_summarise <- c(
@@ -74,6 +79,7 @@ table_freq <- cohort %>%
   ) %>%
   group_by(migration_scheme, migration_status, subgroup) %>%
   mutate(
+    n = rounding(n),
     percentage = 100 * n / sum(n)
   ) %>%
   ungroup()
