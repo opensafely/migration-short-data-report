@@ -25,30 +25,6 @@ actions:
       highly_sensitive:
         dataset: output/cohorts/census_2011_study_cohort.arrow
 
-  # generate_km_time_to_first_migration_code_cohort:
-  #   run: ehrql:v1 generate-dataset analysis/create_cohorts/dataset_definition_km_time_to_first_migration_code.py --output output/cohorts/km_time_to_first_migration_code_cohort.arrow
-  #   outputs:
-  #     highly_sensitive:
-  #       dataset: output/cohorts/km_time_to_first_migration_code_cohort.arrow
-
-  # km_time_to_first_migration_code:
-  #   run: kaplan-meier-function:v0.0.14
-  #     --df_input=output/cohorts/km_time_to_first_migration_code_cohort.arrow
-  #     --dir_output=output/km_estimates/
-  #     --exposure=has_a_migration_code
-  #     --origin_date=baseline_date
-  #     --event_date=processed_first_migration_code_date
-  #     --censor_date=censor_date
-  #     --min_count=6
-  #     --plot=TRUE
-  #   needs:
-  #   - generate_km_time_to_first_migration_code_cohort 
-  #   outputs:
-  #     highly_sensitive:
-  #       estimates: output/km_estimates/estimates.csv
-  #       contrasts: output/km_estimates/contrasts_rounded.csv
-  #       plots: output/km_estimates/plot.png
-
   generate_demographics_full_study_table:
     run: r:latest analysis/process_full_cohort_data.R 
     needs:
@@ -72,14 +48,14 @@ actions:
     outputs:
       moderately_sensitive:
         csv: output/tables/demographics_census_2021_cohort.csv
-
-  # generate_demographics_population_denominator_table:
-  #   run: r:latest analysis/generate_demographic_tables/demographics_population_table.r 
-  #   needs:
-  #   - generate_dataset_for_population_denominators
-  #   outputs:
-  #     moderately_sensitive:
-  #       csv: output/tables/demographics_population_denominator.csv
+  
+  generate_date_of_uk_entry_description:
+    run: r:latest analysis/date_of_entry_to_uk.R
+    needs:
+    - generate_full_study_cohort
+    outputs:
+      moderately_sensitive:
+        csv: output/tables/data_of_UK_entry_description.csv
 
   generate_annual_migrant_counts:
     run: ehrql:v1 generate-measures analysis/generate_annual_migrant_counts.py --output output/tables/annual_migrant_counts.csv

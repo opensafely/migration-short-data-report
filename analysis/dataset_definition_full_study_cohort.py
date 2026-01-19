@@ -171,7 +171,7 @@ dataset.number_of_date_of_uk_entry_codes = (
     .count_for_patient()
 )
 
-dataset.number_of_date_of_UK_entry_codes_at_any_time = (
+dataset.number_of_date_of_uk_entry_codes_at_any_time = (
     clinical_events
     .where(clinical_events.snomedct_code.is_in(date_of_entry_code))
     .count_for_patient()
