@@ -68,7 +68,7 @@ table_freq <- cohort %>%
   # make missing explicit if needed
   mutate(
     category = fct_explicit_na(category, "unknown"),
-    migration_status = fct_explicit_na(migration_status, "unknown")
+    migration_status = fct_na_value_to_level(migration_status, "unknown")
   ) %>%
   count(
     migration_scheme,
@@ -80,7 +80,7 @@ table_freq <- cohort %>%
   group_by(migration_scheme, migration_status, subgroup) %>%
   mutate(
     n = rounding(n),
-    percentage = 100 * n / sum(n)
+    percentage = round((100 * n / sum(n)),1)
   ) %>%
   ungroup()
 

@@ -76,14 +76,11 @@ table_freq <- cohort %>%
   group_by(migration_scheme, migration_status, subgroup) %>%
   mutate(
     n = rounding(n),
-    percentage = 100 * n / sum(n)
+    percentage = round((100 * n / sum(n)),1)
   ) %>%
   ungroup()
 
 dir_create(path_dir(output_file))
 write_csv(table_freq, path = output_file)
 
-
-test <- cohort %>%
-  filter(mig_status_2_cat == "Non-migrant" & number_of_migration_codes >0)
 

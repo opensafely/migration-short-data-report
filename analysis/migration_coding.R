@@ -21,7 +21,6 @@ fs::dir_create(output_dir)
 cohort_file <- "output/cohorts/full_study_cohort.arrow"
 output_file <- "output/tables/migration_coding_summary.csv"
 
-# Import data ----
 cohort <- read_feather(cohort_file) %>%
   mutate(
     across(
@@ -43,6 +42,11 @@ mig_vars <- c(
   "mig_status_3_cat",
   "mig_status_6_cat")
 
+rounding <- function(vars) {
+  case_when(vars == 0 ~ 0,
+            vars > 7 ~ round(vars / 5) * 5)
+}
+
 migration_coding_summary <- cohort %>%
   pivot_longer(
     cols = all_of(mig_vars),
@@ -51,7 +55,7 @@ migration_coding_summary <- cohort %>%
   ) %>%
   group_by(migration_scheme, migration_status) %>%
   summarise(
-    n = n(),
+    n = rounding(n()),
     total_migration_codes = sum(number_of_migration_codes),
     median_migration_codes = median(number_of_migration_codes, na.rm = TRUE),
     q25_migration_codes = quantile(number_of_migration_codes, 0.25, na.rm = TRUE),
