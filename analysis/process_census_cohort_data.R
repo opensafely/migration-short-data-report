@@ -68,7 +68,7 @@ table_freq <- cohort %>%
   # make missing explicit if needed
   mutate(
     category = fct_explicit_na(category, "unknown"),
-    migration_status = fct_na_value_to_level(migration_status, "unknown")
+    migration_status = fct_explicit_na(migration_status, "unknown")
   ) %>%
   count(
     migration_scheme,
