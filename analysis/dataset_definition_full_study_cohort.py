@@ -12,7 +12,7 @@
 
 from pathlib import Path
 
-from ehrql import create_dataset, codelist_from_csv, show, case, when
+from ehrql import create_dataset, codelist_from_csv, show, case, when, days
 from ehrql.tables.tpp import addresses, patients, practice_registrations, clinical_events, ons_deaths
 import codelists
 import migration_status_variables
@@ -22,11 +22,19 @@ import migration_status_variables
 study_start_date = "2009-01-01"
 study_end_date = "2025-10-17" # based on what I think is the latest data available, using the latest report run date here: https://reports.opensafely.org/reports/opensafely-tpp-database-history/#CodedEvent
 
-is_registered_during_study = (
-    practice_registrations
-    .where((practice_registrations.end_date.is_null()) | ((practice_registrations.end_date.is_on_or_before(study_end_date)) & (practice_registrations.end_date.is_after(study_start_date))))
-    .exists_for_patient()
-)           
+is_registered_at_any_time_during_study = practice_registrations.where(
+  # starting during period
+  practice_registrations.start_date.is_on_or_between(study_start_date, study_end_date) |
+  
+  # ending during period
+  practice_registrations.end_date.is_on_or_between(study_start_date, study_end_date) | 
+  
+  # starting before and ending after
+  (
+    practice_registrations.start_date.is_on_or_before(study_start_date) &
+    (practice_registrations.end_date.is_on_or_after(study_end_date + days(1)) | practice_registrations.end_date.is_null())
+  )
+)
 
 has_non_disclosive_sex = (
     (patients.sex == "male") | (patients.sex == "female")
@@ -42,14 +50,14 @@ was_not_over_110_at_study_start = (
 )
 
 dataset = create_dataset()
-dataset.define_population(is_registered_during_study & 
+dataset.define_population(is_registered_at_any_time_during_study.exists_for_patient() & 
                           has_non_disclosive_sex & 
                           is_alive_at_study_start & 
                           was_not_over_110_at_study_start)
 
 # add variables 
 
-## year of birth
+## year of birth and date of birth
 year_of_birth = (patients.date_of_birth).year
 dataset.year_of_birth = year_of_birth
 
@@ -62,6 +70,8 @@ dataset.year_of_birth_band = case(
     when((year_of_birth > 2005) & (year_of_birth <= 2025)).then("2006-2025") 
 )
 
+dataset.date_of_birth = patients.date_of_birth
+
 ## sex
 
 dataset.sex = patients.sex
@@ -70,7 +80,7 @@ dataset.sex = patients.sex
 
 latest_ethnicity_code = (
     clinical_events.where(clinical_events.snomedct_code.is_in(codelists.ethnicity_16_level_codelist))
-    .where(clinical_events.date.is_on_or_before(study_end_date)) # maybe this is redundant?
+    .where(clinical_events.date.is_on_or_before(study_end_date)) 
     .sort_by(clinical_events.date)
     .last_for_patient()
     .snomedct_code)
@@ -86,11 +96,16 @@ dataset.latest_ethnicity_6_level_group = latest_ethnicity_6_level_group
 
 ## practice region (latest during the study period)
 
-dataset.region = practice_registrations.for_patient_on(study_end_date).practice_nuts1_region_name
+dataset.region = (practice_registrations
+                  .sort_by(practice_registrations.start_date)
+                  .last_for_patient()
+                  .practice_nuts1_region_name)
 
 ## imd
 
-address = addresses.for_patient_on(study_end_date) 
+address = (addresses
+           .sort_by(addresses.start_date)
+           .last_for_patient())
 
 dataset.imd_decile = address.imd_decile
 dataset.imd_quintile = address.imd_quintile
@@ -102,6 +117,8 @@ date_of_first_practice_registration = (
     .first_for_patient().start_date
 )
 dataset.date_of_first_practice_registration = date_of_first_practice_registration
+
+dataset.date_of_death = patients.date_of_death
 
 # migration status 
 

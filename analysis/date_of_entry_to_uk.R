@@ -30,16 +30,16 @@ cohort <- read_feather(cohort_file) %>%
     )
   )
 
-  rounding <- function(vars) {
-  case_when(vars == 0 ~ 0,
-            vars > 7 ~ round(vars / 5) * 5)
-}
+#   rounding <- function(vars) {
+#   case_when(vars == 0 ~ 0,
+#             vars > 7 ~ round(vars / 5) * 5)
+# }
 
 # Number and median (IQR) of date of UK entry codes per individual 
 
 summary_uk_entry_codes_any_time <- cohort %>%
   filter(number_of_date_of_uk_entry_codes_at_any_time == "TRUE") %>%
-  summarise(total_patients = rounding(n()),
+  summarise(total_patients = n(),
             total_date_of_uk_entry_codes = sum(number_of_date_of_uk_entry_codes_at_any_time), # unsure if I need rounding here
             median_date_of_uk_entry_codes = median(number_of_date_of_uk_entry_codes_at_any_time, na.rm = TRUE),
             q25 = quantile(number_of_date_of_uk_entry_codes_at_any_time, 0.25, na.rm = TRUE),
@@ -49,7 +49,7 @@ summary_uk_entry_codes_any_time <- cohort %>%
 
 summary_uk_entry_codes <- cohort %>%
   filter(number_of_date_of_uk_entry_codes == "TRUE") %>%
-  summarise(total_patients = rounding(n()),
+  summarise(total_patients = n(),
             total_date_of_uk_entry_codes = sum(number_of_date_of_uk_entry_codes), # unsure if I need rounding here
             median_date_of_uk_entry_codes = median(number_of_date_of_uk_entry_codes, na.rm = TRUE),
             q25 = quantile(number_of_date_of_uk_entry_codes, 0.25, na.rm = TRUE),
@@ -63,7 +63,7 @@ summary_uk_entry_codes_sum_median_iqr <- bind_rows(summary_uk_entry_codes_any_ti
 
 timing_of_date_of_uk_entry_codes <- cohort %>%
   count(temporality_of_date_of_uk_entry_code)%>% 
-  mutate(n = rounding(n)) %>%
+  #mutate(n = rounding(n)) %>%
   pivot_wider(
     names_from = temporality_of_date_of_uk_entry_code,
     values_from = n,
