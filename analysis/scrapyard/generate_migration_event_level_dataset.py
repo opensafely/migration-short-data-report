@@ -9,9 +9,9 @@ from ehrql.tables.tpp import (
   clinical_events
 )
 
-from analysis.create_cohorts.codelists import *
+from analysis.codelists import *
 
-from analysis.create_cohorts.dataset_definition_full_study_cohort import dataset
+from analysis.dataset_definition_full_study_cohort import dataset
 
 # all migration-related codes 
 migration_related_codes = (

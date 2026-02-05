@@ -1,10 +1,9 @@
 code,term
-1047281000000107,Does not speak English
-1047301000000108,Does not read English
 1047321000000104,Romany language interpreter needed
 1050791000000101,Romany language interpreter needed
 1254713008,Requires language interpretation service to support health literacy
-1300106003,Completed English as a second language program
+1366478006,Requires spoken language interpretation service
+1366479003,Requires in-person spoken language interpretation service
 153694008,Presence of interpreter
 153695009,Interpreter present
 153703000,Need for interpreter
@@ -173,6 +172,7 @@ code,term
 314431000,Interpreter present
 315593009,Need for interpreter
 315594003,Interpreter needed
+343671000000102,English language interpreter needed
 343701000000103,Finnish language interpreter needed
 343711000000101,Flemish language interpreter needed
 343771000000106,Kutchi language interpreter needed
@@ -448,7 +448,6 @@ code,term
 787671000000101,Interpreter booked 
 802371000000105,Requires telephone language interpreter service
 812621000000103,Request for telephone language interpreter service
-945731000000104,Hands-on signing interpreter needed
 972511000000109,Aragonese interpreter needed
 972521000000103,Avaric interpreter needed
 972531000000101,Avestan interpreter needed
@@ -479,7 +478,6 @@ code,term
 972811000000107,Limburgan interpreter needed
 972821000000101,Luba-Katanga interpreter needed
 972831000000104,Luxembourgish interpreter needed
-972851000000106,Manx interpreter needed
 972861000000109,Marshallese interpreter needed
 972881000000100,Navajo interpreter needed
 972891000000103,Ndonga interpreter needed

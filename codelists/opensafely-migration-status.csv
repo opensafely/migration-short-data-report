@@ -1,11 +1,23 @@
 code,term
+1017202000,At increased risk of human trafficking
 1036381000000101,Main spoken language Romany
 1036391000000104,Main spoken language Romanes 
+103738006,"History and physical examination, immigration"
+1045691000000103,Victim of modern slavery
+1045701000000103,Victim of modern slavery 
+1045861000000108,At risk of human trafficking
+1045981000000106,At risk of slavery
 1047281000000107,Does not speak English
-1047301000000108,Does not read English
+1047291000000109,Does not speak English 
 1047321000000104,Romany language interpreter needed
+1050391000000102,At risk of human trafficking
+1050481000000109,At risk of slavery
 1050791000000101,Romany language interpreter needed
+1057331000000104,Signposting to Refugee Council
 107751000000106,Main spoken language Pashto
+1085811000000100,History of detention in immigration removal centre
+1193634005,Born in Cabo Verde
+1231786003,Refugee healthcare service
 1254706008,Referral to language interpretation service
 1254713008,Requires language interpretation service to support health literacy
 1264278006,Iranian Persian language
@@ -15,11 +27,230 @@ code,term
 1332075009,Dan language
 1332076005,Mandingo language
 1332077001,Mandinka language
+1364151000000105,Immigration Removal Centre Assessment Toolkit discharge planning screening
+1364171000000101,Immigration Removal Centre Assessment Toolkit discharge planning screening declined
+1364221000000109,Immigration Removal Centre Assessment Toolkit reception screening
+1364251000000104,Immigration Removal Centre Assessment Toolkit reception screening declined
+1364261000000101,Immigration Removal Centre Assessment Toolkit secondary screening
+1364271000000108,Immigration Removal Centre Assessment Toolkit secondary screening declined
+1364871000000107,Immigration Removal Centre Assessment Toolkit discharge screening
+1364881000000109,Immigration Removal Centre Assessment Toolkit discharge screening declined
+1366478006,Requires spoken language interpretation service
+1366479003,Requires in-person spoken language interpretation service
+137906009,Immigrant
+137910007,Country of origin
+137921003,Country of origin NOS
+138090008,Social migrant
+138429005,Immigrant
 138443000,World languages
 138444006,Vietnamese language
 138447004,Creole language
 138448009,Mirpuri language
-138660000,Main spoken language
+138451002,Country of birth (European)
+138452009,Born in Albania
+138453004,Born in Andorra
+138454005,Born in Austria
+138455006,Born in Azerbaijan
+138456007,Born in Belgium
+138457003,Born in Belorussia
+138458008,Born in Bosnia - Herzegovnia
+138459000,Born in Bulgaria
+138460005,Born in Croatia
+138461009,Born in Cyprus
+138462002,Born in Czech Republic
+138463007,Born in Denmark
+138465000,Born in Estonia
+138466004,Born in Finland
+138467008,Born in France
+138468003,Born in Germany
+138469006,Born in Greece
+138471006,Born in Hungary
+138472004,Born in Iceland
+138473009,Born in Ireland
+138474003,Born in Italy
+138475002,Born in Kosovo
+138476001,Born in Latvia
+138477005,Born in Liechtenstein
+138478000,Born in Lithuania
+138479008,Born in Luxembourg
+138480006,Born in Malta
+138481005,Born in Moldavia
+138482003,Born in Monaco
+138483008,Born in Northern Ireland
+138484002,Born in Norway
+138485001,Born in Poland
+138486000,Born in Portugal
+138487009,Born in Republic of Ireland
+138488004,Born in Romania
+138489007,Born in San Marino
+138490003,Born in Scotland
+138491004,Born in Slovakia
+138492006,Born in Slovenia
+138493001,Born in Spain
+138494007,Born in Sweden
+138495008,Born in Switzerland
+138496009,Born in The Netherlands
+138497000,Born in Ukraine
+138498005,Born in Vatican City
+138500006,Born in Yugoslavia
+138501005,Country of birth (Asian)
+138502003,Born in Afghanistan
+138503008,Born in Armenia
+138504002,Born in Bahrain
+138505001,Born in Bangladesh
+138506000,Born in Bhutan
+138507009,Born in Brunei
+138508004,Born in Burma
+138509007,Born in Chechnya
+138510002,Born in China
+138511003,Born in Democratic People's Republic of Korea
+138512005,Born in East Timor
+138513000,Born in Georgia
+138514006,Born in Hong Kong
+138515007,Born in India
+138516008,Born in Indonesia
+138517004,Born in Iran
+138518009,Born in Iraq
+138519001,Born in Israel
+138520007,Born in Japan
+138521006,Born in Jordan
+138522004,Born in Kazakhstan
+138523009,Born in Kuwait
+138524003,Born in Kyrgyzstan
+138525002,Born in Laos
+138526001,Born in Lebanon
+138527005,Born in Malaysia
+138528000,Born in Maldives
+138529008,Born in Mali
+138530003,Born in Mongolia
+138531004,Born in Nepal
+138532006,Born in North Korea
+138533001,Born in Oman
+138534007,Born in Pakistan
+138535008,Born in Palestine
+138536009,Born in Philippines
+138537000,Born in Qatar
+138538005,Born in Republic of Korea
+138539002,Born in Russia
+138540000,Born in Saudi Arabia
+138541001,Born in Singapore
+138542008,Born in South Korea
+138543003,Born in Sri Lanka
+138544009,Born in Syria
+138545005,Born in Taiwan
+138546006,Born in Tajikistan
+138547002,Born in Thailand
+138548007,Born in Turkey
+138549004,Born in Turkmenistan
+138550004,Born in United Arab Emirates
+138551000,Born in Uzbekistan
+138552007,Born in Vietnam
+138553002,Born in Yemen
+138554008,Country of birth (American)
+138555009,Born in Argentina
+138556005,Born in Belize
+138557001,Born in Bolivia
+138558006,Born in Brazil
+138559003,Born in British Guyana
+138560008,Born in Canada
+138561007,Born in Chile
+138562000,Born in Columbia
+138563005,Born in Costa Rica
+138564004,Born in Ecuador
+138565003,Born in El Salvador
+138566002,Born in Grenada
+138567006,Born in Guatemala
+138568001,Born in Guyana
+138569009,Born in Honduras
+138570005,Born in Mexico
+138572002,Born in Nicaragua
+138573007,Born in Panama
+138574001,Born in Paraguay
+138575000,Born in Peru
+138576004,Born in Suriname
+138577008,Born in USA
+138578003,Born in Uruguay
+138579006,Born in Venezuela
+138580009,Country of birth (African)
+138581008,Born in Algeria
+138582001,Born in Angola
+138583006,Born in Benin
+138584000,Born in Botswana
+138585004,Born in Burkina Faso
+138586003,Born in Burundi
+138587007,Born in Cambodia
+138588002,Born in Cameroon
+138589005,Born in Cape Verde Islands
+138590001,Born in Central African Republic
+138591002,Born in Chad
+138592009,Born in Comoros Islands
+138593004,Born in Congo
+138594005,Born in Djibouti
+138595006,Born in Egypt
+138596007,Born in Equatorial Guinea
+138597003,Born in Ethiopia
+138598008,Born in Gabon
+138599000,Born in Gambia
+138600002,Born in Ghana
+138601003,Born in Guinea Bissau
+138602005,Born in Guinea Republic
+138603000,Born in Ivory Coast
+138604006,Born in Kenya
+138605007,Born in Lesotho
+138606008,Born in Liberia
+138607004,Born in Libya
+138608009,Born in Madagascar
+138609001,Born in Malawi
+138610006,Born in Mauritania
+138611005,Born in Mauritius
+138612003,Born in Morocco
+138613008,Born in Mozambique
+138614002,Born in Namibia
+138615001,Born in Niger
+138616000,Born in Nigeria
+138617009,Born in Rwanda
+138618004,Born in Sao Tome and Principe
+138619007,Born in Senegal
+138620001,Born in Sierra Leone
+138621002,Born in Somalia
+138622009,Born in South Africa
+138623004,Born in Sudan
+138624005,Born in Swaziland
+138625006,Born in Tanzania
+138626007,Born in The Gambia
+138627003,Born in Tunisia
+138628008,Born in Uganda
+138629000,Born in Zaire
+138630005,Born in Zambia
+138631009,Born in Zimbabwe
+138632002,Country of birth (Australasian)
+138633007,Born in Australia
+138634001,Born in New Zealand
+138635000,Country of birth (Atlantic)
+138636004,Born in Antigua and Barbuda
+138637008,Born in Bahamas
+138638003,Born in Barbados
+138639006,Born in Cuba
+138640008,Born in Dominican Republic
+138641007,Born in Haiti
+138642000,Born in Jamaica
+138643005,Born in Puerto Rico
+138644004,Born in St. Kitts and Nevis
+138645003,Born in St. Lucia
+138646002,Born in St. Vincent
+138647006,Born in Togo
+138648001,Born in Trinidad and Tobago
+138649009,Country of birth (Pacific)
+138650009,Born in Fiji
+138651008,Born in Kiribati
+138652001,Born in Nauru
+138653006,Born in Papua New Guinea
+138654000,Born in Seychelles
+138655004,Born in Solomon Islands
+138656003,Born in Tonga
+138657007,Born in Tuvala
+138658002,Born in Vanuatu
+138659005,Born in Western Samoa
 138661001,Main spoken language Arabic
 138662008,Main spoken language Bengali
 138663003,Main spoken language Cantonese
@@ -42,22 +273,234 @@ code,term
 138682007,Main spoken language Tamil
 138683002,Main spoken language Urdu
 138684008,Main spoken language Yoruba
+148586001,Immigration examination
+148642003,Examination of refugee
 153694008,Presence of interpreter
 153695009,Interpreter present
 153703000,Need for interpreter
 153704006,Interpreter needed
+160509003,Immigrant
+160537005,Country of origin NOS
+160701002,Social migrant
+160702009,Illegal migrant
 161141008,Bengali language
 161142001,Gujarati language
 161143006,Hindi language
 161144000,Pashtu language
 161145004,Punjabi language
 161146003,Urdu language
-161156004,Language difficulty
+161148002,Speaks English poorly
+161157008,Refugee
+161158003,Immigrant
 161172007,World languages
 161173002,Vietnamese language
 161176005,Creole language
 161177001,Mirpuri language
-161389008,Main spoken language
+161180000,Country of birth (European)
+161181001,Born in Albania
+161182008,Born in Andorra
+161183003,Born in Austria
+161184009,Born in Azerbaijan
+161185005,Born in Belgium
+161186006,Born in Belorussia
+161187002,Born in Bosnia - Herzegovnia
+161188007,Born in Bulgaria
+161189004,Born in Croatia
+161190008,Born in Cyprus
+161191007,Born in Czech Republic
+161192000,Born in Denmark
+161194004,Born in Estonia
+161195003,Born in Finland
+161196002,Born in France
+161197006,Born in Germany
+161198001,Born in Greece
+161199009,Born in Hungary
+161200007,Born in Iceland
+161201006,Born in Ireland
+161202004,Born in Italy
+161203009,Born in Kosovo
+161204003,Born in Latvia
+161205002,Born in Liechtenstein
+161206001,Born in Lithuania
+161207005,Born in Luxembourg
+161208000,Born in Malta
+161209008,Born in Moldavia
+161210003,Born in Monaco
+161211004,Born in Northern Ireland
+161212006,Born in Norway
+161213001,Born in Poland
+161214007,Born in Portugal
+161215008,Born in Republic of Ireland
+161216009,Born in Romania
+161217000,Born in San Marino
+161218005,Born in Scotland
+161219002,Born in Slovakia
+161220008,Born in Slovenia
+161221007,Born in Spain
+161222000,Born in Sweden
+161223005,Born in Switzerland
+161224004,Born in The Netherlands
+161225003,Born in Ukraine
+161226002,Born in Vatican City
+161228001,Born in Yugoslavia
+161229009,Country of birth (Asian)
+161230004,Born in Afghanistan
+161231000,Born in Armenia
+161232007,Born in Bahrain
+161233002,Born in Bangladesh
+161234008,Born in Bhutan
+161235009,Born in Brunei
+161236005,Born in Burma
+161237001,Born in Chechnya
+161238006,Born in China
+161239003,Born in Democratic People's Republic of Korea
+161240001,Born in East Timor
+161241002,Born in Georgia
+161242009,Born in Hong Kong
+161243004,Born in India
+161244005,Born in Indonesia
+161245006,Born in Iran
+161246007,Born in Iraq
+161247003,Born in Israel
+161248008,Born in Japan
+161249000,Born in Jordan
+161250000,Born in Kazakhstan
+161252008,Born in Kuwait
+161253003,Born in Kyrgyzstan
+161254009,Born in Laos
+161255005,Born in Lebanon
+161256006,Born in Malaysia
+161257002,Born in Maldives
+161258007,Born in Mali
+161259004,Born in Mongolia
+161260009,Born in Nepal
+161261008,Born in North Korea
+161262001,Born in Oman
+161263006,Born in Pakistan
+161264000,Born in Palestine
+161265004,Born in Philippines
+161266003,Born in Qatar
+161267007,Born in Republic of Korea
+161268002,Born in Russia
+161269005,Born in Saudi Arabia
+161270006,Born in Singapore
+161271005,Born in South Korea
+161272003,Born in Sri Lanka
+161273008,Born in Syria
+161274002,Born in Taiwan
+161275001,Born in Tajikistan
+161276000,Born in Thailand
+161277009,Born in Turkey
+161278004,Born in Turkmenistan
+161279007,Born in United Arab Emirates
+161280005,Born in Uzbekistan
+161281009,Born in Vietnam
+161282002,Born in Yemen
+161283007,Country of birth (American)
+161284001,Born in Argentina
+161285000,Born in Belize
+161286004,Born in Bolivia
+161287008,Born in Brazil
+161288003,Born in British Guyana
+161289006,Born in Canada
+161290002,Born in Chile
+161291003,Born in Columbia
+161292005,Born in Costa Rica
+161293000,Born in Ecuador
+161294006,Born in El Salvador
+161295007,Born in Grenada
+161296008,Born in Guatemala
+161297004,Born in Guyana
+161298009,Born in Honduras
+161299001,Born in Mexico
+161300009,Born in Nicaragua
+161301008,Born in Panama
+161302001,Born in Paraguay
+161303006,Born in Peru
+161304000,Born in Suriname
+161305004,Born in USA
+161306003,Born in Uruguay
+161307007,Born in Venezuela
+161308002,Country of birth (African)
+161309005,Born in Algeria
+161310000,Born in Angola
+161311001,Born in Benin
+161312008,Born in Botswana
+161313003,Born in Burkina Faso
+161314009,Born in Burundi
+161315005,Born in Cambodia
+161316006,Born in Cameroon
+161317002,Born in Cape Verde Islands
+161318007,Born in Central African Republic
+161319004,Born in Chad
+161320005,Born in Comoros Islands
+161321009,Born in Congo
+161322002,Born in Djibouti
+161323007,Born in Egypt
+161324001,Born in Equatorial Guinea
+161325000,Born in Ethiopia
+161326004,Born in Gabon
+161327008,Born in Gambia
+161328003,Born in Ghana
+161329006,Born in Guinea Bissau
+161330001,Born in Guinea Republic
+161331002,Born in Ivory Coast
+161332009,Born in Kenya
+161333004,Born in Lesotho
+161334005,Born in Liberia
+161335006,Born in Libya
+161336007,Born in Madagascar
+161337003,Born in Malawi
+161338008,Born in Mauritania
+161339000,Born in Mauritius
+161340003,Born in Morocco
+161341004,Born in Mozambique
+161342006,Born in Namibia
+161343001,Born in Niger
+161344007,Born in Nigeria
+161345008,Born in Rwanda
+161346009,Born in Sao Tome and Principe
+161347000,Born in Senegal
+161348005,Born in Sierra Leone
+161349002,Born in Somalia
+161350002,Born in South Africa
+161351003,Born in Sudan
+161353000,Born in Swaziland
+161354006,Born in Tanzania
+161355007,Born in The Gambia
+161356008,Born in Tunisia
+161357004,Born in Uganda
+161358009,Born in Zaire
+161359001,Born in Zambia
+161360006,Born in Zimbabwe
+161361005,Country of birth (Australasian)
+161362003,Born in Australia
+161363008,Born in New Zealand
+161364002,Country of birth (Atlantic)
+161365001,Born in Antigua and Barbuda
+161366000,Born in Bahamas
+161367009,Born in Barbados
+161368004,Born in Cuba
+161369007,Born in Dominican Republic
+161370008,Born in Haiti
+161371007,Born in Jamaica
+161372000,Born in Puerto Rico
+161373005,Born in St. Kitts and Nevis
+161374004,Born in St. Lucia
+161375003,Born in St. Vincent
+161376002,Born in Togo
+161377006,Born in Trinidad and Tobago
+161378001,Country of birth (Pacific)
+161379009,Born in Fiji
+161380007,Born in Kiribati
+161381006,Born in Nauru
+161382004,Born in Papua New Guinea
+161383009,Born in Seychelles
+161384003,Born in Solomon Islands
+161385002,Born in Tonga
+161386001,Born in Tuvala
+161387005,Born in Vanuatu
+161388000,Born in Western Samoa
 161390004,Main spoken language Arabic
 161391000,Main spoken language Bengali
 161392007,Main spoken language Cantonese
@@ -80,10 +523,19 @@ code,term
 161410001,Main spoken language Tamil
 161411002,Main spoken language Urdu
 161412009,Main spoken language Yoruba
+16290721000119109,Victim of human trafficking in adolescence
+16290761000119104,Victim of human trafficking in adulthood
+16290801000119107,Victim of human trafficking in childhood
+171420007,Examination of refugee
 185513003,Presence of interpreter
 185514009,Interpreter present
 185522002,Need for interpreter
 185523007,Interpreter needed
+185711000000100,Family reunion immigrant
+1874641000000107,Initial health assessment using New Patient Questionnaire for newly arrived migrants in the United Kingdom declined
+1874651000000105,Initial health assessment using New Patient Questionnaire for newly arrived migrants in the United Kingdom
+189151000000100,Family reunion immigrant
+198311000000106,Overseas visitor
 203281000000104,Akan language interpreter needed
 203291000000102,Albanian language interpreter needed
 203301000000103,Amharic language interpreter needed
@@ -136,6 +588,9 @@ code,term
 204211000000109,Urdu language interpreter needed
 204221000000103,Vietnamese language interpreter needed
 204241000000105,Yoruba language interpreter needed
+205091000000107,Born in Eritrea
+206981000000101,Born in Eritrea
+206991000000104,Born in Eritrea
 208801000000102,Interpreter needed - Portuguese
 208811000000100,Interpreter needed - Portuguese
 208841000000104,Interpreter needed - Panjabi
@@ -174,6 +629,8 @@ code,term
 209341000000102,Interpreter needed - Urdu
 209351000000104,Interpreter needed - Vietnamese
 209361000000101,Interpreter needed - Vietnamese
+209371000000108,Interpreter needed - Welsh
+209381000000105,Interpreter needed - Welsh
 209391000000107,Interpreter needed - Yoruba
 209401000000105,Interpreter needed - Yoruba
 210781000000104,Interpreter needed - Akan
@@ -240,10 +697,20 @@ code,term
 211561000000105,Interpreter needed - Pashto
 211641000000108,Interpreter needed - Polish
 211671000000102,Interpreter needed - Polish
+212061000000105,Akan as a second language
+212071000000103,Akan as a second language
+212081000000101,Albanian as a second language
+212091000000104,Albanian as a second language
+212101000000107,Amharic as a second language
+212111000000109,Amharic as a second language
+212121000000103,Arabic as a second language
+212131000000101,Arabic as a second language
 212241000000100,English as a second language
 212251000000102,English as a second language
+213261000000106,Overseas visitor
+213271000000104,Overseas visitor
+224619008,Migrant
 224628009,Hinko language
-276161000000101,Interpreter not available
 276171000000108,Interpreter not available 
 276181000000105,Interpreter not available 
 297289008,World languages
@@ -410,7 +877,6 @@ code,term
 297452008,Aleut language
 297453003,Eskimo language
 297454009,Fur language
-297455005,Independent language
 297456006,Ainu language
 297457002,Barushaski language
 297459004,Basque language
@@ -878,10 +1344,215 @@ code,term
 297934003,Swiss German dialect
 298018001,Kashubian Polish dialect
 303601000000100,Telephone interpreting service used
+306211000000109,Failed asylum seeker
+306221000000103,Application for Asylum declined 
+306231000000101,Application for Asylum declined 
 313421002,Créole language
 313422009,Mirpuri language
 314430004,Presence of interpreter
 314431000,Interpreter present
+315355003,Country of birth - European
+315356002,Country of birth - Asian
+315357006,Country of birth - American continent
+315358001,Country of birth - African
+315359009,Country of birth - Australasian
+315360004,Country of birth - Atlantic
+315361000,Country of birth - Pacific
+315365009,Born in Afghanistan
+315366005,Born in Albania
+315367001,Born in Algeria
+315368006,Born in Andorra
+315369003,Born in Angola
+315370002,Born in Antigua and Barbuda
+315372005,Born in Argentina
+315373000,Born in Armenia
+315374006,Born in Australia
+315375007,Born in Austria
+315376008,Born in Azerbaijan
+315377004,Born in Bahamas
+315378009,Born in Bahrain
+315379001,Born in Bangladesh
+315380003,Born in Barbados
+315381004,Born in Belgium
+315382006,Born in Belize
+315383001,Born in Belorussia
+315384007,Born in Benin
+315385008,Born in Bhutan
+315386009,Born in Bolivia
+315387000,Born in Bosnia - Herzegovnia
+315388005,Born in Botswana
+315389002,Born in Brazil
+315390006,Born in British Guyana
+315391005,Born in Brunei
+315392003,Born in Bulgaria
+315393008,Born in Burkina Faso
+315394002,Born in Burma
+315395001,Born in Burundi
+315396000,Born in Cambodia
+315397009,Born in Cameroon
+315398004,Born in Canada
+315399007,Born in Cape Verde Islands
+315400000,Born in Central African Republic
+315401001,Born in Chad
+315402008,Born in Chechnya
+315403003,Born in Chile
+315404009,Born in China
+315405005,Born in Colombia
+315406006,Born in Comoros Islands
+315407002,Born in Congo
+315408007,Born in Costa Rica
+315409004,Born in Croatia
+315410009,Born in Cuba
+315411008,Born in Cyprus
+315412001,Born in Czech Republic
+315413006,Born in Democratic People's Republic of Korea
+315414000,Born in Denmark
+315415004,Born in Djibouti
+315416003,Born in Dominican Republic
+315417007,Born in East Timor
+315418002,Born in Ecuador
+315419005,Born in Egypt
+315420004,Born in El Salvador
+315422007,Born in Equatorial Guinea
+315423002,Born in Estonia
+315424008,Born in Ethiopia
+315425009,Born in Fiji
+315426005,Born in Finland
+315427001,Born in France
+315428006,Born in Gabon
+315429003,Born in Gambia
+315430008,Born in Georgia
+315431007,Born in Germany
+315432000,Born in Ghana
+315433005,Born in Greece
+315434004,Born in Grenada
+315435003,Born in Guatemala
+315436002,Born in Guinea Bissau
+315437006,Born in Guinea Republic
+315438001,Born in Guyana
+315439009,Born in Haiti
+315440006,Born in Honduras
+315441005,Born in Hong Kong
+315442003,Born in Hungary
+315443008,Born in Iceland
+315444002,Born in India
+315445001,Born in Indonesia
+315446000,Born in Iran
+315447009,Born in Iraq
+315448004,Born in Ireland
+315449007,Born in Israel
+315450007,Born in Italy
+315451006,Born in Ivory Coast
+315452004,Born in Jamaica
+315453009,Born in Japan
+315454003,Born in Jordan
+315455002,Born in Kazakhstan
+315456001,Born in Kenya
+315457005,Born in Kiribati
+315458000,Born in Kosovo
+315459008,Born in Kuwait
+315460003,Born in Kyrgyzstan
+315461004,Born in Laos
+315462006,Born in Latvia
+315463001,Born in Lebanon
+315464007,Born in Lesotho
+315465008,Born in Liberia
+315466009,Born in Libya
+315467000,Born in Liechtenstein
+315468005,Born in Lithuania
+315469002,Born in Luxembourg
+315470001,Born in Madagascar
+315471002,Born in Malawi
+315473004,Born in Malaysia
+315474005,Born in Maldives
+315475006,Born in Mali
+315476007,Born in Malta
+315477003,Born in Mauritania
+315478008,Born in Mauritius
+315479000,Born in Mexico
+315480002,Born in Moldavia
+315481003,Born in Monaco
+315482005,Born in Mongolia
+315483000,Born in Morocco
+315484006,Born in Mozambique
+315485007,Born in Namibia
+315486008,Born in Nauru
+315487004,Born in Nepal
+315488009,Born in New Zealand
+315489001,Born in Nicaragua
+315490005,Born in Niger
+315491009,Born in Nigeria
+315492002,Born in North Korea
+315494001,Born in Norway
+315495000,Born in Oman
+315496004,Born in Pakistan
+315497008,Born in Palestine
+315498003,Born in Panama
+315499006,Born in Papua New Guinea
+315500002,Born in Paraguay
+315501003,Born in Peru
+315502005,Born in Philippines
+315503000,Born in Poland
+315504006,Born in Portugal
+315505007,Born in Puerto Rico
+315506008,Born in Qatar
+315507004,Born in Republic of Ireland
+315508009,Born in Republic of Korea
+315509001,Born in Romania
+315510006,Born in Russia
+315511005,Born in Rwanda
+315512003,Born in San Marino
+315513008,Born in Sao Tome and Principe
+315514002,Born in Saudi Arabia
+315516000,Born in Senegal
+315517009,Born in Seychelles
+315518004,Born in Sierra Leone
+315519007,Born in Singapore
+315520001,Born in Slovakia
+315521002,Born in Slovenia
+315522009,Born in Solomon Islands
+315523004,Born in Somalia
+315524005,Born in South Africa
+315525006,Born in South Korea
+315526007,Born in Spain
+315527003,Born in Sri Lanka
+315528008,Born in St. Kitts and Nevis
+315529000,Born in St. Lucia
+315530005,Born in St. Vincent
+315531009,Born in Sudan
+315532002,Born in Suriname
+315533007,Born in Swaziland
+315534001,Born in Sweden
+315535000,Born in Switzerland
+315536004,Born in Syria
+315537008,Born in Taiwan
+315538003,Born in Tajikistan
+315539006,Born in Tanzania
+315540008,Born in Thailand
+315541007,Born in The Gambia
+315542000,Born in The Netherlands
+315543005,Born in Togo
+315544004,Born in Tonga
+315545003,Born in Trinidad and Tobago
+315546002,Born in Tunisia
+315547006,Born in Turkey
+315548001,Born in Turkmenistan
+315549009,Born in Tuvalu
+315550009,Born in United States of America
+315551008,Born in Uganda
+315552001,Born in Ukraine
+315553006,Born in United Arab Emirates
+315554000,Born in Uruguay
+315555004,Born in Uzbekistan
+315556003,Born in Vanuatu
+315557007,Born in Vatican City
+315558002,Born in Venezuela
+315559005,Born in Vietnam
+315561001,Born in Western Samoa
+315562008,Born in Yugoslavia
+315563003,Born in Zaire
+315564009,Born in Zambia
+315565005,Born in Zimbabwe
 315566006,Main spoken language Arabic
 315567002,Main spoken language Bengali
 315568007,Main spoken language Cantonese
@@ -904,8 +1575,23 @@ code,term
 315587001,Main spoken language Tamil
 315588006,Main spoken language Urdu
 315589003,Main spoken language Yoruba
+315590007,Born in Yemen
 315593009,Need for interpreter
 315594003,Interpreter needed
+331671000000104,Migration - National Public Health Classification
+336351000000106,Migrant worker - National Public Health Classification
+341651000000107,Born in former Yugoslav Republic of Macedonia
+341661000000105,Born in former Yugoslav Republic of Macedonia 
+341671000000103,Born in former Yugoslav Republic of Macedonia 
+342961000000105,Born in British overseas territory
+342971000000103,Born in British Overseas Territories 
+342981000000101,Born in British Overseas Territories 
+342991000000104,Born in Montserrat
+343001000000100,Born in Montserrat 
+343011000000103,Born in Montserrat 
+343021000000109,Born in Bermuda
+343031000000106,Born in Bermuda 
+343041000000102,Born in Bermuda 
 343701000000103,Finnish language interpreter needed
 343711000000101,Flemish language interpreter needed
 343771000000106,Kutchi language interpreter needed
@@ -913,6 +1599,12 @@ code,term
 343991000000108,Main spoken language Romanian
 344001000000103,Main spoken language Romanian 
 344011000000101,Main spoken language Romanian 
+345761000000103,"Born in French overseas region, department, collectivity or territory"
+345771000000105,Born in French overseas region 
+345781000000107,Born in French overseas region 
+345801000000108,Born in Martinique
+345811000000105,Born in Martinique 
+345821000000104,Born in Martinique 
 352891000000107,Main spoken language Slovak
 352901000000108,Slovak language interpreter needed
 352921000000104,Main spoken language Ndebele
@@ -1431,10 +2123,14 @@ code,term
 369341000000105,Interpreter needed 
 369351000000108,Interpreter needed 
 369541000000100,Main spoken language Bulgarian 
-370157003,Main spoken language
 370261000000100,Interpreter needed 
 370271000000107,Interpreter needed 
 370721000000100,Main spoken language Bulgarian 
+377051000000109,Former Yugoslav Republic of Macedonia
+389297006,Refugee
+389298001,Asylum seeker
+390033009,Asylum seeker
+390790000,Asylum seeker
 392702006,Main spoken language Kurdish
 392703001,Main spoken language Farsi
 392704007,Main spoken language Shona
@@ -1465,6 +2161,7 @@ code,term
 408519004,Main spoken language Thai
 408520005,Main spoken language Flemish
 408521009,Main spoken language French Créole
+408522002,Main spoken language Gaelic
 408523007,Main spoken language Hakka
 408524001,Main spoken language Hebrew
 408525000,Main spoken language Akan
@@ -1477,8 +2174,10 @@ code,term
 408533004,Main spoken language Tigrinya
 408534005,Main spoken language Patois
 408535006,Main spoken language Serbian
+413323004,Refugee family
 414640006,Main spoken language Finnish
-426201006,Interpreter not available
+416625007,Family reunion immigrant
+423785008,Provision of interpreter/translator services
 438566004,Occitan language
 438893008,Inupiaq language
 439222005,Kalaallisut language
@@ -1488,12 +2187,10 @@ code,term
 439317008,Inuktitut language
 439399007,Southern Sotho language
 439766008,Kutchi language
-439813003,Gaelic language
 439997000,Romansh language
 440162008,Bislama language
 440684009,Brawa language
 440703007,Galician language
-442389001,Sign language
 444847000,Fulah language
 444852005,Norwegian Nynorsk language
 444853000,Western Frisian language
@@ -1510,12 +2207,19 @@ code,term
 445189001,Nousu language
 445356005,Aragonese language
 445357001,Limburgan language
-445409008,Cornish language
 445446007,Ndonga language
 445482002,Serbian language
 445530002,North Ndebele language
 446094006,Tetum language
+446654005,Refugee
 446973006,Dari language
+450768005,International student
+503061000000107,Born in Anguilla
+503071000000100,Born in Anguilla 
+503081000000103,Born in Anguilla 
+503091000000101,Born in Dominica
+503101000000109,Born in Dominica 
+503111000000106,Born in Dominica 
 503511000000100,Main spoken language Filipino
 503521000000106,Main spoken language Filipino 
 503531000000108,Main spoken language Filipino 
@@ -1549,6 +2253,10 @@ code,term
 521521000000104,Request for language interpreter service
 522561000000103,Main spoken language Bamun
 522571000000105,Main spoken language Bamun 
+523561000000106,Born in Serbia
+523571000000104,Born in Serbia 
+554851000005102,Asylum seekers center
+568541000000108,Country of origin NOS
 609092003,Main spoken language Bamun
 609093008,Main spoken language Dari
 609094002,Main spoken language Konkani
@@ -1556,6 +2264,7 @@ code,term
 621391000124107,Referral to English as a second language program
 651321000124106,Education about English as a second language program
 661891000124107,Assistance with application for English as a second language program
+662331000124108,Evaluation of eligibility for English as a second language program
 662851000124106,Referral to interpreter
 698651000,Main spoken language Abkhazian
 698652007,Main spoken language Afar
@@ -1785,6 +2494,7 @@ code,term
 704644001,Salvadoran sign language
 704645000,Uruguayan sign language
 704646004,Venezuelan sign language
+705023006,Born in Democratic Republic of Congo
 706601000000108,Main spoken language Slovak
 708032007,Volapuk language
 708033002,Pali language
@@ -1793,34 +2503,154 @@ code,term
 708036005,Ido language
 708892009,Hmong language
 718512007,Main spoken language Romany
+720301000000108,Migrant worker
+723981000000108,Migration
+728611000000100,Asylum seeker awaiting decision on refugee status
+728621000000106,Asylum seeker with application for asylum refused
+728631000000108,Asylum seeker with humanitarian protection status
+728641000000104,Person granted indefinite leave to remain in United Kingdom
+728651000000101,Refugee
 729041000000101,Main spoken language Nyanja
 729051000000103,Main spoken language Fulani
 729061000000100,Main spoken language Kikuyu
+729851000000109,Asylum seeker with discretionary leave to remain
 733052007,Oji-Cree language
 733076004,Cayuga language
 733077008,Odawa language
 733098008,Menominee language
 733099000,Tuscarora language
+734998001,Victim of human trafficking
+735204006,Born in Serbia
 736790000,Interpreter booked
+745664000,Requires telephone language interpreter service
+748241000000103,Unaccompanied child asylum seeker
+750491000000109,Born in Democratic Republic of Congo
 753851000000106,Main spoken language Tetum
 753861000000109,Main spoken language Tetum 
 753891000000103,Main spoken language Konkani
 753901000000102,Main spoken language Konkani 
 755081000000105,Main spoken language Dari
 755091000000107,Main spoken language Dari 
+768761000000104,Born in Aruba
+768771000000106,Born in Aruba 
+781031000000101,International student
 787661000000108,Interpreter booked
 787671000000101,Interpreter booked 
 802371000000105,Requires telephone language interpreter service
 807711000000104,Main spoken language Ndebele
 809341000000106,Main spoken language Aragonese
 809351000000109,Main spoken language Aragonese 
+811031000000102,Has United Kingdom student visa
+811111000000106,Has United Kingdom general visitor visa
+811121000000100,Has UK tourist visitor visa 
 812621000000103,Request for telephone language interpreter service
+832501000000104,Has United Kingdom student visa
+841311000000103,Country of origin high risk for blood-borne virus
 85621000000107,Main spoken language Vietnamese
+858651000000103,Born in Montenegro
+858661000000100,Born in Montenegro 
 85921000000103,Main spoken language Korean
 85931000000101,Main spoken language Igbo
+863561000000103,Victim of human trafficking
+875581000000101,Victim of human trafficking
+877741000000105,Application for naturalisation as British citizen - referee declaration signed
+877751000000108,Application for naturalisation as a British citizen form signed 
+910241000000102,First language not English
 910251000000104,First language not English 
-945161000000108,Difficulty understanding verbal language
-945211000000103,Does not understand verbal language 
+918951000000105,Born in Samoa
+918961000000108,Born in Samoa 
+918971000000101,Born in Wallis and Futuna
+918991000000102,Born in United States Virgin Islands
+919001000000102,Born in the United States of America Virgin islands 
+919051000000101,Born in British Virgin Islands
+919061000000103,Born in British Virgin Islands 
+919071000000105,Born in Saint Vincent and the Grenadines
+919081000000107,Born in Saint Vincent and the Grenadines 
+919101000000101,Born in United States Minor Outlying Islands
+919111000000104,Born in United States Minor Outlying Islands 
+919121000000105,Born in Tokelau
+919131000000107,Born in Tokelau 
+919161000000102,Born in Turks and Caicos Islands
+919171000000109,Born in the Turks and Caicos Islands 
+919181000000106,Born in Sint Maarten
+919191000000108,Born in Sint Maarten 
+919201000000105,Born in Saint-Martin
+919211000000107,Born in Saint Martin 
+919221000000101,Born in Saint Pierre and Miquelon
+919231000000104,Born in Saint Pierre and Miquelon 
+919241000000108,"Born in Saint Helena, Ascension and Tristan da Cunha"
+919251000000106,Born in Saint Helena  Ascension and Tristan da Cunha 
+919261000000109,Born in South Georgia and the South Sandwich Islands
+919271000000102,Born in South Georgia and the South Sandwich Islands 
+919281000000100,Born in French Polynesia
+919291000000103,Born in French Polynesia 
+919301000000104,Born in French Guiana
+919311000000102,Born in French Guiana 
+919321000000108,Born in Falkland Islands
+919331000000105,Born in Falkland Islands 
+919641000000105,Born in Belarus
+919651000000108,Born in Belarus 
+919661000000106,Born in Republic of Moldova
+919671000000104,Born in Republic of  Moldova 
+919681000000102,Born in American Samoa
+919691000000100,Born in American Samoa 
+919711000000103,"Born in Bonaire, Sint Eustatius and Saba"
+919721000000109,Born in Bonaire Saint Eustatius and Saba 
+919731000000106,Born in British Indian Ocean Territory
+919741000000102,Born in British Indian Ocean Territory 
+919751000000104,Born in Cayman Islands
+919761000000101,Born in Cayman Islands 
+919771000000108,Born in French Southern Territories
+919781000000105,Born in French Southern Territories 
+919791000000107,Born in Mayotte
+919801000000106,Born in Mayotte 
+919811000000108,Born in Pitcairn Islands
+919821000000102,Born in Pitcairn Islands 
+919831000000100,Born in Christmas Island
+919841000000109,Born in Christmas Island 
+919851000000107,Born in Cocos (Keeling) Islands
+919861000000105,Born in Cocos (Keeling) Islands 
+919871000000103,Born in Cook Islands
+919881000000101,Born in Cook Islands 
+919891000000104,Born in Guadeloupe
+919901000000103,Born in Guadeloupe 
+919911000000101,Born in Guam
+919921000000107,Born in Guam 
+919991000000105,Born in Federated States of Micronesia
+920001000000101,Born in Federated States of Micronesia 
+920011000000104,Born in Marshall Islands
+920021000000105,Born in Marshall Islands 
+920031000000107,Born in Niue
+920041000000103,Born in Niue 
+920051000000100,Born in Norfolk Island
+920061000000102,Born in Norfolk Island 
+920071000000109,Born in Northern Mariana Islands
+920081000000106,Born in Northern Mariana Islands 
+920091000000108,Born in Palau
+920101000000100,Born in Palau 
+920331000000109,Born in Antarctica
+920341000000100,Born in Antarctica 
+920521000000103,Born in Faroe Islands
+920531000000101,Born in Faroe Islands 
+920541000000105,Born in Greenland
+920551000000108,Born in Greenland 
+920561000000106,Born in Svalbard and Jan Mayen
+920571000000104,Born in Svalbard and Jan Mayen 
+920581000000102,Born in Åland Islands
+920591000000100,Born in Aland Islands 
+920601000000106,Born in Réunion
+920611000000108,Born in Reunion 
+920761000000100,Born in Macao
+920771000000107,Born in Macao 
+920781000000109,Born in Western Sahara
+920791000000106,Born in Western Sahara 
+920801000000105,Born in New Caledonia
+920811000000107,Born in New Caledonia 
+923701000000106,Born in Curaçao
+923711000000108,Born in Curacao 
+937011000000100,Person granted indefinite leave to remain in United Kingdom
+937021000000106,Born in Democratic Republic of Congo
+937041000000104,Born in Wallis and Futuna
 94601000000103,Main spoken language Italian
 94611000000101,Main spoken language German
 94621000000107,Main spoken language Albanian
@@ -1852,7 +2682,6 @@ code,term
 94891000000106,Main spoken language Tagalog
 94901000000107,Main spoken language Thai
 94911000000109,Main spoken language Tigrinya
-950951000000102,Does not comprehend language 
 970441000000105,Main spoken language Avaric
 970451000000108,Main spoken language Avestan
 970461000000106,Main spoken language Bambara
@@ -1909,6 +2738,7 @@ code,term
 972591000000100,Chinese interpreter needed
 972601000000106,Church Slavic interpreter needed
 972611000000108,Chuvash interpreter needed
+972621000000102,Cornish interpreter needed
 972631000000100,Cree interpreter needed
 972641000000109,Dhivehi interpreter needed
 972651000000107,Ewe interpreter needed
@@ -1941,6 +2771,7 @@ code,term
 973011000000105,Pali interpreter needed
 973031000000102,Sanskrit interpreter needed
 973041000000106,Sardinian interpreter needed
+973051000000109,Scottish Gaelic interpreter needed
 973061000000107,Serbo-Croatian interpreter needed
 973071000000100,Nuosu interpreter needed
 973081000000103,South Ndebele interpreter needed
@@ -1958,6 +2789,7 @@ code,term
 974871000000109,Interpreter needed for language N - S
 974881000000106,Interpreter needed for language G - M
 974891000000108,Interpreter needed for language A - F
+991491000000100,Country of birth findings simple reference set
 99471000000105,Main spoken language Italian
 99481000000107,Main spoken language German
 99491000000109,Main spoken language Albanian

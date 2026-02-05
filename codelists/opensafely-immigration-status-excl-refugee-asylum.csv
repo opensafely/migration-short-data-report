@@ -1,7 +1,6 @@
 code,term
-1057331000000104,Signposting to Refugee Council
 1085811000000100,History of detention in immigration removal centre
-1231786003,Refugee healthcare service
+1352008001,Residence permit for foreign citizen status
 1364151000000105,Immigration Removal Centre Assessment Toolkit discharge planning screening
 1364171000000101,Immigration Removal Centre Assessment Toolkit discharge planning screening declined
 1364221000000109,Immigration Removal Centre Assessment Toolkit reception screening
@@ -10,32 +9,21 @@ code,term
 1364271000000108,Immigration Removal Centre Assessment Toolkit secondary screening declined
 1364871000000107,Immigration Removal Centre Assessment Toolkit discharge screening
 1364881000000109,Immigration Removal Centre Assessment Toolkit discharge screening declined
-148642003,Examination of refugee
-161157008,Refugee
-171420007,Examination of refugee
 185711000000100,Family reunion immigrant
 189151000000100,Family reunion immigrant
+198311000000106,Overseas visitor
+213261000000106,Overseas visitor
+213271000000104,Overseas visitor
 306211000000109,Failed asylum seeker
-306221000000103,Application for Asylum declined 
-306231000000101,Application for Asylum declined 
 34051000087100,Citizenship status
-389297006,Refugee
-389298001,Asylum seeker
-390033009,Asylum seeker
-390790000,Asylum seeker
-413323004,Refugee family
 416625007,Family reunion immigrant
-446654005,Refugee
-554851000005102,Asylum seekers center
-728611000000100,Asylum seeker awaiting decision on refugee status
-728621000000106,Asylum seeker with application for asylum refused
-728631000000108,Asylum seeker with humanitarian protection status
+450768005,International student
 728641000000104,Person granted indefinite leave to remain in United Kingdom
-728651000000101,Refugee
-729851000000109,Asylum seeker with discretionary leave to remain
-748241000000103,Unaccompanied child asylum seeker
+781031000000101,International student
 811031000000102,Has United Kingdom student visa
 811111000000106,Has United Kingdom general visitor visa
 811121000000100,Has UK tourist visitor visa 
 832501000000104,Has United Kingdom student visa
+877741000000105,Application for naturalisation as British citizen - referee declaration signed
+877751000000108,Application for naturalisation as a British citizen form signed 
 937011000000100,Person granted indefinite leave to remain in United Kingdom
