@@ -1,8 +1,8 @@
 opensafely/ethnicity-snomed-0removed/22911876/
-opensafely/migration-status/5ba3fcb8/
+opensafely/migration-status/4095ab22/
 opensafely/born-in-the-uk/4aa36068/
 opensafely/born-outside-the-uk/1d23465b/
-opensafely/immigration-status-excl-refugee-asylum/52bba04a/
+opensafely/immigration-status-excl-refugee-asylum/1ca8661b/
 opensafely/asylum-or-refugee-status/209cb9e0/
-opensafely/english-not-main-language/6e7dd375/
+opensafely/english-not-main-language/5c450c53/
 opensafely/interpreter-required/556e6040/

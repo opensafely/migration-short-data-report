@@ -18,11 +18,6 @@ library(fs)
 output_dir <- here::here("output", "tables")
 fs::dir_create(output_dir)
 
-# Checks:
-# - Who has a first migration code date that is before their date of birth
-# - Has a first migration code date that is before first practice reg
-# - Has a first migration code date that is after date of death
-
 cohort_file <- "output/cohorts/full_study_cohort.arrow"
 output_file <- "output/tables/date_variable_checks.csv"
 
@@ -36,20 +31,59 @@ cohort <- read_feather(cohort_file) %>%
   )
 
 check_dates <- cohort %>%
-  mutate(# These should all be 0 
-    rtt_end_before_start = ifelse(rtt_end_date < rtt_start_date, 1, 0),
-    rtt_end_after_dod = ifelse(!is.na(dod) & (rtt_end_date > dod), 1, 0),
-    dereg_before_rtt_start = ifelse(!is.na(reg_end_date) & (reg_end_date < rtt_start_date), 1, 0),
-    rtt_end_missing = ifelse(is.na(rtt_end_date), 1, 0),
-    rtt_start_missing = ifelse(is.na(rtt_start_date), 1, 0),
-    end_before_start = ifelse(end_date < rtt_start_date, 1, 0)
+  group_by(any_migrant, has_date_of_uk_entry_at_any_time) %>%
+  mutate(
+    mig_code_before_birth =
+      as.integer(date_of_first_migration_code < date_of_birth),
+    mig_code_after_death =
+      as.integer(date_of_first_migration_code > date_of_death),
+    mig_code_before_first_pract_reg =
+      as.integer(date_of_first_migration_code < date_of_first_practice_registration),
+    uk_entry_code_before_birth =
+      as.integer(date_of_earliest_date_of_uk_entry_code < date_of_birth),
+    uk_entry_code_after_death =
+      as.integer(date_of_earliest_date_of_uk_entry_code > date_of_death),
+    uk_entry_code_before_first_pract_reg =
+      as.integer(date_of_earliest_date_of_uk_entry_code < date_of_first_practice_registration),
+    uk_entry_code_on_date_of_first_pract_reg =
+      as.integer(date_of_earliest_date_of_uk_entry_code ==
+                   date_of_first_practice_registration),
+    uk_entry_code_after_first_pract_reg =
+      as.integer(date_of_earliest_date_of_uk_entry_code >
+                   date_of_first_practice_registration),
+    mig_code_after_date_of_uk_entry_code =
+      as.integer(date_of_first_migration_code >
+                   date_of_earliest_date_of_uk_entry_code),
+    mig_code_before_date_of_uk_entry_code =
+      as.integer(date_of_first_migration_code <
+                   date_of_earliest_date_of_uk_entry_code),
+    mig_code_on_date_of_uk_entry_code =
+      as.integer(date_of_first_migration_code ==
+                   date_of_earliest_date_of_uk_entry_code),
+    date_of_birth_after_date_of_death =
+      as.integer(date_of_birth > date_of_death),
+    date_of_first_prac_reg_before_birth =
+      as.integer(date_of_first_practice_registration < date_of_birth),
+    date_of_first_prac_reg_after_death =
+      as.integer(date_of_first_practice_registration > date_of_death)
   ) %>%
-  summarise(rtt_end_before_start = sum(rtt_end_before_start),
-            rtt_end_after_dod = sum(rtt_end_after_dod),
-            dereg_before_rtt_start = sum(dereg_before_rtt_start),
-            rtt_end_missing = sum(rtt_end_missing),
-            rtt_start_missing = sum(rtt_start_missing),
-            end_before_start = sum(end_before_start),
-            # Check max wait time for developing code
-            max_wait_time = max(wait_time),
+  summarise(
+    group_size = n(),
+    mig_code_before_birth = sum(mig_code_before_birth, na.rm = TRUE),
+    mig_code_after_death = sum(mig_code_after_death, na.rm = TRUE),
+    mig_code_before_first_pract_reg = sum(mig_code_before_first_pract_reg, na.rm = TRUE),
+    uk_entry_code_before_birth = sum(uk_entry_code_before_birth, na.rm = TRUE),
+    uk_entry_code_after_death = sum(uk_entry_code_after_death, na.rm = TRUE),
+    uk_entry_code_before_first_pract_reg = sum(uk_entry_code_before_first_pract_reg, na.rm = TRUE),
+    uk_entry_code_on_date_of_first_pract_reg = sum(uk_entry_code_on_date_of_first_pract_reg, na.rm = TRUE),
+    uk_entry_code_after_first_pract_reg = sum(uk_entry_code_after_first_pract_reg, na.rm = TRUE),
+    mig_code_after_date_of_uk_entry_code = sum(mig_code_after_date_of_uk_entry_code, na.rm = TRUE),
+    mig_code_before_date_of_uk_entry_code = sum(mig_code_before_date_of_uk_entry_code, na.rm = TRUE),
+    mig_code_on_date_of_uk_entry_code = sum(mig_code_on_date_of_uk_entry_code, na.rm = TRUE),
+    date_of_birth_after_date_of_death = sum(date_of_birth_after_date_of_death, na.rm = TRUE),
+    date_of_first_prac_reg_before_birth = sum(date_of_first_prac_reg_before_birth, na.rm = TRUE),
+    date_of_first_prac_reg_after_death = sum(date_of_first_prac_reg_after_death, na.rm = TRUE)
   )
+
+dir_create(path_dir(output_file))
+write_csv(check_dates, path = output_file)

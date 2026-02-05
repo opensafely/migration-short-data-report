@@ -30,11 +30,6 @@ cohort <- read_feather(cohort_file) %>%
     )
   )
 
-  rounding <- function(vars) {
-  case_when(vars == 0 ~ 0,
-            vars > 7 ~ round(vars / 5) * 5)
-}
-
 # Summarize ----- 
 
 vars_to_summarise <- c(
@@ -75,12 +70,33 @@ table_freq <- cohort %>%
   ) %>%
   group_by(migration_scheme, migration_status, subgroup) %>%
   mutate(
-    n = rounding(n),
-    percentage = round((100 * n / sum(n)),1)
+    percentage = 100 * n / sum(n)
   ) %>%
   ungroup()
+
+# number of migration-related codes 
+
+frequency <- cohort %>%
+  pivot_longer(
+    cols = all_of(mig_vars),
+    names_to = "migration_scheme",
+    values_to = "migration_status"
+  ) %>%
+  group_by(migration_scheme, migration_status) %>%
+  summarise(
+    n = n(),
+    total_migration_codes = sum(number_of_migration_codes),
+    median_migration_codes = median(number_of_migration_codes, na.rm = TRUE),
+    q25 = quantile(number_of_migration_codes, 0.25, na.rm = TRUE),
+    q75 = quantile(number_of_migration_codes, 0.75, na.rm = TRUE),
+    .groups = "drop"
+  ) 
+
 
 dir_create(path_dir(output_file))
 write_csv(table_freq, path = output_file)
 
+
+test <- cohort %>%
+  filter(mig_status_2_cat == "Non-migrant" & number_of_migration_codes >0)
 

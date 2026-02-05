@@ -45,15 +45,15 @@ is_alive_at_study_start = (
     ((ons_deaths.date > study_start_date) | (ons_deaths.date.is_null()))
 )
 
-was_not_over_110_at_study_start = (
-    patients.age_on(study_start_date) <= 110
+was_not_over_110_at_study_start_or_less_than_0_at_end_date = (
+    (patients.age_on(study_start_date) <= 110) | (patients.age_on(study_end_date) >= 0)
 )
 
 dataset = create_dataset()
 dataset.define_population(is_registered_at_any_time_during_study.exists_for_patient() & 
                           has_non_disclosive_sex & 
                           is_alive_at_study_start & 
-                          was_not_over_110_at_study_start)
+                          was_not_over_110_at_study_start_or_less_than_0_at_end_date)
 
 # add variables 
 

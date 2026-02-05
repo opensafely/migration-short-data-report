@@ -103,4 +103,12 @@ actions:
       moderately_sensitive:
         csv: output/tables/migration_code_combinations_summary.csv
 
+  generate_date_variable_checks_summary:
+    run: r:latest analysis/date_variable_checks.R
+    needs:
+    - generate_full_study_cohort
+    outputs:
+      moderately_sensitive:
+        csv: output/tables/date_variable_checks.csv
+
  
