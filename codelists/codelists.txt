@@ -6,3 +6,4 @@ opensafely/immigration-status-excl-refugee-asylum/1ca8661b/
 opensafely/asylum-or-refugee-status/209cb9e0/
 opensafely/english-not-main-language/5c450c53/
 opensafely/interpreter-required/556e6040/
+opensafely/british-ethnicities/6a897fb0/

@@ -4,7 +4,7 @@ from analysis import utilities
 
 measures = create_measures()
 measures.configure_dummy_data(population_size=1000)
-measures.configure_disclosure_control(enabled=False)  # enable on real data
+measures.configure_disclosure_control(enabled=True)  # enable on real data
 
 # build shared variables and defaults
 common = utilities.build_common_vars(INTERVAL)

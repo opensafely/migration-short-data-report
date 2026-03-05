@@ -106,14 +106,10 @@ for name, indicator in migrant_indicators.items():
 dataset.mig_status_2_cat = migration_status_variables.build_mig_status_2_cat(migrant_indicators)
 
 dataset.mig_status_3_cat = migration_status_variables.build_mig_status_3_cat(
-    migrant_indicators,
-    dataset.latest_ethnicity_16_level_group
-)
+    migrant_indicators)
 
 dataset.mig_status_6_cat = migration_status_variables.build_mig_status_6_cat(
-    migrant_indicators,
-    dataset.latest_ethnicity_16_level_group
-)
+    migrant_indicators)
 
 dataset.configure_dummy_data(population_size=1000)
 

@@ -6,7 +6,7 @@ from analysis import utilities
 
 measures = create_measures()
 measures.configure_dummy_data(population_size=1000)
-measures.configure_disclosure_control(enabled=False)  # enable on real data
+measures.configure_disclosure_control(enabled=True)  # enable on real data
 
 # build shared variables and defaults
 common = utilities.build_common_vars(INTERVAL)
@@ -16,7 +16,7 @@ ethnicity = common["ethnicity"]
 
 # build base indicators and aggregated 3-category expression
 numerators_separate = migration_status_variables.build_migrant_indicators(INTERVAL.end_date)
-mig3_expr = migration_status_variables.build_mig_status_3_cat(numerators_separate, ethnicity)
+mig3_expr = migration_status_variables.build_mig_status_3_cat(numerators_separate)
 
 # register one measure per label × subgroup
 labels = ["Migrant", "Non-migrant", "Unknown"]
