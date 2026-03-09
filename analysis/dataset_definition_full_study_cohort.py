@@ -7,7 +7,7 @@
 # This is a script to explore the migration status of all individuals who were:
 #         1) registered at anytime (2009-2025) AND
 #         2) do not have a disclosive sex AND
-#         4) alive on 1st Jan 2009 AND 
+#         4) did not die before or on 1st Jan 2009 (study start) AND 
 #         4) had a plausible age at the beginning of the study period  (i.e. not >110 years old in 2009)
 
 from pathlib import Path
@@ -40,7 +40,7 @@ has_non_disclosive_sex = (
     (patients.sex == "male") | (patients.sex == "female")
 )
 
-is_alive_at_study_start = (
+did_not_die_before_study_start = (
     ((patients.date_of_death > study_start_date) | (patients.date_of_death.is_null())) &
     ((ons_deaths.date > study_start_date) | (ons_deaths.date.is_null()))
 )
@@ -52,7 +52,7 @@ was_not_over_110_at_study_start_or_less_than_0_at_end_date = (
 dataset = create_dataset()
 dataset.define_population(is_registered_at_any_time_during_study.exists_for_patient() & 
                           has_non_disclosive_sex & 
-                          is_alive_at_study_start & 
+                          did_not_die_before_study_start & 
                           was_not_over_110_at_study_start_or_less_than_0_at_end_date)
 
 # add variables 
