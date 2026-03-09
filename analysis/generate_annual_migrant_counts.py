@@ -11,7 +11,7 @@ import utilities
 
 measures = create_measures()
 measures.configure_dummy_data(population_size=1000)
-measures.configure_disclosure_control(enabled=False)  # set True on real data
+measures.configure_disclosure_control(enabled=True)  # set True on real data
 
 # --------------------------
 # Shared common variables and defaults (denominator, intervals, subgroups)

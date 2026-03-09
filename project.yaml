@@ -25,6 +25,12 @@ actions:
       highly_sensitive:
         dataset: output/cohorts/census_2011_study_cohort.arrow
 
+  generate_pre_birth_migration_code_cohort:
+    run: ehrql:v1 generate-dataset analysis/dataset_definition_migration_code_before_birth_cohort.py --output output/cohorts/migration_code_before_birth_cohort.arrow
+    outputs:
+      highly_sensitive:
+         dataset: output/cohorts/migration_code_before_birth_cohort.arrow  
+
   generate_demographics_full_study_table:
     run: r:latest analysis/process_full_cohort_data.R 
     needs:
@@ -102,6 +108,14 @@ actions:
     outputs:
       moderately_sensitive:
         csv: output/tables/migration_code_combinations_summary.csv
+
+  generate_migration_code_before_birth_combinations_summary:
+    run: r:latest analysis/migration_code_before_birth_combinations.R
+    needs:
+    - generate_pre_birth_migration_code_cohort
+    outputs:
+      moderately_sensitive:
+        csv: output/tables/migration_code_combinations_before_birth_summary.csv
 
   generate_date_variable_checks_summary:
     run: r:latest analysis/date_variable_checks.R
