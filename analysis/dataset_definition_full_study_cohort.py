@@ -231,6 +231,14 @@ time_from_1st_pracreg_first_migration_code_months  = (date_of_first_migration_co
 dataset.time_from_1st_pracreg_first_migration_code_days = time_from_1st_pracreg_first_migration_code_days
 dataset.time_from_1st_pracreg_first_migration_code_months  = time_from_1st_pracreg_first_migration_code_months 
 
+# time from birth to first migration code 
+
+time_from_birth_first_migration_code_days  = (date_of_first_migration_code - patients.date_of_birth).days
+time_from_birth_first_migration_code_months  = (date_of_first_migration_code - patients.date_of_birth).months
+
+dataset.time_from_birth_first_migration_code_days = time_from_birth_first_migration_code_days
+dataset.time_from_birth_first_migration_code_months  = time_from_birth_first_migration_code_months 
+
 dataset.configure_dummy_data(population_size=1000)
 show(dataset)
 
