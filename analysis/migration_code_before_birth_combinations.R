@@ -37,7 +37,6 @@ rounding <- function(vars) {
 }
 
 migration_code_combinations_summary <- cohort %>%
-  filter(any_migrant == TRUE) %>%
   rowwise() %>%
   mutate(
     migrant_concat = paste(
