@@ -1,6 +1,6 @@
 
 from ehrql import create_dataset, codelist_from_csv, show, case, when
-from ehrql.tables.tpp import clinical_events
+from ehrql.tables.tpp import clinical_events, patients
 import codelists
 
 migrant_flags = {
@@ -20,7 +20,7 @@ def build_migrant_indicators(date):
         name: (
             clinical_events
             .where(clinical_events.snomedct_code.is_in(codes))
-            .where(clinical_events.date.is_on_or_before(date))
+            .where(clinical_events.date.is_on_or_between(patients.date_of_birth, date))
             .exists_for_patient()
         )
         for name, codes in migrant_flags.items()

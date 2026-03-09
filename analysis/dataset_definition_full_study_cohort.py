@@ -143,7 +143,7 @@ dataset.mig_status_6_cat = migration_status_variables.build_mig_status_6_cat(
 number_of_migration_codes = (
     clinical_events
             .where(clinical_events.snomedct_code.is_in(codelists.all_migrant_codes))
-            .where(clinical_events.date.is_on_or_before(study_end_date))
+            .where(clinical_events.date.is_on_or_between(patients.date_of_birth, study_end_date))
             .count_for_patient()
 )
 dataset.number_of_migration_codes = number_of_migration_codes
@@ -171,7 +171,7 @@ dataset.has_date_of_uk_entry_at_any_time = has_date_of_uk_entry_at_any_time
 has_date_of_uk_entry = (
     clinical_events
     .where(clinical_events.snomedct_code.is_in(date_of_entry_code))
-    .where(clinical_events.date.is_on_or_before(study_end_date))
+    .where(clinical_events.date.is_on_or_between(patients.date_of_birth, study_end_date))
     .exists_for_patient()
 )
 dataset.has_date_of_uk_entry = has_date_of_uk_entry
@@ -181,7 +181,7 @@ dataset.has_date_of_uk_entry = has_date_of_uk_entry
 dataset.number_of_date_of_uk_entry_codes = (
     clinical_events
     .where(clinical_events.snomedct_code.is_in(date_of_entry_code))
-    .where(clinical_events.date.is_on_or_before(study_end_date))
+    .where(clinical_events.date.is_on_or_between(patients.date_of_birth, study_end_date))
     .count_for_patient()
 )
 
@@ -191,10 +191,11 @@ dataset.number_of_date_of_uk_entry_codes_at_any_time = (
     .count_for_patient()
 )
 
-## date associated with earliest date of entry to the UK code 
+## date associated with earliest date of entry to the UK code (that was recorded post-birth )
 
 date_of_earliest_date_of_uk_entry_code = (
     clinical_events.where(clinical_events.snomedct_code.is_in(date_of_entry_code))
+    .where(clinical_events.date.is_on_or_between(patients.date_of_birth, study_end_date))
     .sort_by(clinical_events.date)
     .first_for_patient().date)
 dataset.date_of_earliest_date_of_uk_entry_code = date_of_earliest_date_of_uk_entry_code
@@ -218,17 +219,17 @@ dataset.date_of_entry_and_other_migration_code = case(
 
 date_of_first_migration_code = (
     clinical_events.where(clinical_events.snomedct_code.is_in(codelists.all_migrant_codes))
-    .where(clinical_events.date.is_on_or_before(study_end_date))
+    .where(clinical_events.date.is_on_or_between(patients.date_of_birth, study_end_date))
     .sort_by(clinical_events.date)
     .first_for_patient().date)
 
 dataset.date_of_first_migration_code = date_of_first_migration_code
 
-time_to_first_migration_code_days  = (date_of_first_migration_code - date_of_first_practice_registration).days
-time_to_first_migration_code_months  = (date_of_first_migration_code - date_of_first_practice_registration).months
+time_from_1st_pracreg_first_migration_code_days  = (date_of_first_migration_code - date_of_first_practice_registration).days
+time_from_1st_pracreg_first_migration_code_months  = (date_of_first_migration_code - date_of_first_practice_registration).months
 
-dataset.time_to_first_migration_code_days = time_to_first_migration_code_days
-dataset.time_to_first_migration_code_months = time_to_first_migration_code_months
+dataset.time_from_1st_pracreg_first_migration_code_days = time_from_1st_pracreg_first_migration_code_days
+dataset.time_from_1st_pracreg_first_migration_code_months  = time_from_1st_pracreg_first_migration_code_months 
 
 dataset.configure_dummy_data(population_size=1000)
 show(dataset)

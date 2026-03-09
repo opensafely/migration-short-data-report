@@ -55,17 +55,17 @@ migration_coding_summary <- cohort %>%
   ) %>%
   group_by(migration_scheme, migration_status) %>%
   summarise(
-    n = rounding(n()),
+    n = n(),
     total_migration_codes = sum(number_of_migration_codes),
     median_migration_codes = median(number_of_migration_codes, na.rm = TRUE),
     q25_migration_codes = quantile(number_of_migration_codes, 0.25, na.rm = TRUE),
     q75_migration_codes = quantile(number_of_migration_codes, 0.75, na.rm = TRUE),
-    median_time_to_1st_migration_code_days = median(time_to_first_migration_code_days, na.rm = TRUE),
-    q25_time_to_first_migration_code_days = quantile(time_to_first_migration_code_days, 0.25, na.rm = TRUE),
-    q75_time_to_first_migration_code_days = quantile(time_to_first_migration_code_days, 0.75, na.rm = TRUE),
-    median_time_to_1st_migration_code_months = median(time_to_first_migration_code_months, na.rm = TRUE),
-    q25_time_to_first_migration_code_months = quantile(time_to_first_migration_code_months, 0.25, na.rm = TRUE),
-    q75_time_to_first_migration_code_months = quantile(time_to_first_migration_code_months, 0.75, na.rm = TRUE),
+    median_time_from_1st_pracreg_first_migration_code_days = median(time_from_1st_pracreg_first_migration_code_days, na.rm = TRUE),
+    q25_time_from_1st_pracreg_first_migration_code_days = quantile(time_from_1st_pracreg_first_migration_code_days, 0.25, na.rm = TRUE),
+    q75_time_from_1st_pracreg_first_migration_code_days = quantile(time_from_1st_pracreg_first_migration_code_days, 0.75, na.rm = TRUE),
+    median_time_from_1st_pracreg_first_migration_code_months = median(time_from_1st_pracreg_first_migration_code_months , na.rm = TRUE),
+    q25_time_from_1st_pracreg_first_migration_code_months = quantile(time_from_1st_pracreg_first_migration_code_months , 0.25, na.rm = TRUE),
+    q75_time_from_1st_pracreg_first_migration_code_months = quantile(time_from_1st_pracreg_first_migration_code_months , 0.75, na.rm = TRUE),
     .groups = "drop"
   ) 
 
