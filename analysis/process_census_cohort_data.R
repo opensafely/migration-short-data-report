@@ -13,6 +13,7 @@ library(here)
 library(arrow)
 library(skimr)
 library(fs)
+library(dtplyr)
 
 ## Create output directory
 output_dir <- here::here("output", "tables")
@@ -52,9 +53,12 @@ vars_to_summarise <- c(
 )
 
 mig_vars <- c(
-  "mig_status_2_cat")
+    "mig_status_2_cat",
+    "mig_status_3_cat",
+    "mig_status_6_cat")
 
 table_freq <- cohort %>%
+  lazy_dt() %>%
   pivot_longer(
     cols = all_of(vars_to_summarise),
     names_to = "subgroup",
@@ -67,8 +71,8 @@ table_freq <- cohort %>%
   ) %>%
   # make missing explicit if needed
   mutate(
-    category = fct_explicit_na(category, "unknown"),
-    migration_status = fct_explicit_na(migration_status, "unknown")
+    category = fct_na_value_to_level(category, "unknown"),
+    migration_status = fct_na_value_to_level(migration_status, "unknown")
   ) %>%
   count(
     migration_scheme,
@@ -82,7 +86,8 @@ table_freq <- cohort %>%
     n = rounding(n),
     percentage = round((100 * n / sum(n)),1)
   ) %>%
-  ungroup()
+  ungroup() %>%
+  as_tibble()
 
 dir_create(path_dir(output_file))
 write_csv(table_freq, path = output_file)
