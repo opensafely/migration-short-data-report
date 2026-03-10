@@ -13,6 +13,7 @@ library(here)
 library(arrow)
 library(skimr)
 library(fs)
+library(dtplyr)
 
 ## Create output directory
 output_dir <- here::here("output", "tables")
@@ -45,7 +46,13 @@ mig_vars <- c(
   "mig_status_3_cat",
   "mig_status_6_cat")
 
+rounding <- function(vars) {
+  case_when(vars == 0 ~ 0,
+            vars > 7 ~ round(vars / 5) * 5)
+}
+
 table_freq <- cohort %>%
+  lazy_dt() %>%
   pivot_longer(
     cols = all_of(vars_to_summarise),
     names_to = "subgroup",
@@ -58,8 +65,8 @@ table_freq <- cohort %>%
   ) %>%
   # make missing explicit if needed
   mutate(
-    category = fct_explicit_na(category, "unknown"),
-    migration_status = fct_explicit_na(migration_status, "unknown")
+    category = fct_na_value_to_level(category, "unknown"),
+    migration_status = fct_na_value_to_level(migration_status, "unknown")
   ) %>%
   count(
     migration_scheme,
@@ -70,33 +77,13 @@ table_freq <- cohort %>%
   ) %>%
   group_by(migration_scheme, migration_status, subgroup) %>%
   mutate(
-    percentage = 100 * n / sum(n)
+    n = rounding(n),
+    percentage = round((100 * n / sum(n)),1)
   ) %>%
-  ungroup()
-
-# number of migration-related codes 
-
-frequency <- cohort %>%
-  pivot_longer(
-    cols = all_of(mig_vars),
-    names_to = "migration_scheme",
-    values_to = "migration_status"
-  ) %>%
-  group_by(migration_scheme, migration_status) %>%
-  summarise(
-    n = n(),
-    total_migration_codes = sum(number_of_migration_codes),
-    median_migration_codes = median(number_of_migration_codes, na.rm = TRUE),
-    q25 = quantile(number_of_migration_codes, 0.25, na.rm = TRUE),
-    q75 = quantile(number_of_migration_codes, 0.75, na.rm = TRUE),
-    .groups = "drop"
-  ) 
-
+  ungroup() %>%
+  as_tibble()
 
 dir_create(path_dir(output_file))
 write_csv(table_freq, path = output_file)
 
-
-test <- cohort %>%
-  filter(mig_status_2_cat == "Non-migrant" & number_of_migration_codes >0)
 
