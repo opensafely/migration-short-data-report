@@ -84,37 +84,37 @@ dt_counts[ , percentage := round(100 * n_rounded / sum(n_rounded), 1),
            by = .(migration_scheme, migration_status, subgroup)]
 
 
-table_freq <- cohort %>%
-  lazy_dt() %>%
-  pivot_longer(
-    cols = all_of(vars_to_summarise),
-    names_to = "subgroup",
-    values_to = "category"
-  ) %>%
-  pivot_longer(
-    cols = all_of(mig_vars),
-    names_to = "migration_scheme",
-    values_to = "migration_status"
-  ) %>%
-  # make missing explicit if needed
-  mutate(
-    category = fct_na_value_to_level(category, "unknown"),
-    migration_status = fct_na_value_to_level(migration_status, "unknown")
-  ) %>%
-  count(
-    migration_scheme,
-    migration_status,
-    subgroup,
-    category,
-    name = "n"
-  ) %>%
-  group_by(migration_scheme, migration_status, subgroup) %>%
-  mutate(
-    n = rounding(n),
-    percentage = round((100 * n / sum(n)),1)
-  ) %>%
-  ungroup() %>%
-  as_tibble()
+# table_freq <- cohort %>%
+#   lazy_dt() %>%
+#   pivot_longer(
+#     cols = all_of(vars_to_summarise),
+#     names_to = "subgroup",
+#     values_to = "category"
+#   ) %>%
+#   pivot_longer(
+#     cols = all_of(mig_vars),
+#     names_to = "migration_scheme",
+#     values_to = "migration_status"
+#   ) %>%
+#   # make missing explicit if needed
+#   mutate(
+#     category = fct_na_value_to_level(category, "unknown"),
+#     migration_status = fct_na_value_to_level(migration_status, "unknown")
+#   ) %>%
+#   count(
+#     migration_scheme,
+#     migration_status,
+#     subgroup,
+#     category,
+#     name = "n"
+#   ) %>%
+#   group_by(migration_scheme, migration_status, subgroup) %>%
+#   mutate(
+#     n = rounding(n),
+#     percentage = round((100 * n / sum(n)),1)
+#   ) %>%
+#   ungroup() %>%
+#   as_tibble()
 
 dir_create(path_dir(output_file))
 write_csv(dt_counts, path = output_file)
