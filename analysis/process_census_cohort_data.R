@@ -52,10 +52,7 @@ vars_to_summarise <- c(
   "imd_quintile"
 )
 
-mig_vars <- c(
-    "mig_status_2_cat",
-    "mig_status_3_cat",
-    "mig_status_6_cat")
+mig_vars <- args[[3]]
 
 table_freq <- cohort %>%
   lazy_dt() %>%
@@ -69,7 +66,6 @@ table_freq <- cohort %>%
     names_to = "migration_scheme",
     values_to = "migration_status"
   ) %>%
-  # make missing explicit if needed
   mutate(
     category = fct_na_value_to_level(category, "unknown"),
     migration_status = fct_na_value_to_level(migration_status, "unknown")
