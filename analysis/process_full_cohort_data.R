@@ -14,6 +14,7 @@ library(arrow)
 library(skimr)
 library(fs)
 library(dtplyr)
+library(data.table)
 
 ## Create output directory
 output_dir <- here::here("output", "tables")
@@ -21,6 +22,13 @@ fs::dir_create(output_dir)
 
 cohort_file <- "output/cohorts/full_study_cohort.arrow"
 output_file <- "output/tables/demographics_full_study_cohort.csv"
+
+# Parse command-line argument
+#args <- commandArgs(trailingOnly=TRUE)
+#print(commandArgs(trailingOnly=TRUE))
+
+#output_file <- args[[1]]
+#mig_vars <- args[[2]]
 
 # Import data ----
 cohort <- read_feather(cohort_file) %>%
@@ -50,6 +58,31 @@ rounding <- function(vars) {
   case_when(vars == 0 ~ 0,
             vars > 7 ~ round(vars / 5) * 5)
 }
+
+cohort <- setDT(cohort)
+
+dt <- melt(cohort, 
+            measure.vars = vars_to_summarise, 
+            variable.name = "subgroup", 
+            value.name = "category",
+            variable.factor = FALSE)
+
+dt <- melt(dt, 
+           measure.vars = mig_vars, 
+           variable.name = "migration_scheme", 
+           value.name = "migration_status",
+           variable.factor = FALSE)
+
+dt[is.na(category),category:= "unknown"]
+dt[is.na(migration_status),migration_status:= "unknown"]
+
+dt_counts <- dt[,.(n = .N),
+                  by = .(migration_scheme, migration_status, subgroup, category)]
+
+dt_counts[ , n_rounded := rounding(n)]
+dt_counts[ , percentage := round(100 * n_rounded / sum(n_rounded), 1),
+           by = .(migration_scheme, migration_status, subgroup)]
+
 
 table_freq <- cohort %>%
   lazy_dt() %>%
@@ -84,6 +117,6 @@ table_freq <- cohort %>%
   as_tibble()
 
 dir_create(path_dir(output_file))
-write_csv(table_freq, path = output_file)
+write_csv(dt_counts, path = output_file)
 
 

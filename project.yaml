@@ -39,22 +39,79 @@ actions:
       moderately_sensitive:
         csv: output/tables/demographics_full_study_cohort.csv
 
-  generate_demographics_census_2011_study_table:
-    run: r:latest analysis/process_census_cohort_data.R output/cohorts/census_2011_study_cohort.arrow output/tables/demographics_census_2011_cohort.csv
+
+  # generate_demographics_full_study_table_2cat:
+  #   run: r:latest analysis/process_full_cohort_data.R output/tables/demographics_full_study_cohort_2cat.csv mig_status_2_cat
+  #   needs:
+  #   - generate_full_study_cohort
+  #   outputs:
+  #     moderately_sensitive:
+  #       csv: output/tables/demographics_full_study_cohort_2cat.csv
+
+  # generate_demographics_full_study_table_3cat:
+  #   run: r:latest analysis/process_full_cohort_data.R output/tables/demographics_full_study_cohort_3cat.csv mig_status_3_cat
+  #   needs:
+  #   - generate_full_study_cohort
+  #   outputs:
+  #     moderately_sensitive:
+  #       csv: output/tables/demographics_full_study_cohort_3cat.csv
+
+  # generate_demographics_full_study_table_6cat:
+  #   run: r:latest analysis/process_full_cohort_data.R output/tables/demographics_full_study_cohort_6cat.csv mig_status_6_cat
+  #   needs:
+  #   - generate_full_study_cohort
+  #   outputs:
+  #     moderately_sensitive:
+  #       csv: output/tables/demographics_full_study_cohort_6cat.csv
+
+  generate_demographics_census_2011_study_table_mig_2cat:
+    run: r:latest analysis/process_census_cohort_data.R output/cohorts/census_2011_study_cohort.arrow output/tables/demographics_census_2011_cohort_2cat.csv mig_status_2_cat
     needs:
     - generate_dataset_for_census_2011
     outputs:
       moderately_sensitive:
-        csv: output/tables/demographics_census_2011_cohort.csv
+        csv: output/tables/demographics_census_2011_cohort_2cat.csv
 
-  generate_demographics_census_2021_study_table:
-    run: r:latest analysis/process_census_cohort_data.R output/cohorts/census_2021_study_cohort.arrow output/tables/demographics_census_2021_cohort.csv
+  generate_demographics_census_2011_study_table_mig_3cat:
+    run: r:latest analysis/process_census_cohort_data.R output/cohorts/census_2011_study_cohort.arrow output/tables/demographics_census_2011_cohort_3cat.csv mig_status_3_cat
+    needs:
+    - generate_dataset_for_census_2011
+    outputs:
+      moderately_sensitive:
+        csv: output/tables/demographics_census_2011_cohort_3cat.csv
+
+  generate_demographics_census_2011_study_table_mig_6cat:
+    run: r:latest analysis/process_census_cohort_data.R output/cohorts/census_2011_study_cohort.arrow output/tables/demographics_census_2011_cohort_6cat.csv mig_status_6_cat
+    needs:
+    - generate_dataset_for_census_2011
+    outputs:
+      moderately_sensitive:
+        csv: output/tables/demographics_census_2011_cohort_6cat.csv
+
+  generate_demographics_census_2021_study_table_2cat:
+    run: r:latest analysis/process_census_cohort_data.R output/cohorts/census_2021_study_cohort.arrow output/tables/demographics_census_2021_cohort_2cat.csv mig_status_2_cat
     needs:
     - generate_dataset_for_census_2021
     outputs:
       moderately_sensitive:
-        csv: output/tables/demographics_census_2021_cohort.csv
+        csv: output/tables/demographics_census_2021_cohort_2cat.csv
+
+  generate_demographics_census_2021_study_table_3cat:
+    run: r:latest analysis/process_census_cohort_data.R output/cohorts/census_2021_study_cohort.arrow output/tables/demographics_census_2021_cohort_3cat.csv mig_status_3_cat
+    needs:
+    - generate_dataset_for_census_2021
+    outputs:
+      moderately_sensitive:
+        csv: output/tables/demographics_census_2021_cohort_3cat.csv
   
+  generate_demographics_census_2021_study_table_6cat:
+    run: r:latest analysis/process_census_cohort_data.R output/cohorts/census_2021_study_cohort.arrow output/tables/demographics_census_2021_cohort_6cat.csv mig_status_6_cat
+    needs:
+    - generate_dataset_for_census_2021
+    outputs:
+      moderately_sensitive:
+        csv: output/tables/demographics_census_2021_cohort_6cat.csv
+
   generate_date_of_uk_entry_description:
     run: r:latest analysis/date_of_entry_to_uk.R
     needs:
