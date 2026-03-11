@@ -13,7 +13,6 @@ library(here)
 library(arrow)
 library(skimr)
 library(fs)
-library(dtplyr)
 
 ## Create output directory
 output_dir <- here::here("output", "tables")
@@ -55,7 +54,6 @@ vars_to_summarise <- c(
 mig_vars <- args[[3]]
 
 table_freq <- cohort %>%
-  lazy_dt() %>%
   pivot_longer(
     cols = all_of(vars_to_summarise),
     names_to = "subgroup",
@@ -82,8 +80,7 @@ table_freq <- cohort %>%
     n = rounding(n),
     percentage = round((100 * n / sum(n)),1)
   ) %>%
-  ungroup() %>%
-  as_tibble()
+  ungroup() 
 
 dir_create(path_dir(output_file))
 write_csv(table_freq, path = output_file)

@@ -31,15 +31,6 @@ actions:
       highly_sensitive:
          dataset: output/cohorts/migration_code_before_birth_cohort.arrow  
 
-  # generate_demographics_full_study_table:
-  #   run: r:latest analysis/process_full_cohort_data.R 
-  #   needs:
-  #   - generate_full_study_cohort
-  #   outputs:
-  #     moderately_sensitive:
-  #       csv: output/tables/demographics_full_study_cohort.csv
-
-
   generate_demographics_full_study_table_2cat:
     run: r:latest analysis/process_full_cohort_data.R output/tables/demographics_full_study_cohort_2cat.csv mig_status_2_cat
     needs:
