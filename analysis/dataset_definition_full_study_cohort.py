@@ -5,7 +5,8 @@
 #############################################################################
 
 # This is a script to explore the migration status of all individuals who:
-#         1) had a first registration at anytime (2009-2025) AND
+#         1) was registered at anytime (2009-2025) AND
+#         2) had a first registration that was between their birth and death date 
 #         2) do not have a disclosive sex AND
 #         4) did not die before or on 1st Jan 2009 (study start) AND 
 #         4) had a plausible age at the beginning of the study period  (i.e. not >110 years old in 2009)
@@ -36,6 +37,15 @@ is_registered_at_any_time_during_study = practice_registrations.where(
   )
 )
 
+date_of_first_practice_registration = (
+    practice_registrations.sort_by(practice_registrations.start_date)
+    .first_for_patient().start_date
+)
+
+has_first_registration_between_birth_and_death = practice_registrations.where(
+    date_of_first_practice_registration.is_on_or_between(patients.date_of_birth, patients.date_of_death)
+)
+
 has_non_disclosive_sex = (
     (patients.sex == "male") | (patients.sex == "female")
 )
@@ -51,6 +61,7 @@ was_not_over_110_at_study_start_or_less_than_0_at_end_date = (
 
 dataset = create_dataset()
 dataset.define_population(is_registered_at_any_time_during_study.exists_for_patient() & 
+                          has_first_registration_between_birth_and_death.exists_for_patient() &
                           has_non_disclosive_sex & 
                           did_not_die_before_study_start & 
                           was_not_over_110_at_study_start_or_less_than_0_at_end_date)
@@ -112,10 +123,6 @@ dataset.imd_quintile = address.imd_quintile
 
 ## date of first practice registration
 
-date_of_first_practice_registration = (
-    practice_registrations.sort_by(practice_registrations.start_date)
-    .first_for_patient().start_date
-)
 dataset.date_of_first_practice_registration = date_of_first_practice_registration
 
 dataset.date_of_death = patients.date_of_death
@@ -172,6 +179,7 @@ has_date_of_uk_entry = (
     clinical_events
     .where(clinical_events.snomedct_code.is_in(date_of_entry_code))
     .where(clinical_events.date.is_on_or_between(patients.date_of_birth, study_end_date))
+    .where((clinical_events.date.is_on_or_before(patients.date_of_death)) | (patients.date_of_death.is_null()))
     .exists_for_patient()
 )
 dataset.has_date_of_uk_entry = has_date_of_uk_entry

@@ -21,6 +21,7 @@ def build_migrant_indicators(date):
             clinical_events
             .where(clinical_events.snomedct_code.is_in(codes))
             .where(clinical_events.date.is_on_or_between(patients.date_of_birth, date))
+            .where((clinical_events.date.is_on_or_before(patients.date_of_death)) | (patients.date_of_death.is_null()))
             .exists_for_patient()
         )
         for name, codes in migrant_flags.items()
