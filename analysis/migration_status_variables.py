@@ -21,6 +21,7 @@ def build_migrant_indicators(date):
             clinical_events
             .where(clinical_events.snomedct_code.is_in(codes))
             .where(clinical_events.date.is_on_or_between(patients.date_of_birth, date))
+            .where((clinical_events.date.is_on_or_before(patients.date_of_death)) | (patients.date_of_death.is_null()))
             .exists_for_patient()
         )
         for name, codes in migrant_flags.items()
@@ -82,22 +83,31 @@ def build_mig_status_6_cat(migrant_indicators):
     likely_migrant = english_not_main | interpreter_required
     likely_non_migrant = ((british_ethnicities) & ~migrant)
 
-    # Build the case expression in precedence order
-    clauses = [
-        (not_born_in_uk, "Definite migrant"),
-        (highly_likely, "Highly likely migrant"),
-        (likely_migrant, "Likely migrant"),
-        (likely_non_migrant, "Likely non-migrant"),
-        (born_in_uk, "Definite non-migrant"),
-    ]
-
-    # Start assembling call to case(...) with only the non-empty conditions
-    case_args = []
-    for cond, label in clauses:
-        case_args.append(when(cond).then(label))
-
     return case(
-        *case_args,
+        when(not_born_in_uk).then("Definite migrant"),
+        when(highly_likely).then("Highly likely migrant"),
+        when(likely_migrant).then("Likely migrant"),
+        when(born_in_uk).then("Definite non-migrant"),
+        when(likely_non_migrant).then("Likely non-migrant"),
         otherwise="Unknown"
-    )
+    )   
+
+    # # Build the case expression in precedence order
+    # clauses = [
+    #     (not_born_in_uk, "Definite migrant"),
+    #     (highly_likely, "Highly likely migrant"),
+    #     (likely_migrant, "Likely migrant"),
+    #     (likely_non_migrant, "Likely non-migrant"),
+    #     (born_in_uk, "Definite non-migrant"),
+    # ]
+
+    # # Start assembling call to case(...) with only the non-empty conditions
+    # case_args = []
+    # for cond, label in clauses:
+    #     case_args.append(when(cond).then(label))
+
+    # return case(
+    #     *case_args,
+    #     otherwise="Unknown"
+    # )
 

@@ -51,11 +51,11 @@ def build_common_vars(INTERVAL):
 
     ethnicity = (
         clinical_events
-        .where(clinical_events.snomedct_code.is_in(codelists.ethnicity_16_level_codelist))
+        .where(clinical_events.snomedct_code.is_in(codelists.ethnicity_6_level_codelist))
         .where(clinical_events.date.is_on_or_before(INTERVAL.end_date))
         .sort_by(clinical_events.date)
         .last_for_patient()
-        .snomedct_code.to_category(codelists.ethnicity_16_level_codelist)
+        .snomedct_code.to_category(codelists.ethnicity_6_level_codelist)
         .when_null_then("unknown")
     )
 

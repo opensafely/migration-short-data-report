@@ -18,7 +18,7 @@ ethnicity = common["ethnicity"]
 numerators_separate = migration_status_variables.build_migrant_indicators(INTERVAL.end_date)
 mig6_expr = migration_status_variables.build_mig_status_6_cat(numerators_separate)
 
-# labels in exact text the builder returns — must match these strings exactly
+
 labels = [
     "Definite migrant",
     "Highly likely migrant",
@@ -33,7 +33,7 @@ for label in labels:
     var_name = "mig_status_6_cat"
     for suffix, group in subgroups.items():
         if suffix == "":
-            name = f"{var_name}__{safe_label}"
+            name = f"{var_name}_{safe_label}"
         else:
-            name = f"{var_name}__{safe_label}__{suffix}"
+            name = f"{var_name}_{safe_label}_{suffix}"
         measures.define_measure(name=name, numerator=bool_numer, group_by=group)
