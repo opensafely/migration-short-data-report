@@ -33,7 +33,7 @@ cohort <- read_feather(cohort_file) %>%
 study_end_date <- "2025-10-17"
 
 check_dates <- cohort %>%
-  group_by(any_migrant, has_date_of_uk_entry_at_any_time) %>%
+  group_by(any_migrant, has_date_of_uk_entry) %>%
   mutate(
     mig_code_before_birth =
       as.integer(date_of_first_migration_code < date_of_birth),
@@ -97,7 +97,7 @@ check_dates <- cohort %>%
   )
 
 check_dates$any_migrant <- as.character(check_dates$any_migrant)
-check_dates$has_date_of_uk_entry_at_any_time <- as.character(check_dates$has_date_of_uk_entry_at_any_time)
+check_dates$has_date_of_uk_entry <- as.character(check_dates$has_date_of_uk_entry)
 
 # Grouped by only migrant status
 
@@ -164,7 +164,7 @@ check_dates_migrant_grouped <- cohort %>%
     date_of_first_prac_reg_before_birth = sum(date_of_first_prac_reg_before_birth, na.rm = TRUE),
     date_of_first_prac_reg_after_death = sum(date_of_first_prac_reg_after_death, na.rm = TRUE)
   ) %>%
-  mutate(has_date_of_uk_entry_at_any_time = "All")
+  mutate(has_date_of_uk_entry = "All")
 
 check_dates_migrant_grouped$any_migrant <- as.character(check_dates_migrant_grouped$any_migrant)
 
@@ -233,12 +233,15 @@ check_dates_migrant_grouped$any_migrant <- as.character(check_dates_migrant_grou
     date_of_first_prac_reg_after_death = sum(date_of_first_prac_reg_after_death, na.rm = TRUE)
   ) %>%
   mutate(any_migrant = "All",
-        has_date_of_uk_entry_at_any_time = "All")
+        has_date_of_uk_entry = "All")
 
 check_dates_ungrouped$any_migrant <- as.character(check_dates_ungrouped$any_migrant)
-check_dates_ungrouped$has_date_of_uk_entry_at_any_time <- as.character(check_dates_ungrouped$has_date_of_uk_entry_at_any_time)
+check_dates_ungrouped$has_date_of_uk_entry <- as.character(check_dates_ungrouped$has_date_of_uk_entry)
 
 check_dates <- bind_rows(check_dates_ungrouped, check_dates_migrant_grouped, check_dates)
+
+check_dates <- check_dates %>%
+  relocate(any_migrant, has_date_of_uk_entry)
 
 dir_create(path_dir(output_file))
 write_csv(check_dates, path = output_file)
