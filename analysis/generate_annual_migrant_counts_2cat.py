@@ -26,7 +26,7 @@ for label in labels:
     var_name = "mig_status_2_cat"
     for suffix, group in subgroups.items():
         if suffix == "":
-            name = f"{var_name}__{safe_label}"
+            name = f"{var_name}_{safe_label}"
         else:
-            name = f"{var_name}__{safe_label}__{suffix}"
+            name = f"{var_name}_{safe_label}_{suffix}"
         measures.define_measure(name=name, numerator=bool_numer, group_by=group)

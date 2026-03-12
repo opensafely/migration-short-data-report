@@ -151,29 +151,16 @@ number_of_migration_codes = (
     clinical_events
             .where(clinical_events.snomedct_code.is_in(codelists.all_migrant_codes))
             .where(clinical_events.date.is_on_or_between(patients.date_of_birth, study_end_date))
+            .where((clinical_events.date.is_on_or_before(patients.date_of_death)) | (patients.date_of_death.is_null()))
             .count_for_patient()
 )
 dataset.number_of_migration_codes = number_of_migration_codes
-
-number_of_migration_codes_at_any_time = (
-    clinical_events
-            .where(clinical_events.snomedct_code.is_in(codelists.all_migrant_codes))
-            .count_for_patient()
-)
-dataset.number_of_migration_codes_at_any_time = number_of_migration_codes
 
 # date of entry to the UK (SNOMED CT code: 860021000000109)
 
 ## has date of entry to the UK code 
 
 date_of_entry_code = ["860021000000109"]
-
-has_date_of_uk_entry_at_any_time = (
-    clinical_events
-    .where(clinical_events.snomedct_code.is_in(date_of_entry_code))
-    .exists_for_patient()
-)
-dataset.has_date_of_uk_entry_at_any_time = has_date_of_uk_entry_at_any_time
 
 has_date_of_uk_entry = (
     clinical_events
@@ -190,12 +177,7 @@ dataset.number_of_date_of_uk_entry_codes = (
     clinical_events
     .where(clinical_events.snomedct_code.is_in(date_of_entry_code))
     .where(clinical_events.date.is_on_or_between(patients.date_of_birth, study_end_date))
-    .count_for_patient()
-)
-
-dataset.number_of_date_of_uk_entry_codes_at_any_time = (
-    clinical_events
-    .where(clinical_events.snomedct_code.is_in(date_of_entry_code))
+    .where((clinical_events.date.is_on_or_before(patients.date_of_death)) | (patients.date_of_death.is_null()))
     .count_for_patient()
 )
 
@@ -204,6 +186,7 @@ dataset.number_of_date_of_uk_entry_codes_at_any_time = (
 date_of_earliest_date_of_uk_entry_code = (
     clinical_events.where(clinical_events.snomedct_code.is_in(date_of_entry_code))
     .where(clinical_events.date.is_on_or_between(patients.date_of_birth, study_end_date))
+    .where((clinical_events.date.is_on_or_before(patients.date_of_death)) | (patients.date_of_death.is_null()))
     .sort_by(clinical_events.date)
     .first_for_patient().date)
 dataset.date_of_earliest_date_of_uk_entry_code = date_of_earliest_date_of_uk_entry_code
@@ -228,6 +211,7 @@ dataset.date_of_entry_and_other_migration_code = case(
 date_of_first_migration_code = (
     clinical_events.where(clinical_events.snomedct_code.is_in(codelists.all_migrant_codes))
     .where(clinical_events.date.is_on_or_between(patients.date_of_birth, study_end_date))
+    .where((clinical_events.date.is_on_or_before(patients.date_of_death)) | (patients.date_of_death.is_null()))
     .sort_by(clinical_events.date)
     .first_for_patient().date)
 

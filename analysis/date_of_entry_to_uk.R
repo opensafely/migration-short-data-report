@@ -37,27 +37,14 @@ cohort <- read_feather(cohort_file) %>%
 
 # Number and median (IQR) of date of UK entry codes per individual 
 
-summary_uk_entry_codes_any_time <- cohort %>%
-  filter(number_of_date_of_uk_entry_codes_at_any_time == "TRUE") %>%
-  summarise(total_patients = n(),
-            total_date_of_uk_entry_codes = sum(number_of_date_of_uk_entry_codes_at_any_time), # unsure if I need rounding here
-            median_date_of_uk_entry_codes = median(number_of_date_of_uk_entry_codes_at_any_time, na.rm = TRUE),
-            q25 = quantile(number_of_date_of_uk_entry_codes_at_any_time, 0.25, na.rm = TRUE),
-            q75 = quantile(number_of_date_of_uk_entry_codes_at_any_time, 0.75, na.rm = TRUE),
-            .groups = "drop") %>%
-  mutate(category = "Code at any time (including after study end date)")
-
 summary_uk_entry_codes <- cohort %>%
-  filter(number_of_date_of_uk_entry_codes == "TRUE") %>%
+  filter(has_date_of_uk_entry == "TRUE") %>%
   summarise(total_patients = n(),
             total_date_of_uk_entry_codes = sum(number_of_date_of_uk_entry_codes), # unsure if I need rounding here
             median_date_of_uk_entry_codes = median(number_of_date_of_uk_entry_codes, na.rm = TRUE),
             q25 = quantile(number_of_date_of_uk_entry_codes, 0.25, na.rm = TRUE),
             q75 = quantile(number_of_date_of_uk_entry_codes, 0.75, na.rm = TRUE),
-            .groups = "drop") %>%
-  mutate(category = "Code before or on study end date")
-
-summary_uk_entry_codes_sum_median_iqr <- bind_rows(summary_uk_entry_codes_any_time, summary_uk_entry_codes)
+            .groups = "drop")
 
 # Timing of date of UK entry code 
 
@@ -68,11 +55,9 @@ timing_of_date_of_uk_entry_codes <- cohort %>%
     names_from = temporality_of_date_of_uk_entry_code,
     values_from = n,
     values_fill = 0
-  ) %>%
-  mutate(category = "Code at any time (including after study end date)")
+  )
 
-summary_uk_entry_codes_sum_median_iqr_cat <- summary_uk_entry_codes_sum_median_iqr %>%
-  left_join(timing_of_date_of_uk_entry_codes, by = "category")
+summary_uk_entry_codes_sum_median_iqr_cat <- bind_cols(summary_uk_entry_codes, timing_of_date_of_uk_entry_codes)
 
 dir_create(path_dir(output_file))
 write_csv(summary_uk_entry_codes_sum_median_iqr_cat, path = output_file)

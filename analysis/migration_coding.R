@@ -69,6 +69,9 @@ migration_coding_summary <- cohort %>%
     median_time_from_birth_first_migration_code_days = median(time_from_birth_first_migration_code_days, na.rm = TRUE),
     q25_time_from_birth_first_migration_code_days = quantile(time_from_birth_first_migration_code_days, 0.25, na.rm = TRUE),
     q75_time_from_birth_first_migration_code_days = quantile(time_from_birth_first_migration_code_days, 0.75, na.rm = TRUE),
+    median_time_from_birth_first_migration_code_months = median(time_from_birth_first_migration_code_months, na.rm = TRUE),
+    q25_time_from_birth_first_migration_code_months = quantile(time_from_birth_first_migration_code_months, 0.25, na.rm = TRUE),
+    q75_time_from_birth_first_migration_code_months = quantile(time_from_birth_first_migration_code_months, 0.75, na.rm = TRUE),
     .groups = "drop"
   ) 
 
