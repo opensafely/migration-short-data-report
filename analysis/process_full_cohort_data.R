@@ -13,14 +13,12 @@ library(here)
 library(arrow)
 library(skimr)
 library(fs)
-library(data.table)
 
 ## Create output directory
 output_dir <- here::here("output", "tables")
 fs::dir_create(output_dir)
 
 cohort_file <- "output/cohorts/full_study_cohort.arrow"
-# output_file <- "output/tables/demographics_full_study_cohort.csv"
 
 # Parse command-line argument
 args <- commandArgs(trailingOnly=TRUE)
@@ -48,40 +46,36 @@ vars_to_summarise <- c(
   "imd_quintile"
 )
 
-# mig_vars <- c(
-#   "mig_status_2_cat",
-#   "mig_status_3_cat",
-#   "mig_status_6_cat")
 
 rounding <- function(vars) {
   case_when(vars == 0 ~ 0,
             vars > 7 ~ round(vars / 5) * 5)
 }
 
-# cohort <- setDT(cohort)
-
-# dt <- melt(cohort, 
-#             measure.vars = vars_to_summarise, 
-#             variable.name = "subgroup", 
-#             value.name = "category",
-#             variable.factor = FALSE)
-
-# dt <- melt(dt, 
-#            measure.vars = mig_vars, 
-#            variable.name = "migration_scheme", 
-#            value.name = "migration_status",
-#            variable.factor = FALSE)
-
-# dt[is.na(category),category:= "unknown"]
-# dt[is.na(migration_status),migration_status:= "unknown"]
-
-# dt_counts <- dt[,.(n = .N),
-#                   by = .(migration_scheme, migration_status, subgroup, category)]
-
-# dt_counts[ , n_rounded := rounding(n)]
-# dt_counts[ , percentage := round(100 * n_rounded / sum(n_rounded), 1),
-#            by = .(migration_scheme, migration_status, subgroup)]
-
+table_freq_overall <- cohort %>%
+  pivot_longer(
+    cols = all_of(mig_vars),
+    #cols = all_of("mig_status_3_cat"),
+    names_to = "migration_scheme",
+    values_to = "migration_status"
+  ) %>%
+  # make missing explicit if needed
+  mutate(
+    migration_status = fct_explicit_na(migration_status, "unknown")
+  ) %>%
+  count(
+    migration_scheme,
+    migration_status,
+    name = "n"
+  ) %>%
+  group_by(migration_scheme) %>%
+  mutate(
+    subgroup = "All",
+    category = "All",
+    n = rounding(n),
+    percentage = round((100 * n / sum(n, na.rm = TRUE)),1)
+  ) %>%
+  ungroup() 
 
 table_freq <- cohort %>%
   pivot_longer(
@@ -91,6 +85,7 @@ table_freq <- cohort %>%
   ) %>%
   pivot_longer(
     cols = all_of(mig_vars),
+    #cols = all_of("mig_status_3_cat"),
     names_to = "migration_scheme",
     values_to = "migration_status"
   ) %>%
@@ -109,11 +104,14 @@ table_freq <- cohort %>%
   group_by(migration_scheme, migration_status, subgroup) %>%
   mutate(
     n = rounding(n),
-    percentage = round((100 * n / sum(n)),1)
+    percentage = round((100 * n / sum(n, na.rm = TRUE)),1)
   ) %>%
   ungroup() 
 
+table_freq <- bind_rows(table_freq_overall, table_freq)
+table_freq <- table_freq %>%
+  relocate(n, .before= percentage)
+
 dir_create(path_dir(output_file))
 write_csv(table_freq, path = output_file)
-
 

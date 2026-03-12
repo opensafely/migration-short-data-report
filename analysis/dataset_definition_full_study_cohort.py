@@ -4,8 +4,8 @@
 # - Bennett Institute for Applied Data Science, University of Oxford, 2025
 #############################################################################
 
-# This is a script to explore the migration status of all individuals who were:
-#         1) registered at anytime (2009-2025) AND
+# This is a script to explore the migration status of all individuals who:
+#         1) had a first registration at anytime (2009-2025) AND
 #         2) do not have a disclosive sex AND
 #         4) did not die before or on 1st Jan 2009 (study start) AND 
 #         4) had a plausible age at the beginning of the study period  (i.e. not >110 years old in 2009)
