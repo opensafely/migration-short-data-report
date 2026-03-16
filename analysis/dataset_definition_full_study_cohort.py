@@ -33,23 +33,31 @@ end_date_of_latest_practice_registration = (
     .last_for_patient().end_date
 )
 
-is_registered_at_any_time_during_study = practice_registrations.where(
-  # starting during period
-  date_of_first_practice_registration.is_on_or_between(study_start_date, study_end_date) |
-  
-  # ending during period
-  end_date_of_latest_practice_registration.is_on_or_between(study_start_date, study_end_date) | 
-  
-  # starting before and ending after
-  (
-    date_of_first_practice_registration.is_on_or_before(study_start_date) &
-    (end_date_of_latest_practice_registration.is_on_or_after(study_end_date) | end_date_of_latest_practice_registration.is_null())
-  )
+is_registered_at_any_time_during_study = (
+    # starts during period
+    date_of_first_practice_registration.is_on_or_between(
+        study_start_date,
+        study_end_date,
+    )
+    # ending during period
+    | end_date_of_latest_practice_registration.is_on_or_between(
+        study_start_date,
+        study_end_date,
+    )
+    # starting before and ending after (or ongoing)
+    | (
+        date_of_first_practice_registration.is_on_or_before(study_start_date)
+        & (
+            end_date_of_latest_practice_registration.is_on_or_after(study_end_date)
+            | end_date_of_latest_practice_registration.is_null()
+        )
+    )
 )
 
-has_first_registration_between_birth_and_death = practice_registrations.where(
-    date_of_first_practice_registration.is_on_or_between(patients.date_of_birth, patients.date_of_death)
+has_first_registration_between_birth_and_death = (
+ date_of_first_practice_registration.is_on_or_between(patients.date_of_birth, patients.date_of_death)
 )
+   
 
 has_non_disclosive_sex = (
     (patients.sex == "male") | (patients.sex == "female")
@@ -65,8 +73,8 @@ was_not_over_110_at_study_start_or_less_than_0_at_end_date = (
 )
 
 dataset = create_dataset()
-dataset.define_population(is_registered_at_any_time_during_study.exists_for_patient() & 
-                          has_first_registration_between_birth_and_death.exists_for_patient() &
+dataset.define_population(is_registered_at_any_time_during_study & 
+                          has_first_registration_between_birth_and_death &
                           has_non_disclosive_sex & 
                           did_not_die_before_study_start & 
                           was_not_over_110_at_study_start_or_less_than_0_at_end_date)
