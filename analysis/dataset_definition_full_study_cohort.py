@@ -23,23 +23,28 @@ import migration_status_variables
 study_start_date = "2009-01-01"
 study_end_date = "2025-10-17" # based on what I think is the latest data available, using the latest report run date here: https://reports.opensafely.org/reports/opensafely-tpp-database-history/#CodedEvent
 
-is_registered_at_any_time_during_study = practice_registrations.where(
-  # starting during period
-  practice_registrations.start_date.is_on_or_between(study_start_date, study_end_date) |
-  
-  # ending during period
-  practice_registrations.end_date.is_on_or_between(study_start_date, study_end_date) | 
-  
-  # starting before and ending after
-  (
-    practice_registrations.start_date.is_on_or_before(study_start_date) &
-    (practice_registrations.end_date.is_on_or_after(study_end_date + days(1)) | practice_registrations.end_date.is_null())
-  )
-)
-
 date_of_first_practice_registration = (
     practice_registrations.sort_by(practice_registrations.start_date)
     .first_for_patient().start_date
+)
+
+end_date_of_latest_practice_registration = (
+    practice_registrations.sort_by(practice_registrations.end_date)
+    .last_for_patient().end_date
+)
+
+is_registered_at_any_time_during_study = practice_registrations.where(
+  # starting during period
+  date_of_first_practice_registration.is_on_or_between(study_start_date, study_end_date) |
+  
+  # ending during period
+  end_date_of_latest_practice_registration.is_on_or_between(study_start_date, study_end_date) | 
+  
+  # starting before and ending after
+  (
+    date_of_first_practice_registration.is_on_or_before(study_start_date) &
+    (end_date_of_latest_practice_registration.is_on_or_after(study_end_date) | end_date_of_latest_practice_registration.is_null())
+  )
 )
 
 has_first_registration_between_birth_and_death = practice_registrations.where(
