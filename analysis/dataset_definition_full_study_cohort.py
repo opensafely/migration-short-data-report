@@ -54,9 +54,9 @@ is_registered_at_any_time_during_study = (
     )
 )
 
-has_first_registration_between_birth_and_death = (
- date_of_first_practice_registration.is_on_or_between(patients.date_of_birth, patients.date_of_death)
-)
+#has_first_registration_between_birth_and_death = (
+# date_of_first_practice_registration.is_on_or_between(patients.date_of_birth, patients.date_of_death)
+#)
    
 
 has_non_disclosive_sex = (
@@ -74,7 +74,7 @@ was_not_over_110_at_study_start_or_less_than_0_at_end_date = (
 
 dataset = create_dataset()
 dataset.define_population(is_registered_at_any_time_during_study & 
-                          has_first_registration_between_birth_and_death &
+                          #has_first_registration_between_birth_and_death &
                           has_non_disclosive_sex & 
                           did_not_die_before_study_start & 
                           was_not_over_110_at_study_start_or_less_than_0_at_end_date)
