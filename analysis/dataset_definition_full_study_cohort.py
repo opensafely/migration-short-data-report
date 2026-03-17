@@ -58,7 +58,7 @@ has_first_registration_between_birth_and_death = (
     # between dob and date of death
     (date_of_first_practice_registration.is_on_or_between(patients.date_of_birth, patients.date_of_death)) | 
     # after dob and date of death is null (still alive)
-    (date_of_first_practice_registration.is_on_or_after(patients.date_of_birth) & patients.date_of_death.is_not_null())
+    (date_of_first_practice_registration.is_on_or_after(patients.date_of_birth) & patients.date_of_death.is_null())
 )
    
 
