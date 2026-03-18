@@ -19,8 +19,8 @@ parser.add_argument("--census-date", type=str)
 args = parser.parse_args()
 
 #######
-# census_date = args.census_date
-census_date = "2021-03-21"
+census_date = args.census_date
+#census_date = "2021-03-21"
 
 # define population
 

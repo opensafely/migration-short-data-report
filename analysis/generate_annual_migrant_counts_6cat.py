@@ -37,3 +37,17 @@ for label in labels:
         else:
             name = f"{var_name}_{safe_label}_{suffix}"
         measures.define_measure(name=name, numerator=bool_numer, group_by=group)
+
+# overall (ungrouped) measures
+
+for label in labels:
+    bool_numer = (mig6_expr == label)
+    safe_label = label.lower().replace(" ", "_").replace("-", "_")
+    var_name = "mig_status_6_cat_overall"
+
+    name = f"{var_name}_{safe_label}"
+
+    measures.define_measure(
+        name=name,
+        numerator=bool_numer
+    )
