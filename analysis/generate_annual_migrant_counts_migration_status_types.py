@@ -38,3 +38,16 @@ for key, expr in numerators_separate.items():
 
 
         measures.define_measure(name=name, numerator=expr, group_by=group)
+
+# Overall (no grouping) counts
+
+var_name = "migration_status_types_overall"
+
+for key, expr in numerators_separate.items():
+    safe_label = key.lower().replace(" ", "_").replace("-", "_")
+    name = f"{var_name}_{safe_label}"
+
+    measures.define_measure(
+        name=name,
+        numerator=expr
+    )

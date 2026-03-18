@@ -111,35 +111,35 @@ actions:
       moderately_sensitive:
         csv: output/tables/date_of_uk_entry_description.csv
 
-  generate_annual_migrant_counts:
-    run: ehrql:v1 generate-measures analysis/generate_annual_migrant_counts.py --output output/tables/annual_migrant_counts.csv
-    outputs:
-      moderately_sensitive:
-        csv: output/tables/annual_migrant_counts.csv
+#  generate_annual_migrant_counts:
+#    run: ehrql:v1 generate-measures analysis/generate_annual_migrant_counts.py --output output/tables/annual_migrant_counts.csv
+#    outputs:
+#      moderately_sensitive:
+#        csv: output/tables/annual_migrant_counts.csv
 
   generate_annual_migrant_counts_2cat:
-    run: ehrql:v1 generate-measures analysis/generate_annual_migrant_counts_2cat.py --output output/tables/annual_migrant_counts_2cat.csv
+    run: ehrql:v1 generate-measures analysis/generate_annual_migrant_counts_2cat.py --output output/tables/annual_counts/2cat/:csv
     outputs:
       moderately_sensitive:
-        csv: output/tables/annual_migrant_counts_2cat.csv
+        measures: output/tables/annual_counts/2cat/*.csv
 
   generate_annual_migrant_counts_3cat:
-    run: ehrql:v1 generate-measures analysis/generate_annual_migrant_counts_3cat.py --output output/tables/annual_migrant_counts_3cat.csv
+    run: ehrql:v1 generate-measures analysis/generate_annual_migrant_counts_3cat.py --output output/tables/annual_counts/3cat/:csv
     outputs:
       moderately_sensitive:
-        csv: output/tables/annual_migrant_counts_3cat.csv 
+        csv: output/tables/annual_counts/3cat/*.csv 
   
   generate_annual_migrant_counts_6cat:
-    run: ehrql:v1 generate-measures analysis/generate_annual_migrant_counts_6cat.py --output output/tables/annual_migrant_counts_6cat.csv
+    run: ehrql:v1 generate-measures analysis/generate_annual_migrant_counts_6cat.py --output output/tables/annual_counts/6cat/:csv
     outputs:
       moderately_sensitive:
-        csv: output/tables/annual_migrant_counts_6cat.csv
+        csv: output/tables/annual_counts/6cat/*.csv
 
   generate_annual_migrant_counts_migration_status_types:
-    run: ehrql:v1 generate-measures analysis/generate_annual_migrant_counts_migration_status_types.py --output output/tables/annual_migrant_counts_migration_status_types.csv
+    run: ehrql:v1 generate-measures analysis/generate_annual_migrant_counts_migration_status_types.py --output output/tables/annual_counts/migration_status_types/:csv
     outputs:
       moderately_sensitive:
-        csv: output/tables/annual_migrant_counts_migration_status_types.csv
+        csv: output/tables/annual_counts/migration_status_types/*.csv
 
   generate_migration_coding_summary:
     run: r:latest analysis/migration_coding.R
