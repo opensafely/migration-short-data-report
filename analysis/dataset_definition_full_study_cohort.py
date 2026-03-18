@@ -21,7 +21,7 @@ import migration_status_variables
 # Dates
 
 study_start_date = "2009-01-01"
-study_end_date = "2025-10-17" # based on what I think is the latest data available, using the latest report run date here: https://reports.opensafely.org/reports/opensafely-tpp-database-history/#CodedEvent
+study_end_date = "2025-12-31" 
 
 date_of_first_practice_registration = (
     practice_registrations.sort_by(practice_registrations.start_date)
