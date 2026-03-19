@@ -55,8 +55,8 @@ migration_coding_summary <- cohort %>%
   ) %>%
   group_by(migration_scheme, migration_status) %>%
   summarise(
-    n = n(),
-    total_migration_codes = sum(number_of_migration_codes),
+    n = rounding(n()),
+    total_migration_codes = rounding(sum(number_of_migration_codes)),
     median_migration_codes = median(number_of_migration_codes, na.rm = TRUE),
     q25_migration_codes = quantile(number_of_migration_codes, 0.25, na.rm = TRUE),
     q75_migration_codes = quantile(number_of_migration_codes, 0.75, na.rm = TRUE),
