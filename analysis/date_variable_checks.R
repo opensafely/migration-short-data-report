@@ -30,7 +30,12 @@ cohort <- read_feather(cohort_file) %>%
     )
   )
 
-study_end_date <- "2025-10-17"
+study_end_date <- "2025-12-31"
+
+rounding <- function(vars) {
+  case_when(vars == 0 ~ 0,
+            vars > 7 ~ round(vars / 5) * 5)
+}
 
 check_dates <- cohort %>%
   group_by(any_migrant, has_date_of_uk_entry) %>%
@@ -241,7 +246,8 @@ check_dates_ungrouped$has_date_of_uk_entry <- as.character(check_dates_ungrouped
 check_dates <- bind_rows(check_dates_ungrouped, check_dates_migrant_grouped, check_dates)
 
 check_dates <- check_dates %>%
-  relocate(any_migrant, has_date_of_uk_entry)
+  relocate(any_migrant, has_date_of_uk_entry) %>%
+  mutate(across(where(is.integer), rounding))
 
 dir_create(path_dir(output_file))
 write_csv(check_dates, path = output_file)
