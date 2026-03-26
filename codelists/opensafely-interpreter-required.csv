@@ -1,6 +1,7 @@
 code,term
 1047321000000104,Romany language interpreter needed
 1050791000000101,Romany language interpreter needed
+1254706008,Referral to language interpretation service
 1254713008,Requires language interpretation service to support health literacy
 1366478006,Requires spoken language interpretation service
 1366479003,Requires in-person spoken language interpretation service
@@ -168,7 +169,12 @@ code,term
 211561000000105,Interpreter needed - Pashto
 211641000000108,Interpreter needed - Polish
 211671000000102,Interpreter needed - Polish
+2672691000000101,Dari language interpreter needed
+276161000000101,Interpreter not available
+276171000000108,Interpreter not available 
+276181000000105,Interpreter not available 
 303601000000100,Telephone interpreting service used
+314430004,Presence of interpreter
 314431000,Interpreter present
 315593009,Need for interpreter
 315594003,Interpreter needed
@@ -247,6 +253,8 @@ code,term
 360291000000104,Javanese language interpreter needed 
 360301000000100,Javanese language interpreter needed 
 360311000000103,Inuktitut language interpreter needed
+360321000000109,Inuktitut language iterpreter needed 
+360331000000106,Inuktitut language iterpreter needed 
 360341000000102,Interlingue language interpreter needed
 360351000000104,Interlingue language interpreter needed 
 360361000000101,Interlingue language interpreter needed 
@@ -439,9 +447,11 @@ code,term
 370271000000107,Interpreter needed 
 413309001,No adult family member literate in English
 423785008,Provision of interpreter/translator services
+426201006,Interpreter not available
 445075008,Request for language interpreter service
 521521000000104,Request for language interpreter service
 621391000124107,Referral to English as a second language program
+662851000124106,Referral to interpreter
 736790000,Interpreter booked
 745664000,Requires telephone language interpreter service
 787661000000108,Interpreter booked

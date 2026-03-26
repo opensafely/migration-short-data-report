@@ -7,10 +7,10 @@
       "sha": "d95a2f826299563aa57f6fa99009e6e13a65151b"
     },
     "opensafely-migration-status.csv": {
-      "id": "opensafely/migration-status/4095ab22",
-      "url": "https://www.opencodelists.org/codelist/opensafely/migration-status/4095ab22/",
-      "downloaded_at": "2026-02-05 12:52:41.927224Z",
-      "sha": "93be296d33160a9d041c9cce118ea00659c0fd34"
+      "id": "opensafely/migration-status/03277ba3",
+      "url": "https://www.opencodelists.org/codelist/opensafely/migration-status/03277ba3/",
+      "downloaded_at": "2026-03-26 16:04:16.382479Z",
+      "sha": "f71b5b916caff6c92326466f2ce05d040e778af5"
     },
     "opensafely-born-in-the-uk.csv": {
       "id": "opensafely/born-in-the-uk/4aa36068",
@@ -19,16 +19,16 @@
       "sha": "43b8618968d5a6baf9ce130ea54c27b6a6aa2716"
     },
     "opensafely-born-outside-the-uk.csv": {
-      "id": "opensafely/born-outside-the-uk/1d23465b",
-      "url": "https://www.opencodelists.org/codelist/opensafely/born-outside-the-uk/1d23465b/",
-      "downloaded_at": "2025-12-16 13:30:41.107400Z",
-      "sha": "667afb120ab5f45df6280eae0ee8fdfa9d955b2e"
+      "id": "opensafely/born-outside-the-uk/51089538",
+      "url": "https://www.opencodelists.org/codelist/opensafely/born-outside-the-uk/51089538/",
+      "downloaded_at": "2026-03-26 16:04:16.527826Z",
+      "sha": "9029f3a1e72f92754b2e324b871a25801bde4e61"
     },
     "opensafely-immigration-status-excl-refugee-asylum.csv": {
-      "id": "opensafely/immigration-status-excl-refugee-asylum/1ca8661b",
-      "url": "https://www.opencodelists.org/codelist/opensafely/immigration-status-excl-refugee-asylum/1ca8661b/",
-      "downloaded_at": "2026-02-05 12:52:42.413609Z",
-      "sha": "4f98ae3177276a1c9c49094dcb7e6792c3afda3a"
+      "id": "opensafely/immigration-status-excl-refugee-asylum/6a18086d",
+      "url": "https://www.opencodelists.org/codelist/opensafely/immigration-status-excl-refugee-asylum/6a18086d/",
+      "downloaded_at": "2026-03-26 16:04:16.597822Z",
+      "sha": "74bb584b67e52636941b4a3578b0a1a5a58790b2"
     },
     "opensafely-asylum-or-refugee-status.csv": {
       "id": "opensafely/asylum-or-refugee-status/209cb9e0",
@@ -37,22 +37,28 @@
       "sha": "ecd46bc32ff596afcb298dc249588fbe0efc907b"
     },
     "opensafely-english-not-main-language.csv": {
-      "id": "opensafely/english-not-main-language/5c450c53",
-      "url": "https://www.opencodelists.org/codelist/opensafely/english-not-main-language/5c450c53/",
-      "downloaded_at": "2026-02-05 12:52:43.216448Z",
-      "sha": "6996e6a8c345d281ea69d4e0c2cd28e1a34dcfe9"
+      "id": "opensafely/english-not-main-language/0eb92f0a",
+      "url": "https://www.opencodelists.org/codelist/opensafely/english-not-main-language/0eb92f0a/",
+      "downloaded_at": "2026-03-26 16:04:16.757432Z",
+      "sha": "881fb0517a7d48aedd6e458dbe1f11cea53758fe"
     },
     "opensafely-interpreter-required.csv": {
-      "id": "opensafely/interpreter-required/556e6040",
-      "url": "https://www.opencodelists.org/codelist/opensafely/interpreter-required/556e6040/",
-      "downloaded_at": "2025-12-16 13:47:00.356076Z",
-      "sha": "a40c90d5145744c3c6e447a818c10b2e3aca3a75"
+      "id": "opensafely/interpreter-required/5734c8b3",
+      "url": "https://www.opencodelists.org/codelist/opensafely/interpreter-required/5734c8b3/",
+      "downloaded_at": "2026-03-26 16:04:16.837247Z",
+      "sha": "9d4dafb36cf2896c418e1cff63bae31769e3a797"
     },
     "opensafely-british-ethnicities.csv": {
       "id": "opensafely/british-ethnicities/6a897fb0",
       "url": "https://www.opencodelists.org/codelist/opensafely/british-ethnicities/6a897fb0/",
       "downloaded_at": "2026-03-05 15:35:19.516161Z",
       "sha": "b29fb0154f75840482e61f4a66d62af208b31529"
+    },
+    "opensafely-trafficking-and-modern-slavery.csv": {
+      "id": "opensafely/trafficking-and-modern-slavery/0074bbad",
+      "url": "https://www.opencodelists.org/codelist/opensafely/trafficking-and-modern-slavery/0074bbad/",
+      "downloaded_at": "2026-03-26 16:04:16.998062Z",
+      "sha": "c315d06d1b78dd3b77630e6b38a700338b763b45"
     }
   }
 }

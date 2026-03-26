@@ -38,8 +38,6 @@ code,term
 1366478006,Requires spoken language interpretation service
 1366479003,Requires in-person spoken language interpretation service
 137906009,Immigrant
-137910007,Country of origin
-137921003,Country of origin NOS
 138090008,Social migrant
 138429005,Immigrant
 138443000,World languages
@@ -76,14 +74,12 @@ code,term
 138480006,Born in Malta
 138481005,Born in Moldavia
 138482003,Born in Monaco
-138483008,Born in Northern Ireland
 138484002,Born in Norway
 138485001,Born in Poland
 138486000,Born in Portugal
 138487009,Born in Republic of Ireland
 138488004,Born in Romania
 138489007,Born in San Marino
-138490003,Born in Scotland
 138491004,Born in Slovakia
 138492006,Born in Slovenia
 138493001,Born in Spain
@@ -280,7 +276,6 @@ code,term
 153703000,Need for interpreter
 153704006,Interpreter needed
 160509003,Immigrant
-160537005,Country of origin NOS
 160701002,Social migrant
 160702009,Illegal migrant
 161141008,Bengali language
@@ -326,14 +321,12 @@ code,term
 161208000,Born in Malta
 161209008,Born in Moldavia
 161210003,Born in Monaco
-161211004,Born in Northern Ireland
 161212006,Born in Norway
 161213001,Born in Poland
 161214007,Born in Portugal
 161215008,Born in Republic of Ireland
 161216009,Born in Romania
 161217000,Born in San Marino
-161218005,Born in Scotland
 161219002,Born in Slovakia
 161220008,Born in Slovenia
 161221007,Born in Spain
@@ -629,8 +622,6 @@ code,term
 209341000000102,Interpreter needed - Urdu
 209351000000104,Interpreter needed - Vietnamese
 209361000000101,Interpreter needed - Vietnamese
-209371000000108,Interpreter needed - Welsh
-209381000000105,Interpreter needed - Welsh
 209391000000107,Interpreter needed - Yoruba
 209401000000105,Interpreter needed - Yoruba
 210781000000104,Interpreter needed - Akan
@@ -697,22 +688,16 @@ code,term
 211561000000105,Interpreter needed - Pashto
 211641000000108,Interpreter needed - Polish
 211671000000102,Interpreter needed - Polish
-212061000000105,Akan as a second language
-212071000000103,Akan as a second language
-212081000000101,Albanian as a second language
-212091000000104,Albanian as a second language
-212101000000107,Amharic as a second language
-212111000000109,Amharic as a second language
-212121000000103,Arabic as a second language
-212131000000101,Arabic as a second language
 212241000000100,English as a second language
 212251000000102,English as a second language
 213261000000106,Overseas visitor
 213271000000104,Overseas visitor
 224619008,Migrant
 224628009,Hinko language
+2672691000000101,Dari language interpreter needed
 276171000000108,Interpreter not available 
 276181000000105,Interpreter not available 
+2816171000000106,Born in South Sudan
 297289008,World languages
 297290004,Afro-Asiatic language
 297291000,Berber language
@@ -1578,7 +1563,6 @@ code,term
 315590007,Born in Yemen
 315593009,Need for interpreter
 315594003,Interpreter needed
-331671000000104,Migration - National Public Health Classification
 336351000000106,Migrant worker - National Public Health Classification
 341651000000107,Born in former Yugoslav Republic of Macedonia
 341661000000105,Born in former Yugoslav Republic of Macedonia 
@@ -2126,7 +2110,6 @@ code,term
 370261000000100,Interpreter needed 
 370271000000107,Interpreter needed 
 370721000000100,Main spoken language Bulgarian 
-377051000000109,Former Yugoslav Republic of Macedonia
 389297006,Refugee
 389298001,Asylum seeker
 390033009,Asylum seeker
@@ -2161,7 +2144,6 @@ code,term
 408519004,Main spoken language Thai
 408520005,Main spoken language Flemish
 408521009,Main spoken language French Créole
-408522002,Main spoken language Gaelic
 408523007,Main spoken language Hakka
 408524001,Main spoken language Hebrew
 408525000,Main spoken language Akan
@@ -2175,6 +2157,7 @@ code,term
 408534005,Main spoken language Patois
 408535006,Main spoken language Serbian
 413323004,Refugee family
+413330005,Victim of oppression in country of origin
 414640006,Main spoken language Finnish
 416625007,Family reunion immigrant
 423785008,Provision of interpreter/translator services
@@ -2256,7 +2239,6 @@ code,term
 523561000000106,Born in Serbia
 523571000000104,Born in Serbia 
 554851000005102,Asylum seekers center
-568541000000108,Country of origin NOS
 609092003,Main spoken language Bamun
 609093008,Main spoken language Dari
 609094002,Main spoken language Konkani
@@ -2504,7 +2486,6 @@ code,term
 708892009,Hmong language
 718512007,Main spoken language Romany
 720301000000108,Migrant worker
-723981000000108,Migration
 728611000000100,Asylum seeker awaiting decision on refugee status
 728621000000106,Asylum seeker with application for asylum refused
 728631000000108,Asylum seeker with humanitarian protection status
@@ -2738,7 +2719,6 @@ code,term
 972591000000100,Chinese interpreter needed
 972601000000106,Church Slavic interpreter needed
 972611000000108,Chuvash interpreter needed
-972621000000102,Cornish interpreter needed
 972631000000100,Cree interpreter needed
 972641000000109,Dhivehi interpreter needed
 972651000000107,Ewe interpreter needed
@@ -2789,7 +2769,6 @@ code,term
 974871000000109,Interpreter needed for language N - S
 974881000000106,Interpreter needed for language G - M
 974891000000108,Interpreter needed for language A - F
-991491000000100,Country of birth findings simple reference set
 99471000000105,Main spoken language Italian
 99481000000107,Main spoken language German
 99491000000109,Main spoken language Albanian

@@ -2,6 +2,7 @@ code,term
 1036381000000101,Main spoken language Romany
 1036391000000104,Main spoken language Romanes 
 1047281000000107,Does not speak English
+1047291000000109,Does not speak English 
 107751000000106,Main spoken language Pashto
 1264278006,Iranian Persian language
 1300106003,Completed English as a second language program
@@ -42,6 +43,7 @@ code,term
 161144000,Pashtu language
 161145004,Punjabi language
 161146003,Urdu language
+161148002,Speaks English poorly
 161172007,World languages
 161173002,Vietnamese language
 161176005,Creole language
@@ -1103,6 +1105,7 @@ code,term
 621391000124107,Referral to English as a second language program
 651321000124106,Education about English as a second language program
 661891000124107,Assistance with application for English as a second language program
+662331000124108,Evaluation of eligibility for English as a second language program
 698651000,Main spoken language Abkhazian
 698652007,Main spoken language Afar
 698653002,Main spoken language Afrikaans
@@ -1359,6 +1362,7 @@ code,term
 85621000000107,Main spoken language Vietnamese
 85921000000103,Main spoken language Korean
 85931000000101,Main spoken language Igbo
+910241000000102,First language not English
 910251000000104,First language not English 
 945161000000108,Difficulty understanding verbal language
 945211000000103,Does not understand verbal language 

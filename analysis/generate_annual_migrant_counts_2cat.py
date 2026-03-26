@@ -33,14 +33,14 @@ for label in labels:
 
 # overall (ungrouped) measures
 
-for label in labels:
-    bool_numer = (mig2_expr == label)
-    safe_label = label.lower().replace(" ", "_").replace("-", "_")
-    var_name = "mig_status_2_cat_overall"
+# for label in labels:
+#     bool_numer = (mig2_expr == label)
+#     safe_label = label.lower().replace(" ", "_").replace("-", "_")
+#     var_name = "mig_status_2_cat_overall"
 
-    name = f"{var_name}_{safe_label}"
+#     name = f"{var_name}_{safe_label}"
 
-    measures.define_measure(
-        name=name,
-        numerator=bool_numer
-    )
+#     measures.define_measure(
+#         name=name,
+#         numerator=bool_numer
+#     )
