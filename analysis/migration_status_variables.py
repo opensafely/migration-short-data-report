@@ -67,7 +67,7 @@ def build_mig_status_6_cat(migrant_indicators):
       - Likely migrant: english_not_main_language OR interpreter_required
       - Definite non-migrant: born_in_uk 
       - Likely non-migrant: british_ethnicities AND no migrant code 
-      - Unknown: none of the above
+      - Unknown: no migrant codes
     """
     migrant = migrant_indicators.get("any_migrant", False)
     not_born_in_uk = migrant_indicators.get("not_born_in_uk", False)
@@ -82,32 +82,14 @@ def build_mig_status_6_cat(migrant_indicators):
     highly_likely = immig_excl | refugee_asylum
     likely_migrant = english_not_main | interpreter_required
     likely_non_migrant = ((british_ethnicities) & ~migrant)
+    unknown = (~migrant)
 
     return case(
         when(not_born_in_uk).then("Definite migrant"),
+        when(born_in_uk).then("Definite non-migrant"),
         when(highly_likely).then("Highly likely migrant"),
         when(likely_migrant).then("Likely migrant"),
-        when(born_in_uk).then("Definite non-migrant"),
         when(likely_non_migrant).then("Likely non-migrant"),
-        otherwise="Unknown"
+        when(unknown).then("Unknown"),
+        otherwise="Error"
     )   
-
-    # # Build the case expression in precedence order
-    # clauses = [
-    #     (not_born_in_uk, "Definite migrant"),
-    #     (highly_likely, "Highly likely migrant"),
-    #     (likely_migrant, "Likely migrant"),
-    #     (likely_non_migrant, "Likely non-migrant"),
-    #     (born_in_uk, "Definite non-migrant"),
-    # ]
-
-    # # Start assembling call to case(...) with only the non-empty conditions
-    # case_args = []
-    # for cond, label in clauses:
-    #     case_args.append(when(cond).then(label))
-
-    # return case(
-    #     *case_args,
-    #     otherwise="Unknown"
-    # )
-
