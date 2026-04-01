@@ -19,6 +19,8 @@ english_not_main_language_excl_interpreter_migrant_codes = codelist_from_csv("co
 
 interpreter_migrant_codes = codelist_from_csv("codelists/opensafely-interpreter-required.csv", column="code")
 
+trafficking_codes = codelist_from_csv("codelists/opensafely-trafficking-and-modern-slavery.csv", column="code")
+
 british_ethnicities_codes = codelist_from_csv("codelists/opensafely-british-ethnicities.csv", column="code")
 
 ethnicity_16_level_codelist =  codelist_from_csv(
