@@ -55,6 +55,22 @@ actions:
       moderately_sensitive:
         csv: output/tables/demographics_full_study_cohort_6cat.csv
 
+  generate_demographics_full_study_table_migration_types:
+    run: r:latest analysis/process_full_cohort_data_migration_types.R 
+    needs:
+    - generate_full_study_cohort
+    outputs:
+      moderately_sensitive:
+        csv: output/tables/demographics_full_study_cohort_migration_types.csv
+
+  generate_demographics_uk_entry_cohort:
+    run: r:latest analysis/process_date_of_uk_entry_cohort.R 
+    needs:
+    - generate_date_of_entry_cohort
+    outputs:
+      moderately_sensitive:
+        csv: output/tables/demographics_date_of_uk_entry_cohort.csv
+
   generate_demographics_census_2011_study_table_mig_2cat:
     run: r:latest analysis/process_census_cohort_data.R output/cohorts/census_2011_study_cohort.arrow output/tables/demographics_census_2011_cohort_2cat.csv mig_status_2_cat
     needs:
