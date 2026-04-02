@@ -14,10 +14,31 @@ def build_common_vars(INTERVAL):
     # -------------------
     was_alive_on_1Jan = patients.is_alive_on(INTERVAL.start_date)
 
-    was_registered_on1Jan = (
-        practice_registrations.for_patient_on(INTERVAL.start_date)
-        .exists_for_patient()
-    )
+    was_registered_at_any_point_during_interval = practice_registrations.where(
+        # registered for the entire interval
+        ((practice_registrations.start_date.is_on_or_before(INTERVAL.start_date)) 
+        & (practice_registrations.end_date.is_on_or_after(INTERVAL.end_date))) |
+        
+        # registered during the interval and end date is after the interval end date
+        ((practice_registrations.start_date.is_after(INTERVAL.start_date))
+         & (practice_registrations.end_date.is_on_or_after(INTERVAL.end_date))) |
+         
+         # registered before the interval and registration is ongoing
+         ((practice_registrations.start_date.is_on_or_before(INTERVAL.start_date)) &
+          (practice_registrations.end_date.is_null())) |
+          
+          # registered after interval start date and registration is ongoing
+          ((practice_registrations.start_date.is_after(INTERVAL.start_date)) &
+           (practice_registrations.end_date.is_null())) |
+           
+           # registered before the interval start date and end date is before the end date, but after the start date 
+           ((practice_registrations.start_date.is_before(INTERVAL.start_date)) &
+           (practice_registrations.end_date.is_between_but_not_on(INTERVAL.start_date, INTERVAL.end_date))) |
+           
+           # registered for part of the interval only
+           ((practice_registrations.start_date.is_between_but_not_on(INTERVAL.start_date, INTERVAL.end_date)) &
+            (practice_registrations.end_date.is_between_but_not_on(INTERVAL.start_date, INTERVAL.end_date)))
+    ).exists_for_patient()
 
     has_recorded_sex = patients.sex.is_in(["male", "female"])
 
@@ -28,7 +49,7 @@ def build_common_vars(INTERVAL):
 
     denominator = (
         was_alive_on_1Jan
-        & was_registered_on1Jan
+        & was_registered_at_any_point_during_interval
         & has_recorded_sex
         & has_possible_age
     )
