@@ -1,5 +1,6 @@
 code,term
 1193634005,Born in Cabo Verde
+138451002,Country of birth (European)
 138452009,Born in Albania
 138453004,Born in Andorra
 138454005,Born in Austria
@@ -44,6 +45,7 @@ code,term
 138497000,Born in Ukraine
 138498005,Born in Vatican City
 138500006,Born in Yugoslavia
+138501005,Country of birth (Asian)
 138502003,Born in Afghanistan
 138503008,Born in Armenia
 138504002,Born in Bahrain
@@ -96,6 +98,7 @@ code,term
 138551000,Born in Uzbekistan
 138552007,Born in Vietnam
 138553002,Born in Yemen
+138554008,Country of birth (American)
 138555009,Born in Argentina
 138556005,Born in Belize
 138557001,Born in Bolivia
@@ -120,6 +123,7 @@ code,term
 138577008,Born in USA
 138578003,Born in Uruguay
 138579006,Born in Venezuela
+138580009,Country of birth (African)
 138581008,Born in Algeria
 138582001,Born in Angola
 138583006,Born in Benin
@@ -171,8 +175,10 @@ code,term
 138629000,Born in Zaire
 138630005,Born in Zambia
 138631009,Born in Zimbabwe
+138632002,Country of birth (Australasian)
 138633007,Born in Australia
 138634001,Born in New Zealand
+138635000,Country of birth (Atlantic)
 138636004,Born in Antigua and Barbuda
 138637008,Born in Bahamas
 138638003,Born in Barbados
@@ -186,6 +192,7 @@ code,term
 138646002,Born in St. Vincent
 138647006,Born in Togo
 138648001,Born in Trinidad and Tobago
+138649009,Country of birth (Pacific)
 138650009,Born in Fiji
 138651008,Born in Kiribati
 138652001,Born in Nauru
@@ -196,6 +203,7 @@ code,term
 138657007,Born in Tuvala
 138658002,Born in Vanuatu
 138659005,Born in Western Samoa
+161180000,Country of birth (European)
 161181001,Born in Albania
 161182008,Born in Andorra
 161183003,Born in Austria
@@ -240,6 +248,7 @@ code,term
 161225003,Born in Ukraine
 161226002,Born in Vatican City
 161228001,Born in Yugoslavia
+161229009,Country of birth (Asian)
 161230004,Born in Afghanistan
 161231000,Born in Armenia
 161232007,Born in Bahrain
@@ -292,6 +301,7 @@ code,term
 161280005,Born in Uzbekistan
 161281009,Born in Vietnam
 161282002,Born in Yemen
+161283007,Country of birth (American)
 161284001,Born in Argentina
 161285000,Born in Belize
 161286004,Born in Bolivia
@@ -316,6 +326,7 @@ code,term
 161305004,Born in USA
 161306003,Born in Uruguay
 161307007,Born in Venezuela
+161308002,Country of birth (African)
 161309005,Born in Algeria
 161310000,Born in Angola
 161311001,Born in Benin
@@ -367,8 +378,10 @@ code,term
 161358009,Born in Zaire
 161359001,Born in Zambia
 161360006,Born in Zimbabwe
+161361005,Country of birth (Australasian)
 161362003,Born in Australia
 161363008,Born in New Zealand
+161364002,Country of birth (Atlantic)
 161365001,Born in Antigua and Barbuda
 161366000,Born in Bahamas
 161367009,Born in Barbados
@@ -382,6 +395,7 @@ code,term
 161375003,Born in St. Vincent
 161376002,Born in Togo
 161377006,Born in Trinidad and Tobago
+161378001,Country of birth (Pacific)
 161379009,Born in Fiji
 161380007,Born in Kiribati
 161381006,Born in Nauru
@@ -395,6 +409,14 @@ code,term
 205091000000107,Born in Eritrea
 206981000000101,Born in Eritrea
 206991000000104,Born in Eritrea
+2816171000000106,Born in South Sudan
+315355003,Country of birth - European
+315356002,Country of birth - Asian
+315357006,Country of birth - American continent
+315358001,Country of birth - African
+315359009,Country of birth - Australasian
+315360004,Country of birth - Atlantic
+315361000,Country of birth - Pacific
 315365009,Born in Afghanistan
 315366005,Born in Albania
 315367001,Born in Algeria
@@ -609,6 +631,7 @@ code,term
 345801000000108,Born in Martinique
 345811000000105,Born in Martinique 
 345821000000104,Born in Martinique 
+413330005,Victim of oppression in country of origin
 503061000000107,Born in Anguilla
 503071000000100,Born in Anguilla 
 503081000000103,Born in Anguilla 
@@ -622,6 +645,7 @@ code,term
 750491000000109,Born in Democratic Republic of Congo
 768761000000104,Born in Aruba
 768771000000106,Born in Aruba 
+841311000000103,Country of origin high risk for blood-borne virus
 858651000000103,Born in Montenegro
 858661000000100,Born in Montenegro 
 918951000000105,Born in Samoa

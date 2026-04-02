@@ -11,6 +11,7 @@ migrant_flags = {
     "refugee_asylum_status": codelists.asylum_refugee_migrant_codes,
     "english_not_main_language": codelists.english_not_main_language_excl_interpreter_migrant_codes,
     "interpreter_required": codelists.interpreter_migrant_codes,
+    "trafficking": codelists.trafficking_codes,
     "british_ethnicities": codelists.british_ethnicities_codes
 }
 
@@ -64,10 +65,10 @@ def build_mig_status_6_cat(migrant_indicators):
     6-category migrant status (priority order):
       - Definite migrant: not_born_in_uk
       - Highly likely migrant: immig_status_excl_refugee_asylum OR refugee_asylum_status
-      - Likely migrant: english_not_main_language OR interpreter_required
+      - Likely migrant: english_not_main_language OR interpreter_required OR trafficking
       - Definite non-migrant: born_in_uk 
       - Likely non-migrant: british_ethnicities AND no migrant code 
-      - Unknown: none of the above
+      - Unknown: no migrant codes
     """
     migrant = migrant_indicators.get("any_migrant", False)
     not_born_in_uk = migrant_indicators.get("not_born_in_uk", False)
@@ -75,39 +76,22 @@ def build_mig_status_6_cat(migrant_indicators):
     refugee_asylum = migrant_indicators.get("refugee_asylum_status", False)
     english_not_main = migrant_indicators.get("english_not_main_language", False)
     interpreter_required = migrant_indicators.get("interpreter_required", False)
+    trafficking = migrant_indicators.get("trafficking", False)
     born_in_uk = migrant_indicators.get("born_in_uk", False)
     british_ethnicities = migrant_indicators.get("british_ethnicities", False)
 
     # Compose combined conditions
     highly_likely = immig_excl | refugee_asylum
-    likely_migrant = english_not_main | interpreter_required
+    likely_migrant = english_not_main | interpreter_required | trafficking
     likely_non_migrant = ((british_ethnicities) & ~migrant)
+    unknown = (~migrant)
 
     return case(
         when(not_born_in_uk).then("Definite migrant"),
+        when(born_in_uk).then("Definite non-migrant"),
         when(highly_likely).then("Highly likely migrant"),
         when(likely_migrant).then("Likely migrant"),
-        when(born_in_uk).then("Definite non-migrant"),
         when(likely_non_migrant).then("Likely non-migrant"),
-        otherwise="Unknown"
+        when(unknown).then("Unknown"),
+        otherwise="Error"
     )   
-
-    # # Build the case expression in precedence order
-    # clauses = [
-    #     (not_born_in_uk, "Definite migrant"),
-    #     (highly_likely, "Highly likely migrant"),
-    #     (likely_migrant, "Likely migrant"),
-    #     (likely_non_migrant, "Likely non-migrant"),
-    #     (born_in_uk, "Definite non-migrant"),
-    # ]
-
-    # # Start assembling call to case(...) with only the non-empty conditions
-    # case_args = []
-    # for cond, label in clauses:
-    #     case_args.append(when(cond).then(label))
-
-    # return case(
-    #     *case_args,
-    #     otherwise="Unknown"
-    # )
-
