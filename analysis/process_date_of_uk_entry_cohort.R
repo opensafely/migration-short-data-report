@@ -25,7 +25,6 @@ output_file <- "output/tables/demographics_date_of_uk_entry_cohort.csv"
 args <- commandArgs(trailingOnly=TRUE)
 print(commandArgs(trailingOnly=TRUE))
 
-
 # Import data ----
 cohort <- read_feather(cohort_file) %>%
   mutate(
@@ -45,7 +44,6 @@ vars_to_summarise <- c(
   "imd_quintile"
 )
 
-
 rounding <- function(vars) {
   case_when(vars == 0 ~ 0,
             vars > 7 ~ round(vars / 5) * 5)
@@ -54,7 +52,7 @@ rounding <- function(vars) {
 table_freq_overall <- cohort %>%
   group_by(any_migrant) %>%
   summarise(
-    n = rounding(nrow(cohort)),
+    n = rounding(n()),
     percentage = 100) %>%
   mutate(
     subgroup = "All",
