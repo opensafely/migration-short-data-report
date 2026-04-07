@@ -119,6 +119,55 @@ actions:
       moderately_sensitive:
         csv: output/tables/demographics_census_2021_cohort_6cat.csv
 
+  generate_demographics_census_2011_study_table_mig_2cat_withdoe:
+    run: r:latest analysis/process_census_cohort_data.R output/cohorts/census_2011_study_cohort.arrow output/tables/demographics_census_2011_cohort_2cat_withdoe.csv mig_status_2_cat_withdoe
+    needs:
+    - generate_dataset_for_census_2011
+    outputs:
+      moderately_sensitive:
+        csv: output/tables/demographics_census_2011_cohort_2cat_withdoe.csv
+
+  generate_demographics_census_2011_study_table_mig_3cat_withdoe:
+    run: r:latest analysis/process_census_cohort_data.R output/cohorts/census_2011_study_cohort.arrow output/tables/demographics_census_2011_cohort_3cat_withdoe.csv mig_status_3_cat_withdoe
+    needs:
+    - generate_dataset_for_census_2011
+    outputs:
+      moderately_sensitive:
+        csv: output/tables/demographics_census_2011_cohort_3cat_withdoe.csv
+
+  generate_demographics_census_2011_study_table_mig_6cat_withdoe:
+    run: r:latest analysis/process_census_cohort_data.R output/cohorts/census_2011_study_cohort.arrow output/tables/demographics_census_2011_cohort_6cat_withdoe.csv mig_status_6_cat_withdoe
+    needs:
+    - generate_dataset_for_census_2011
+    outputs:
+      moderately_sensitive:
+        csv: output/tables/demographics_census_2011_cohort_6cat_withdoe.csv
+
+
+  generate_demographics_census_2021_study_table_2cat_withdoe:
+    run: r:latest analysis/process_census_cohort_data.R output/cohorts/census_2021_study_cohort.arrow output/tables/demographics_census_2021_cohort_2cat_withdoe.csv mig_status_2_cat_withdoe
+    needs:
+    - generate_dataset_for_census_2021
+    outputs:
+      moderately_sensitive:
+        csv: output/tables/demographics_census_2021_cohort_2cat_withdoe.csv
+
+  generate_demographics_census_2021_study_table_3cat_withdoe:
+    run: r:latest analysis/process_census_cohort_data.R output/cohorts/census_2021_study_cohort.arrow output/tables/demographics_census_2021_cohort_3cat_withdoe.csv mig_status_3_cat_withdoe
+    needs:
+    - generate_dataset_for_census_2021
+    outputs:
+      moderately_sensitive:
+        csv: output/tables/demographics_census_2021_cohort_3cat_withdoe.csv
+  
+  generate_demographics_census_2021_study_table_6cat_withdoe:
+    run: r:latest analysis/process_census_cohort_data.R output/cohorts/census_2021_study_cohort.arrow output/tables/demographics_census_2021_cohort_6cat_withdoe.csv mig_status_6_cat_withdoe
+    needs:
+    - generate_dataset_for_census_2021
+    outputs:
+      moderately_sensitive:
+        csv: output/tables/demographics_census_2021_cohort_6cat_withdoe.csv
+
   generate_date_of_uk_entry_description:
     run: r:latest analysis/date_of_entry_to_uk.R
     needs:
@@ -126,12 +175,6 @@ actions:
     outputs:
       moderately_sensitive:
         csv: output/tables/date_of_uk_entry_description.csv
-
-#  generate_annual_migrant_counts:
-#    run: ehrql:v1 generate-measures analysis/generate_annual_migrant_counts.py --output output/tables/annual_migrant_counts.csv
-#    outputs:
-#      moderately_sensitive:
-#        csv: output/tables/annual_migrant_counts.csv
 
   generate_annual_migrant_counts_2cat:
     run: ehrql:v1 generate-measures analysis/generate_annual_migrant_counts_2cat.py --output output/tables/annual_counts/2cat/:csv
@@ -150,6 +193,24 @@ actions:
     outputs:
       moderately_sensitive:
         csv: output/tables/annual_counts/6cat/*.csv
+
+  generate_annual_migrant_counts_2cat_withdoe:
+    run: ehrql:v1 generate-measures analysis/generate_annual_migrant_counts_2cat_withdoe.py --output output/tables/annual_counts/2cat_withdoe/:csv
+    outputs:
+      moderately_sensitive:
+        measures: output/tables/annual_counts/2cat_withdoe/*.csv
+
+  generate_annual_migrant_counts_3cat_withdoe:
+    run: ehrql:v1 generate-measures analysis/generate_annual_migrant_counts_3cat_withdoe.py --output output/tables/annual_counts/3cat_withdoe/:csv
+    outputs:
+      moderately_sensitive:
+        csv: output/tables/annual_counts/3cat_withdoe/*.csv 
+  
+  generate_annual_migrant_counts_6cat_withdoe:
+    run: ehrql:v1 generate-measures analysis/generate_annual_migrant_counts_6cat_withdoe.py --output output/tables/annual_counts/6cat_withdoe/:csv
+    outputs:
+      moderately_sensitive:
+        csv: output/tables/annual_counts/6cat_withdoe/*.csv
 
   generate_annual_migrant_counts_migration_status_types:
     run: ehrql:v1 generate-measures analysis/generate_annual_migrant_counts_migration_status_types.py --output output/tables/annual_counts/migration_status_types/:csv

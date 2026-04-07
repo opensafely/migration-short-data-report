@@ -153,11 +153,17 @@ for name, indicator in migrant_indicators.items():
 ## consolidate migration indiciators into 2-cat, 3-cat and 6-cat variables
 
 dataset.mig_status_2_cat = migration_status_variables.build_mig_status_2_cat(migrant_indicators)
+dataset.mig_status_2_cat_withdoe = migration_status_variables.build_mig_status_2_cat_withdoe(migrant_indicators)
 
 dataset.mig_status_3_cat = migration_status_variables.build_mig_status_3_cat(
     migrant_indicators)
+dataset.mig_status_3_cat_withdoe = migration_status_variables.build_mig_status_3_cat_withdoe(
+    migrant_indicators)
 
 dataset.mig_status_6_cat = migration_status_variables.build_mig_status_6_cat(
+    migrant_indicators
+)
+dataset.mig_status_6_cat_withdoe = migration_status_variables.build_mig_status_6_cat_withdoe(
     migrant_indicators
 )
 
@@ -172,11 +178,20 @@ number_of_migration_codes = (
 )
 dataset.number_of_migration_codes = number_of_migration_codes
 
+date_of_entry_code = ["860021000000109"]
+
+number_of_migration_codes_withdoe = (
+    clinical_events
+            .where((clinical_events.snomedct_code.is_in(codelists.all_migrant_codes)) | (clinical_events.snomedct_code.is_in(date_of_entry_code))) 
+            .where(clinical_events.date.is_on_or_between(patients.date_of_birth, study_end_date))
+            .where((clinical_events.date.is_on_or_before(patients.date_of_death)) | (patients.date_of_death.is_null()))
+            .count_for_patient()
+)
+dataset.number_of_migration_codes_withdoe = number_of_migration_codes_withdoe
+
 # date of entry to the UK (SNOMED CT code: 860021000000109)
 
 ## has date of entry to the UK code 
-
-date_of_entry_code = ["860021000000109"]
 
 has_date_of_uk_entry = (
     clinical_events
