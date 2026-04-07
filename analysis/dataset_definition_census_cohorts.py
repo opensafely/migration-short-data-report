@@ -111,6 +111,14 @@ dataset.mig_status_3_cat = migration_status_variables.build_mig_status_3_cat(
 dataset.mig_status_6_cat = migration_status_variables.build_mig_status_6_cat(
     migrant_indicators)
 
+dataset.mig_status_2_cat_withdoe = migration_status_variables.build_mig_status_2_cat_withdoe(migrant_indicators)
+
+dataset.mig_status_3_cat_withdoe = migration_status_variables.build_mig_status_3_cat_withdoe(
+    migrant_indicators)
+
+dataset.mig_status_6_cat_withdoe = migration_status_variables.build_mig_status_6_cat_withdoe(
+    migrant_indicators)
+
 dataset.configure_dummy_data(population_size=1000)
 
 show(dataset)
