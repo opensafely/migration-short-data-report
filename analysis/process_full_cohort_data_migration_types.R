@@ -32,6 +32,7 @@ cohort <- read_feather(cohort_file) %>%
 
 migration_type_vars <- c("any_migrant", 
                          "not_born_in_uk", 
+                         "date_of_uk_entry",
                          "immig_status_excl_refugee_asylum", 
                          "refugee_asylum_status",
                          "english_not_main_language",

@@ -44,7 +44,9 @@ migration_code_combinations_summary <- cohort %>%
         if (immig_status_excl_refugee_asylum) "immig_status_excl_refugee_asylum",
         if (refugee_asylum_status) "refugee_asylum_status",
         if (english_not_main_language) "english_not_main_language",
-        if (interpreter_required) "interpreter_required"
+        if (interpreter_required) "interpreter_required",
+        if (trafficking) "trafficking",
+        if (date_of_uk_entry) "date_of_uk_entry"
       ),
       collapse = "; "
     ),

@@ -40,7 +40,10 @@ vars_to_summarise <- c(
 mig_vars <- c(
   "mig_status_2_cat",
   "mig_status_3_cat",
-  "mig_status_6_cat")
+  "mig_status_6_cat",
+  "mig_status_2_cat_withdoe",
+  "mig_status_3_cat_withdoe",
+  "mig_status_6_cat_withdoe")
 
 rounding <- function(vars) {
   case_when(vars == 0 ~ 0,
@@ -56,10 +59,17 @@ migration_coding_summary <- cohort %>%
   group_by(migration_scheme, migration_status) %>%
   summarise(
     n = rounding(n()),
+    # excluding date of uk entry code
     total_migration_codes = rounding(sum(number_of_migration_codes)),
     median_migration_codes = median(number_of_migration_codes, na.rm = TRUE),
     q25_migration_codes = quantile(number_of_migration_codes, 0.25, na.rm = TRUE),
     q75_migration_codes = quantile(number_of_migration_codes, 0.75, na.rm = TRUE),
+    # including date of uk entry code
+    total_migration_codes_withdoe = rounding(sum(number_of_migration_codes_withdoe)),
+    median_migration_codes_withdoe = median(number_of_migration_codes_withdoe, na.rm = TRUE),
+    q25_migration_codes_withdoe = quantile(number_of_migration_codes_withdoe, 0.25, na.rm = TRUE),
+    q75_migration_codes_withdoe = quantile(number_of_migration_codes_withdoe, 0.75, na.rm = TRUE),
+    # excluding date of uk entry code
     median_time_from_1st_pracreg_first_migration_code_days = median(time_from_1st_pracreg_first_migration_code_days, na.rm = TRUE),
     q25_time_from_1st_pracreg_first_migration_code_days = quantile(time_from_1st_pracreg_first_migration_code_days, 0.25, na.rm = TRUE),
     q75_time_from_1st_pracreg_first_migration_code_days = quantile(time_from_1st_pracreg_first_migration_code_days, 0.75, na.rm = TRUE),
@@ -72,6 +82,19 @@ migration_coding_summary <- cohort %>%
     median_time_from_birth_first_migration_code_months = median(time_from_birth_first_migration_code_months, na.rm = TRUE),
     q25_time_from_birth_first_migration_code_months = quantile(time_from_birth_first_migration_code_months, 0.25, na.rm = TRUE),
     q75_time_from_birth_first_migration_code_months = quantile(time_from_birth_first_migration_code_months, 0.75, na.rm = TRUE),
+    # including date of uk entry code
+    median_time_from_1st_pracreg_first_migration_code_days_withdoe = median(time_from_1st_pracreg_first_migration_code_days, na.rm = TRUE),
+    q25_time_from_1st_pracreg_first_migration_code_days_withdoe = quantile(time_from_1st_pracreg_first_migration_code_days, 0.25, na.rm = TRUE),
+    q75_time_from_1st_pracreg_first_migration_code_days_withdoe = quantile(time_from_1st_pracreg_first_migration_code_days, 0.75, na.rm = TRUE),
+    median_time_from_1st_pracreg_first_migration_code_months_withdoe = median(time_from_1st_pracreg_first_migration_code_months , na.rm = TRUE),
+    q25_time_from_1st_pracreg_first_migration_code_months_withdoe = quantile(time_from_1st_pracreg_first_migration_code_months , 0.25, na.rm = TRUE),
+    q75_time_from_1st_pracreg_first_migration_code_months_withdoe = quantile(time_from_1st_pracreg_first_migration_code_months , 0.75, na.rm = TRUE),
+    median_time_from_birth_first_migration_code_days_withdoe = median(time_from_birth_first_migration_code_days, na.rm = TRUE),
+    q25_time_from_birth_first_migration_code_days_withdoe = quantile(time_from_birth_first_migration_code_days, 0.25, na.rm = TRUE),
+    q75_time_from_birth_first_migration_code_days_withdoe = quantile(time_from_birth_first_migration_code_days, 0.75, na.rm = TRUE),
+    median_time_from_birth_first_migration_code_months_withdoe = median(time_from_birth_first_migration_code_months, na.rm = TRUE),
+    q25_time_from_birth_first_migration_code_months_withdoe = quantile(time_from_birth_first_migration_code_months, 0.25, na.rm = TRUE),
+    q75_time_from_birth_first_migration_code_months_withdoe = quantile(time_from_birth_first_migration_code_months, 0.75, na.rm = TRUE),
     .groups = "drop"
   ) 
 

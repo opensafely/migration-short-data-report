@@ -248,11 +248,26 @@ date_of_first_migration_code = (
 
 dataset.date_of_first_migration_code = date_of_first_migration_code
 
+date_of_first_migration_code_withdoe = (
+    clinical_events.where((clinical_events.snomedct_code.is_in(codelists.all_migrant_codes)) | (clinical_events.snomedct_code.is_in(date_of_entry_code))) 
+    .where(clinical_events.date.is_on_or_between(patients.date_of_birth, study_end_date))
+    .where((clinical_events.date.is_on_or_before(patients.date_of_death)) | (patients.date_of_death.is_null()))
+    .sort_by(clinical_events.date)
+    .first_for_patient().date)
+
+dataset.date_of_first_migration_code_withdoe = date_of_first_migration_code_withdoe
+
 time_from_1st_pracreg_first_migration_code_days  = (date_of_first_migration_code - date_of_first_practice_registration).days
 time_from_1st_pracreg_first_migration_code_months  = (date_of_first_migration_code - date_of_first_practice_registration).months
 
 dataset.time_from_1st_pracreg_first_migration_code_days = time_from_1st_pracreg_first_migration_code_days
 dataset.time_from_1st_pracreg_first_migration_code_months  = time_from_1st_pracreg_first_migration_code_months 
+
+time_from_1st_pracreg_first_migration_code_days_withdoe  = (date_of_first_migration_code_withdoe - date_of_first_practice_registration).days
+time_from_1st_pracreg_first_migration_code_months_withdoe  = (date_of_first_migration_code_withdoe - date_of_first_practice_registration).months
+
+dataset.time_from_1st_pracreg_first_migration_code_days_withdoe = time_from_1st_pracreg_first_migration_code_days_withdoe
+dataset.time_from_1st_pracreg_first_migration_code_months_withdoe  = time_from_1st_pracreg_first_migration_code_months_withdoe 
 
 # time from birth to first migration code 
 
@@ -261,6 +276,12 @@ time_from_birth_first_migration_code_months  = (date_of_first_migration_code - p
 
 dataset.time_from_birth_first_migration_code_days = time_from_birth_first_migration_code_days
 dataset.time_from_birth_first_migration_code_months  = time_from_birth_first_migration_code_months 
+
+time_from_birth_first_migration_code_days_withdoe  = (date_of_first_migration_code_withdoe - patients.date_of_birth).days
+time_from_birth_first_migration_code_months_withdoe  = (date_of_first_migration_code_withdoe - patients.date_of_birth).months
+
+dataset.time_from_birth_first_migration_code_days_withdoe = time_from_birth_first_migration_code_days_withdoe
+dataset.time_from_birth_first_migration_code_months_withdoe  = time_from_birth_first_migration_code_months_withdoe 
 
 dataset.configure_dummy_data(population_size=1000)
 show(dataset)
