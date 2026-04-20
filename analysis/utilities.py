@@ -102,7 +102,7 @@ def build_common_vars(INTERVAL):
     # -------------------
     # Intervals
     # -------------------
-    intervals = years(16).starting_on("2009-01-01")
+    intervals = years(17).starting_on("2009-01-01")
 
     return {
         "denominator": denominator,
