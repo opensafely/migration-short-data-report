@@ -89,7 +89,7 @@ year_of_birth = (patients.date_of_birth).year
 dataset.year_of_birth = year_of_birth
 
 dataset.year_of_birth_band = case(
-    when((year_of_birth >= 1900) & (year_of_birth <= 1925)).then("1900-1925"),
+    when((year_of_birth >= 1899) & (year_of_birth <= 1925)).then("1899-1925"),
     when((year_of_birth > 1925) & (year_of_birth <= 1945)).then("1926-1945"),
     when((year_of_birth > 1945) & (year_of_birth <= 1965)).then("1946-1965"),
     when((year_of_birth > 1965) & (year_of_birth <= 1985)).then("1966-1985"),
