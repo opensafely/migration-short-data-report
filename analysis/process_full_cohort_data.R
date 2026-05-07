@@ -72,7 +72,7 @@ table_freq_overall <- cohort %>%
   mutate(
     subgroup = "All",
     category = "All",
-    n = rounding(n),
+    #n = rounding(n),
     percentage = round((100 * n / sum(n, na.rm = TRUE)),1)
   ) %>%
   ungroup() 
@@ -103,7 +103,7 @@ table_freq <- cohort %>%
   ) %>%
   group_by(migration_scheme, migration_status, subgroup) %>%
   mutate(
-    n = rounding(n),
+    #n = rounding(n),
     percentage = round((100 * n / sum(n, na.rm = TRUE)),1)
   ) %>%
   ungroup() 
