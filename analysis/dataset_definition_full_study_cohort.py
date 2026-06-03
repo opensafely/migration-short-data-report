@@ -72,7 +72,7 @@ did_not_die_before_study_start = (
 )
 
 was_not_over_110_at_study_start_or_less_than_0_at_end_date = (
-    (patients.age_on(study_start_date) <= 110) | (patients.age_on(study_end_date) >= 0)
+    (patients.age_on(study_start_date) <= 110) & (patients.age_on(study_end_date) >= 0)
 )
 
 dataset = create_dataset()
