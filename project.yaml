@@ -265,4 +265,10 @@ actions:
       moderately_sensitive:
         csv: output/tables/date_variable_checks.csv
 
+  generate_annual_migration_coding_counts:
+    run: ehrql:v1 generate-measures analysis/annual_code_counts.py --output output/tables/annual_counts/migration_coding_occ_comparison.csv
+    outputs:
+      moderately_sensitive:
+        csv: output/tables/annual_counts/migration_coding_occ_comparison.csv
+
  
