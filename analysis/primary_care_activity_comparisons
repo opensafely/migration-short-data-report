@@ -1,0 +1,49 @@
+# #############################################################################
+# Primary care activity by migration status 
+# - Author: Yamina Boukari
+# - Bennett Institute for Applied Data Science, University of Oxford, 2026
+#############################################################################
+
+from ehrql.tables.core import patients
+from ehrql import (
+    case,
+    codelist_from_csv,
+    create_dataset,
+    days,
+    weeks,
+    months,
+    years,
+    when,
+    INTERVAL,
+    create_measures,
+    claim_permissions
+)
+
+from ehrql.tables.tpp import (
+    addresses,
+    clinical_events,
+    practice_registrations,
+    appointments
+)
+import migration_status_variables
+
+claim_permissions("appointments")
+
+measures = create_measures()
+measures.configure_dummy_data(population_size=100)
+measures.configure_disclosure_control(enabled=False)
+
+# denominators
+# Migrant, non-migrant and unknown 
+numerators_separate = migration_status_variables.build_migrant_indicators(INTERVAL.end_date)
+mig3_expr = migration_status_variables.build_mig_status_3_cat_withdoe(numerators_separate)
+
+# numerators
+# any planned primary care contacts during the interval 
+numerators = {}
+numerators["start_exists"] = appointments.where(
+    appointments.start_date.is_during(INTERVAL)
+)
+numerators["seen_exists"] = appointments.where(
+    appointments.seen_date.is_during(INTERVAL)
+)

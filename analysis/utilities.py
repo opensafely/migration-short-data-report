@@ -10,7 +10,7 @@ import codelists
 
 def build_common_vars(INTERVAL):
     # -------------------
-    # Denominator pieces
+    # Denominator 
     # -------------------
     was_alive_on_1Jan = patients.is_alive_on(INTERVAL.start_date)
 
