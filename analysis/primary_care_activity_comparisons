@@ -34,16 +34,66 @@ measures.configure_dummy_data(population_size=100)
 measures.configure_disclosure_control(enabled=False)
 
 # denominators
-# Migrant, non-migrant and unknown 
-numerators_separate = migration_status_variables.build_migrant_indicators(INTERVAL.end_date)
-mig3_expr = migration_status_variables.build_mig_status_3_cat_withdoe(numerators_separate)
+# need to create new denominator for each of migrant, non-migrant and unknown based on the common denominator plus migrant condition 
 
-# numerators
+# common denominator conditions
+
+was_alive_on_1Jan = patients.is_alive_on(INTERVAL.start_date)
+
+was_registered_at_any_point_during_interval = practice_registrations.where(
+        # registered for the entire interval
+        ((practice_registrations.start_date.is_on_or_before(INTERVAL.start_date)) 
+        & (practice_registrations.end_date.is_on_or_after(INTERVAL.end_date))) |
+        
+        # registered during the interval and end date is after the interval end date
+        ((practice_registrations.start_date.is_after(INTERVAL.start_date))
+         & (practice_registrations.end_date.is_on_or_after(INTERVAL.end_date))) |
+         
+         # registered before the interval and registration is ongoing
+         ((practice_registrations.start_date.is_on_or_before(INTERVAL.start_date)) &
+          (practice_registrations.end_date.is_null())) |
+          
+          # registered after interval start date and registration is ongoing
+          ((practice_registrations.start_date.is_after(INTERVAL.start_date)) &
+           (practice_registrations.end_date.is_null())) |
+           
+           # registered before the interval start date and end date is before the end date, but after the start date 
+           ((practice_registrations.start_date.is_before(INTERVAL.start_date)) &
+           (practice_registrations.end_date.is_between_but_not_on(INTERVAL.start_date, INTERVAL.end_date))) |
+           
+           # registered for part of the interval only
+           ((practice_registrations.start_date.is_between_but_not_on(INTERVAL.start_date, INTERVAL.end_date)) &
+            (practice_registrations.end_date.is_between_but_not_on(INTERVAL.start_date, INTERVAL.end_date)))
+    ).exists_for_patient()
+
+has_recorded_sex = patients.sex.is_in(["male", "female"])
+
+has_possible_age = (
+        (patients.age_on(INTERVAL.start_date) < 110)
+        & (patients.age_on(INTERVAL.start_date) > 0)
+    )
+
+migrant_3cat_denominator = migration_status_variables.build_migrant_indicators(INTERVAL.end_date)
+migrant_3cat_variable = migration_status_variables.build_mig_status_3_cat_withdoe(migrant_3cat_denominator)
+
+# migrant
+
+migrant = migrant_3cat_variable == "Migrant"
+
+migrant_denominator = (
+        was_alive_on_1Jan
+        & was_registered_at_any_point_during_interval
+        & has_recorded_sex
+        & has_possible_age
+        & migrant 
+    )
+
 # any planned primary care contacts during the interval 
-numerators = {}
-numerators["start_exists"] = appointments.where(
+any_planned_encounter = appointments.where(
     appointments.start_date.is_during(INTERVAL)
 )
-numerators["seen_exists"] = appointments.where(
-    appointments.seen_date.is_during(INTERVAL)
-)
+
+measures.define_measure(
+    name="migrant_any_planned_encounters", 
+    numerator=any_planned_encounter.count_for_patient(),
+    denominator=migrant_denominator
