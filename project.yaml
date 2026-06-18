@@ -25,11 +25,11 @@ actions:
       highly_sensitive:
         dataset: output/cohorts/census_2011_study_cohort.arrow
 
-  generate_date_of_entry_cohort:
-    run: ehrql:v1 generate-dataset analysis/dataset_definition_date_of_entry_cohort.py --output output/cohorts/date_of_entry_cohort.arrow
-    outputs:
-      highly_sensitive:
-         dataset: output/cohorts/date_of_entry_cohort.arrow
+  # generate_date_of_entry_cohort:
+  #   run: ehrql:v1 generate-dataset analysis/dataset_definition_date_of_entry_cohort.py --output output/cohorts/date_of_entry_cohort.arrow
+  #   outputs:
+  #     highly_sensitive:
+  #        dataset: output/cohorts/date_of_entry_cohort.arrow
 
   generate_demographics_full_study_table_2cat:
     run: r:latest analysis/process_full_cohort_data.R output/tables/demographics_full_study_cohort_2cat.csv mig_status_2_cat
@@ -90,10 +90,10 @@ actions:
   generate_demographics_uk_entry_cohort:
     run: r:latest analysis/process_date_of_uk_entry_cohort.R 
     needs:
-    - generate_date_of_entry_cohort
+    - generate_full_study_cohort
     outputs:
       moderately_sensitive:
-        csv: output/tables/demographics_date_of_uk_entry_cohort.csv
+        csv: output/tables/demographics_date_of_uk_entry_and_no_other_migration_info_cohort.csv
 
   generate_demographics_census_2011_study_table_mig_2cat:
     run: r:latest analysis/process_census_cohort_data.R output/cohorts/census_2011_study_cohort.arrow output/tables/demographics_census_2011_cohort_2cat.csv mig_status_2_cat
@@ -199,6 +199,14 @@ actions:
       moderately_sensitive:
         csv: output/tables/date_of_uk_entry_description.csv
 
+  generate_date_of_uk_entry_description_combinations:
+    run: r:latest analysis/date_of_entry_to_uk_combinations.R
+    needs:
+    - generate_full_study_cohort
+    outputs:
+      moderately_sensitive:
+        csv: output/tables/date_of_uk_entry_combinations.csv
+
   generate_annual_migrant_counts_2cat:
     run: ehrql:v1 generate-measures analysis/generate_annual_migrant_counts_2cat.py --output output/tables/annual_counts/2cat/:csv
     outputs:
@@ -270,5 +278,11 @@ actions:
     outputs:
       moderately_sensitive:
         csv: output/tables/annual_counts/migration_coding_occ_comparison.csv
+
+  generate_primary_care_planned_encounters:
+    run: ehrql:v1 generate-measures analysis/primary_care_activity_comparisons.py --output output/tables/annual_counts/primary_care_comparison.csv
+    outputs:
+      moderately_sensitive:
+        csv: output/tables/annual_counts/primary_care_comparison.csv
 
  
