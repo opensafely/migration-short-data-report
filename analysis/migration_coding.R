@@ -95,6 +95,55 @@ migration_coding_summary <- cohort %>%
     median_time_from_birth_first_migration_code_months_withdoe = median(time_from_birth_first_migration_code_months, na.rm = TRUE),
     q25_time_from_birth_first_migration_code_months_withdoe = quantile(time_from_birth_first_migration_code_months, 0.25, na.rm = TRUE),
     q75_time_from_birth_first_migration_code_months_withdoe = quantile(time_from_birth_first_migration_code_months, 0.75, na.rm = TRUE),
+    # cob
+    median_time_from_1st_pracreg_first_cob_code_days = median(time_from_1st_pracreg_first_cob_code_days, na.rm = TRUE),
+    q25_time_from_1st_pracreg_first_cob_code_days = quantile(time_from_1st_pracreg_first_cob_code_days, 0.25, na.rm = TRUE),
+    q75_time_from_1st_pracreg_first_cob_code_days = quantile(time_from_1st_pracreg_first_cob_code_days, 0.75, na.rm = TRUE),
+    median_time_from_1st_pracreg_first_cob_code_months = median(time_from_1st_pracreg_first_cob_code_months , na.rm = TRUE),
+    q25_time_from_1st_pracreg_first_cob_code_months = quantile(time_from_1st_pracreg_first_cob_code_months , 0.25, na.rm = TRUE),
+    q75_time_from_1st_pracreg_first_cob_code_months = quantile(time_from_1st_pracreg_first_cob_code_months , 0.75, na.rm = TRUE),
+    # english language
+    median_time_from_1st_pracreg_first_language_code_days = median(time_from_1st_pracreg_first_language_code_days, na.rm = TRUE),
+    q25_time_from_1st_pracreg_first_language_code_days = quantile(time_from_1st_pracreg_first_language_code_days, 0.25, na.rm = TRUE),
+    q75_time_from_1st_pracreg_first_language_code_days = quantile(time_from_1st_pracreg_first_language_code_days, 0.75, na.rm = TRUE),
+    median_time_from_1st_pracreg_first_language_code_months = median(time_from_1st_pracreg_first_language_code_months , na.rm = TRUE),
+    q25_time_from_1st_pracreg_first_language_code_months = quantile(time_from_1st_pracreg_first_language_code_months , 0.25, na.rm = TRUE),
+    q75_time_from_1st_pracreg_first_language_code_months = quantile(time_from_1st_pracreg_first_language_code_months , 0.75, na.rm = TRUE),
+    # interpreter
+    median_time_from_1st_pracreg_first_interpreter_code_days = median(time_from_1st_pracreg_first_interpreter_code_days, na.rm = TRUE),
+    q25_time_from_1st_pracreg_first_interpreter_code_days = quantile(time_from_1st_pracreg_first_interpreter_code_days, 0.25, na.rm = TRUE),
+    q75_time_from_1st_pracreg_first_interpreter_code_days = quantile(time_from_1st_pracreg_first_interpreter_code_days, 0.75, na.rm = TRUE),
+    median_time_from_1st_pracreg_first_interpreter_code_months = median(time_from_1st_pracreg_first_interpreter_code_months , na.rm = TRUE),
+    q25_time_from_1st_pracreg_first_interpreter_code_months = quantile(time_from_1st_pracreg_first_interpreter_code_months , 0.25, na.rm = TRUE),
+    q75_time_from_1st_pracreg_first_interpreter_code_months = quantile(time_from_1st_pracreg_first_interpreter_code_months , 0.75, na.rm = TRUE),
+    # immigration status excl refugee
+    median_time_from_1st_pracreg_first_immig_status_excl_refugee_code_days = median(time_from_1st_pracreg_first_immig_status_excl_refugee_code_days, na.rm = TRUE),
+    q25_time_from_1st_pracreg_first_immig_status_excl_refugee_code_days = quantile(time_from_1st_pracreg_first_immig_status_excl_refugee_code_days, 0.25, na.rm = TRUE),
+    q75_time_from_1st_pracreg_first_immig_status_excl_refugee_code_days = quantile(time_from_1st_pracreg_first_immig_status_excl_refugee_code_days, 0.75, na.rm = TRUE),
+    median_time_from_1st_pracreg_first_immig_status_excl_refugee_code_months = median(time_from_1st_pracreg_first_immig_status_excl_refugee_code_months , na.rm = TRUE),
+    q25_time_from_1st_pracreg_first_immig_status_excl_refugee_code_months = quantile(time_from_1st_pracreg_first_immig_status_excl_refugee_code_months , 0.25, na.rm = TRUE),
+    q75_time_from_1st_pracreg_first_immig_status_excl_refugee_code_months = quantile(time_from_1st_pracreg_first_immig_status_excl_refugee_code_months , 0.75, na.rm = TRUE),
+    # refugee and asylum
+    median_time_from_1st_pracreg_first_refugee_code_days = median(time_from_1st_pracreg_first_refugee_code_days, na.rm = TRUE),
+    q25_time_from_1st_pracreg_first_refugee_code_days = quantile(time_from_1st_pracreg_first_refugee_code_days, 0.25, na.rm = TRUE),
+    q75_time_from_1st_pracreg_first_refugee_code_days = quantile(time_from_1st_pracreg_first_refugee_code_days, 0.75, na.rm = TRUE),
+    median_time_from_1st_pracreg_first_refugee_code_months = median(time_from_1st_pracreg_first_refugee_code_months , na.rm = TRUE),
+    q25_time_from_1st_pracreg_first_refugee_code_months = quantile(time_from_1st_pracreg_first_refugee_code_months , 0.25, na.rm = TRUE),
+    q75_time_from_1st_pracreg_first_refugee_code_months = quantile(time_from_1st_pracreg_first_refugee_code_months , 0.75, na.rm = TRUE),
+    # trafficking
+    median_time_from_1st_pracreg_first_trafficking_code_days = median(time_from_1st_pracreg_first_trafficking_code_days, na.rm = TRUE),
+    q25_time_from_1st_pracreg_first_trafficking_code_days = quantile(time_from_1st_pracreg_first_trafficking_code_days, 0.25, na.rm = TRUE),
+    q75_time_from_1st_pracreg_first_trafficking_code_days = quantile(time_from_1st_pracreg_first_trafficking_code_days, 0.75, na.rm = TRUE),
+    median_time_from_1st_pracreg_first_trafficking_code_months = median(time_from_1st_pracreg_first_trafficking_code_months , na.rm = TRUE),
+    q25_time_from_1st_pracreg_first_trafficking_code_months = quantile(time_from_1st_pracreg_first_trafficking_code_months , 0.25, na.rm = TRUE),
+    q75_time_from_1st_pracreg_first_trafficking_code_months = quantile(time_from_1st_pracreg_first_trafficking_code_months , 0.75, na.rm = TRUE),
+    # uk cob
+    median_time_from_1st_pracreg_first_uk_cob_code_days = median(time_from_1st_pracreg_first_uk_cob_code_days, na.rm = TRUE),
+    q25_time_from_1st_pracreg_first_uk_cob_code_days = quantile(time_from_1st_pracreg_first_uk_cob_code_days, 0.25, na.rm = TRUE),
+    q75_time_from_1st_pracreg_first_uk_cob_code_days = quantile(time_from_1st_pracreg_first_uk_cob_code_days, 0.75, na.rm = TRUE),
+    median_time_from_1st_pracreg_first_uk_cob_code_months = median(time_from_1st_pracreg_first_uk_cob_code_months , na.rm = TRUE),
+    q25_time_from_1st_pracreg_first_uk_cob_code_months = quantile(time_from_1st_pracreg_first_uk_cob_code_months , 0.25, na.rm = TRUE),
+    q75_time_from_1st_pracreg_first_uk_cob_code_months = quantile(time_from_1st_pracreg_first_uk_cob_code_months , 0.75, na.rm = TRUE),
     .groups = "drop"
   ) 
 
