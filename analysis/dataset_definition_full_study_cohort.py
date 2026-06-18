@@ -283,6 +283,92 @@ time_from_birth_first_migration_code_months_withdoe  = (date_of_first_migration_
 dataset.time_from_birth_first_migration_code_days_withdoe = time_from_birth_first_migration_code_days_withdoe
 dataset.time_from_birth_first_migration_code_months_withdoe  = time_from_birth_first_migration_code_months_withdoe 
 
+# time from first practice registration to first specific migration code 
+
+## country of birth 
+
+date_of_first_cob_code = (
+    clinical_events.where((clinical_events.snomedct_code.is_in(codelists.cob_migrant_codes))) 
+    .where(clinical_events.date.is_on_or_between(patients.date_of_birth, study_end_date))
+    .where((clinical_events.date.is_on_or_before(patients.date_of_death)) | (patients.date_of_death.is_null()))
+    .sort_by(clinical_events.date)
+    .first_for_patient().date)
+
+dataset.time_from_1st_pracreg_first_cob_code_days  = (date_of_first_cob_code - date_of_first_practice_registration).days
+dataset.time_from_1st_pracreg_first_cob_code_months  = (date_of_first_cob_code - date_of_first_practice_registration).months
+
+## immigration status 
+
+date_of_first_immig_status_excl_refugee_code = (
+    clinical_events.where((clinical_events.snomedct_code.is_in(codelists.immigra_status_excl_ref_and_asylum_codes))) 
+    .where(clinical_events.date.is_on_or_between(patients.date_of_birth, study_end_date))
+    .where((clinical_events.date.is_on_or_before(patients.date_of_death)) | (patients.date_of_death.is_null()))
+    .sort_by(clinical_events.date)
+    .first_for_patient().date)
+
+dataset.time_from_1st_pracreg_first_immig_status_excl_refugee_code_days  = (date_of_first_immig_status_excl_refugee_code - date_of_first_practice_registration).days
+dataset.time_from_1st_pracreg_first_immig_status_excl_refugee_code_months = (date_of_first_immig_status_excl_refugee_code - date_of_first_practice_registration).months
+
+## asylum and refugee codes
+
+date_of_first_refugee_code = (
+    clinical_events.where((clinical_events.snomedct_code.is_in(codelists.asylum_refugee_migrant_codes))) 
+    .where(clinical_events.date.is_on_or_between(patients.date_of_birth, study_end_date))
+    .where((clinical_events.date.is_on_or_before(patients.date_of_death)) | (patients.date_of_death.is_null()))
+    .sort_by(clinical_events.date)
+    .first_for_patient().date)
+
+dataset.time_from_1st_pracreg_first_refugee_code_days  = (date_of_first_refugee_code - date_of_first_practice_registration).days
+dataset.time_from_1st_pracreg_first_refugee_code_months = (date_of_first_refugee_code - date_of_first_practice_registration).months
+
+## English not first/main language
+
+date_of_first_language_code = (
+    clinical_events.where((clinical_events.snomedct_code.is_in(codelists.english_not_main_language_excl_interpreter_migrant_codes))) 
+    .where(clinical_events.date.is_on_or_between(patients.date_of_birth, study_end_date))
+    .where((clinical_events.date.is_on_or_before(patients.date_of_death)) | (patients.date_of_death.is_null()))
+    .sort_by(clinical_events.date)
+    .first_for_patient().date)
+
+dataset.time_from_1st_pracreg_first_language_code_days  = (date_of_first_language_code - date_of_first_practice_registration).days
+dataset.time_from_1st_pracreg_first_language_code_months = (date_of_first_language_code - date_of_first_practice_registration).months
+
+## Interpreter
+
+date_of_first_interpreter_code = (
+    clinical_events.where((clinical_events.snomedct_code.is_in(codelists.interpreter_migrant_codes))) 
+    .where(clinical_events.date.is_on_or_between(patients.date_of_birth, study_end_date))
+    .where((clinical_events.date.is_on_or_before(patients.date_of_death)) | (patients.date_of_death.is_null()))
+    .sort_by(clinical_events.date)
+    .first_for_patient().date)
+
+dataset.time_from_1st_pracreg_first_interpreter_code_days  = (date_of_first_interpreter_code - date_of_first_practice_registration).days
+dataset.time_from_1st_pracreg_first_interpreter_code_months = (date_of_first_interpreter_code - date_of_first_practice_registration).months
+
+## trafficking
+
+date_of_first_trafficking_code = (
+    clinical_events.where((clinical_events.snomedct_code.is_in(codelists.trafficking_codes))) 
+    .where(clinical_events.date.is_on_or_between(patients.date_of_birth, study_end_date))
+    .where((clinical_events.date.is_on_or_before(patients.date_of_death)) | (patients.date_of_death.is_null()))
+    .sort_by(clinical_events.date)
+    .first_for_patient().date)
+
+dataset.time_from_1st_pracreg_first_trafficking_code_days  = (date_of_first_trafficking_code - date_of_first_practice_registration).days
+dataset.time_from_1st_pracreg_first_trafficking_code_months = (date_of_first_trafficking_code - date_of_first_practice_registration).months
+
+## uk cob
+
+date_of_first_uk_cob_code = (
+    clinical_events.where((clinical_events.snomedct_code.is_in(codelists.uk_cob_codes))) 
+    .where(clinical_events.date.is_on_or_between(patients.date_of_birth, study_end_date))
+    .where((clinical_events.date.is_on_or_before(patients.date_of_death)) | (patients.date_of_death.is_null()))
+    .sort_by(clinical_events.date)
+    .first_for_patient().date)
+
+dataset.time_from_1st_pracreg_first_uk_cob_code_days  = (date_of_first_uk_cob_code - date_of_first_practice_registration).days
+dataset.time_from_1st_pracreg_first_uk_cob_code_months  = (date_of_first_uk_cob_code - date_of_first_practice_registration).months
+
 dataset.configure_dummy_data(population_size=1000)
 show(dataset)
 

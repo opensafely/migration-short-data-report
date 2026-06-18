@@ -26,13 +26,13 @@ measures.define_defaults(intervals=common["intervals"])
 # the interval
 
 date_of_entry_code = ["860021000000109"]
+# note this code was not included in BJGPO migration codelist - I discovered it later
 
 migrant_codes_and_date_of_uk_entry = codelists.all_migrant_codes + date_of_entry_code
 
 migration_codes_in_interval_excl_date_of_uk_entry = clinical_events.where(
     clinical_events.snomedct_code.is_in(codelists.all_migrant_codes)).where(
         clinical_events.date.is_during(INTERVAL))
-# (because the BJGPO paper did not include date of UK entry code)
 
 migration_codes_in_interval_incl_date_of_uk_entry = clinical_events.where(
     clinical_events.snomedct_code.is_in(migrant_codes_and_date_of_uk_entry)).where(
