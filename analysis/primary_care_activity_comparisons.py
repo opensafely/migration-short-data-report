@@ -81,18 +81,32 @@ migrant_denominator = (
 
 # any planned primary care contacts during the interval 
 # code reference: https://github.com/opensafely/winter-pressures-phase-II/blob/main/analysis/appointments/app_measures.py (Accessed 18/06/26)
-any_planned_encounter = appointments.where(
+planned_and_actual_encounters = appointments.where(
     appointments.start_date.is_during(INTERVAL) | 
     appointments.seen_date.is_during(INTERVAL)).exists_for_patient() 
+
+planned_encounters_only = appointments.where(
+    appointments.start_date.is_during(INTERVAL)).exists_for_patient()
 
 labels = ["Migrant", "Non-migrant", "Unknown"]
 for label in labels:
     migrant_denom = was_alive_on_1Jan & was_registered_at_any_point_during_interval & has_recorded_sex & has_possible_age & (mig3_expr == label)
     safe_label = label.lower().replace("-", "_")
-    name = f"primary_care_activity_{safe_label}"
+    name = f"planned_and_actual_primary_care_activity_{safe_label}"
     measures.define_measure(
         name=name, 
-        numerator=any_planned_encounter,
+        numerator=planned_and_actual_encounters,
+        denominator=migrant_denom,
+        intervals = years(17).starting_on("2009-01-01") 
+        )
+
+for label in labels:
+    migrant_denom = was_alive_on_1Jan & was_registered_at_any_point_during_interval & has_recorded_sex & has_possible_age & (mig3_expr == label)
+    safe_label = label.lower().replace("-", "_")
+    name = f"planned_primary_care_activity_{safe_label}"
+    measures.define_measure(
+        name=name, 
+        numerator=planned_encounters_only,
         denominator=migrant_denom,
         intervals = years(17).starting_on("2009-01-01") 
         )
