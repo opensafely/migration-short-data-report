@@ -271,4 +271,10 @@ actions:
       moderately_sensitive:
         csv: output/tables/annual_counts/migration_coding_occ_comparison.csv
 
+  generate_primary_care_planned_encounters:
+    run: ehrql:v1 generate-measures analysis/primary_care_activity_comparisons.py --output output/tables/annual_counts/primary_care_comparison.csv
+    outputs:
+      moderately_sensitive:
+        csv: output/tables/annual_counts/primary_care_comparison.csv
+
  

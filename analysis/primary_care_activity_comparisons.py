@@ -6,22 +6,13 @@
 
 from ehrql.tables.core import patients
 from ehrql import (
-    case,
-    codelist_from_csv,
-    create_dataset,
-    days,
-    weeks,
-    months,
     years,
-    when,
     INTERVAL,
     create_measures,
     claim_permissions
 )
 
 from ehrql.tables.tpp import (
-    addresses,
-    clinical_events,
     practice_registrations,
     appointments
 )
@@ -30,11 +21,8 @@ import migration_status_variables
 claim_permissions("appointments")
 
 measures = create_measures()
-measures.configure_dummy_data(population_size=100)
+measures.configure_dummy_data(population_size=1000)
 measures.configure_disclosure_control(enabled=False)
-
-# denominators
-# need to create new denominator for each of migrant, non-migrant and unknown based on the common denominator plus migrant condition 
 
 # common denominator conditions
 
@@ -73,27 +61,38 @@ has_possible_age = (
         & (patients.age_on(INTERVAL.start_date) > 0)
     )
 
-migrant_3cat_denominator = migration_status_variables.build_migrant_indicators(INTERVAL.end_date)
-migrant_3cat_variable = migration_status_variables.build_mig_status_3_cat_withdoe(migrant_3cat_denominator)
+# migrant  = clinical_events.where(
+#         clinical_events.snomedct_code.is_in(codelists.all_migrant_codes)).where(
+#                 clinical_events.date.is_on_or_between(patients.date_of_birth, INTERVAL.end_date)).where(
+#                         (clinical_events.date.is_on_or_before(patients.date_of_death)) | (patients.date_of_death.is_null())).exists_for_patient()
 
-# migrant
+denominators_separate = migration_status_variables.build_migrant_indicators(INTERVAL.end_date)
+mig3_expr = migration_status_variables.build_mig_status_3_cat_withdoe(denominators_separate)
 
-migrant = migrant_3cat_variable == "Migrant"
+migrant_denominator = (mig3_expr == "Migrant")
 
 migrant_denominator = (
         was_alive_on_1Jan
         & was_registered_at_any_point_during_interval
         & has_recorded_sex
         & has_possible_age
-        & migrant 
+        & migrant_denominator 
     )
 
 # any planned primary care contacts during the interval 
+# code reference: https://github.com/opensafely/winter-pressures-phase-II/blob/main/analysis/appointments/app_measures.py (Accessed 18/06/26)
 any_planned_encounter = appointments.where(
-    appointments.start_date.is_during(INTERVAL)
-)
+    appointments.start_date.is_during(INTERVAL) | 
+    appointments.seen_date.is_during(INTERVAL)).exists_for_patient() 
 
-measures.define_measure(
-    name="migrant_any_planned_encounters", 
-    numerator=any_planned_encounter.count_for_patient(),
-    denominator=migrant_denominator
+labels = ["Migrant", "Non-migrant", "Unknown"]
+for label in labels:
+    migrant_denom = was_alive_on_1Jan & was_registered_at_any_point_during_interval & has_recorded_sex & has_possible_age & (mig3_expr == label)
+    safe_label = label.lower().replace("-", "_")
+    name = f"primary_care_activity_{safe_label}"
+    measures.define_measure(
+        name=name, 
+        numerator=any_planned_encounter,
+        denominator=migrant_denom,
+        intervals = years(17).starting_on("2009-01-01") 
+        )
