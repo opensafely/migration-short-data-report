@@ -9,6 +9,8 @@
 ###################################################
 
 library(tidyverse)
+library(arrow)
+library(fs)
 
 cohort_file <- "output/cohorts/full_study_cohort.arrow"
 output_file <- "output/tables/date_of_uk_entry_combinations.csv"
