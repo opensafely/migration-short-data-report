@@ -56,22 +56,6 @@ table_freq <- date_of_uk_entry_cohort %>%
   pivot_longer(
     cols = all_of(vars_to_summarise),
     names_to = "subgroup",
-    values_to = "category") %>%
-  count(
-    subgroup, 
-    category,
-    name = "n"
-  ) %>%
-  mutate(
-    category = fct_explicit_na(category, "unknown"),
-    n = rounding(n),
-    percentage = round((100 * n / sum(n, na.rm = TRUE)),1)
-  ) 
-
-table_freq <- date_of_uk_entry_cohort %>%
-  pivot_longer(
-    cols = all_of(vars_to_summarise),
-    names_to = "subgroup",
     values_to = "category"
   ) %>%
   mutate(category = fct_explicit_na(category, "unknown")) %>%
