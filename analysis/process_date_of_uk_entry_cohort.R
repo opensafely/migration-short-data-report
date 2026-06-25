@@ -49,8 +49,10 @@ rounding <- function(vars) {
             vars > 7 ~ round(vars / 5) * 5)
 }
 
-table_freq <- cohort %>%
-  filter(date_of_uk_entry, !any_migrant, !born_in_uk, !british_ethnicities)%>%
+date_of_uk_entry_cohort <- cohort %>%
+  filter(date_of_uk_entry, !any_migrant, !born_in_uk, !british_ethnicities)
+
+table_freq <- date_of_uk_entry_cohort %>%
   pivot_longer(
     cols = all_of(vars_to_summarise),
     names_to = "subgroup",
@@ -65,6 +67,20 @@ table_freq <- cohort %>%
     n = rounding(n),
     percentage = round((100 * n / sum(n, na.rm = TRUE)),1)
   ) 
+
+table_freq <- date_of_uk_entry_cohort %>%
+  pivot_longer(
+    cols = all_of(vars_to_summarise),
+    names_to = "subgroup",
+    values_to = "category"
+  ) %>%
+  mutate(category = fct_explicit_na(category, "unknown")) %>%
+  count(subgroup, category, name = "n") %>%
+  group_by(subgroup) %>%
+  mutate(
+    percentage = round(100 * n / sum(n), 1)
+  ) %>%
+  ungroup()
 
 dir_create(path_dir(output_file))
 write_csv(table_freq, path = output_file)
