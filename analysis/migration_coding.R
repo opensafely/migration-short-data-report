@@ -149,4 +149,3 @@ migration_coding_summary <- cohort %>%
 
 dir_create(path_dir(output_file))
 write_csv(migration_coding_summary, path = output_file)
-
