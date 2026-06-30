@@ -62,6 +62,7 @@ table_freq <- date_of_uk_entry_cohort %>%
   count(subgroup, category, name = "n") %>%
   group_by(subgroup) %>%
   mutate(
+    n = rounding(n),
     percentage = round(100 * n / sum(n), 1)
   ) %>%
   ungroup()
