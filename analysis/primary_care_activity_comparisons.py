@@ -22,7 +22,7 @@ claim_permissions("appointments")
 
 measures = create_measures()
 measures.configure_dummy_data(population_size=1000)
-measures.configure_disclosure_control(enabled=False)
+measures.configure_disclosure_control(enabled=True)
 
 # common denominator conditions
 
