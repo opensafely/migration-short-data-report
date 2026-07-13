@@ -49,6 +49,7 @@ dataset.define_population(was_registered_on_census_date &
 # age
 
 age_on_census_date = patients.age_on(census_date)
+dataset.age_on_census_date = age_on_census_date
 dataset.age_band = case(
         when(age_on_census_date < 16).then("0-15"),
         when((age_on_census_date >= 16) & (age_on_census_date < 25)).then("16-24"),
