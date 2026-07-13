@@ -24,7 +24,7 @@ args <- commandArgs(trailingOnly=TRUE)
 print(commandArgs(trailingOnly=TRUE))
 
 cohort_file <- args[[1]]
-cohort_file <- "output/cohorts/census_2021_study_cohort.arrow"
+#cohort_file <- "output/cohorts/census_2021_study_cohort.arrow"
 output_file <- args[[2]]
 
 # Import data ----

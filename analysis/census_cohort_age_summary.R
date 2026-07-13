@@ -37,8 +37,8 @@ rounding <- function(vars) {
 
 table_median_iqr <- cohort %>%
   pivot_longer(
-    #cols = all_of(mig_vars),
-    cols = all_of("mig_status_3_cat"),
+    cols = all_of(mig_vars),
+    #cols = all_of("mig_status_3_cat"),
     names_to = "migration_scheme",
     values_to = "migration_status"
   ) %>%
@@ -55,8 +55,8 @@ table_median_iqr <- cohort %>%
 
 totals <- cohort %>%
   pivot_longer(
-    #cols = all_of(mig_vars),
-    cols = all_of("mig_status_3_cat"),
+    cols = all_of(mig_vars),
+    #cols = all_of("mig_status_3_cat"),
     names_to = "migration_scheme",
     values_to = "migration_status"
   ) %>%
