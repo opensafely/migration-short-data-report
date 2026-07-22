@@ -12,12 +12,6 @@
       "downloaded_at": "2026-03-26 16:04:16.382479Z",
       "sha": "f71b5b916caff6c92326466f2ce05d040e778af5"
     },
-    "opensafely-born-in-the-uk.csv": {
-      "id": "opensafely/born-in-the-uk/4aa36068",
-      "url": "https://www.opencodelists.org/codelist/opensafely/born-in-the-uk/4aa36068/",
-      "downloaded_at": "2025-12-16 13:28:50.316628Z",
-      "sha": "43b8618968d5a6baf9ce130ea54c27b6a6aa2716"
-    },
     "opensafely-born-outside-the-uk.csv": {
       "id": "opensafely/born-outside-the-uk/51089538",
       "url": "https://www.opencodelists.org/codelist/opensafely/born-outside-the-uk/51089538/",
@@ -59,6 +53,12 @@
       "url": "https://www.opencodelists.org/codelist/opensafely/trafficking-and-modern-slavery/0074bbad/",
       "downloaded_at": "2026-03-26 16:04:16.998062Z",
       "sha": "c315d06d1b78dd3b77630e6b38a700338b763b45"
+    },
+    "opensafely-born-in-the-uk.csv": {
+      "id": "opensafely/born-in-the-uk/6225f7e6",
+      "url": "https://www.opencodelists.org/codelist/opensafely/born-in-the-uk/6225f7e6/",
+      "downloaded_at": "2026-07-22 09:03:28.597271Z",
+      "sha": "e5150384c2d29110330fe723688c2e0aec6a947d"
     }
   }
 }
