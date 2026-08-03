@@ -295,4 +295,18 @@ actions:
       moderately_sensitive:
         csv: output/tables/annual_counts/primary_care_comparison.csv
 
- 
+  generate_histogram_migration_codes_without_date_restrictions:
+    run: r:latest analysis/histogram_migration_codes_without_date_restrictions.r
+    needs:
+    - generate_full_study_cohort
+    outputs:
+      moderately_sensitive:
+        png: output/figures/histogram_migration_coding_no_restrictions.png
+
+  generate_summary_migration_codes_without_date_restrictions:
+    run: r:latest analysis/summary_migration_codes_without_date_restrictions.r
+    needs:
+    - generate_full_study_cohort
+    outputs:
+      moderately_sensitive:
+        csv: output/tables/summary_migration_coding_without_restrictions_by_mig_status.csv
