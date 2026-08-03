@@ -278,6 +278,7 @@ code,term
 160509003,Immigrant
 160701002,Social migrant
 160702009,Illegal migrant
+161140009,English as a second language
 161141008,Bengali language
 161142001,Gujarati language
 161143006,Hindi language
@@ -2751,7 +2752,6 @@ code,term
 973011000000105,Pali interpreter needed
 973031000000102,Sanskrit interpreter needed
 973041000000106,Sardinian interpreter needed
-973051000000109,Scottish Gaelic interpreter needed
 973061000000107,Serbo-Croatian interpreter needed
 973071000000100,Nuosu interpreter needed
 973081000000103,South Ndebele interpreter needed
