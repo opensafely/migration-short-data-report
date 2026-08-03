@@ -1,10 +1,10 @@
 opensafely/ethnicity-snomed-0removed/22911876/
-opensafely/migration-status/03277ba3/
+opensafely/migration-status/459d112c/
 opensafely/born-outside-the-uk/51089538/
 opensafely/immigration-status-excl-refugee-asylum/6a18086d/
 opensafely/asylum-or-refugee-status/209cb9e0/
-opensafely/english-not-main-language/0eb92f0a/
-opensafely/interpreter-required/5734c8b3/
+opensafely/english-not-main-language/2db2f6cf/
+opensafely/interpreter-required/46c26a04/
 opensafely/british-ethnicities/6a897fb0/
 opensafely/trafficking-and-modern-slavery/0074bbad
 opensafely/born-in-the-uk/6225f7e6/
