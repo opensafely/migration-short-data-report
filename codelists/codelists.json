@@ -7,10 +7,10 @@
       "sha": "d95a2f826299563aa57f6fa99009e6e13a65151b"
     },
     "opensafely-migration-status.csv": {
-      "id": "opensafely/migration-status/03277ba3",
-      "url": "https://www.opencodelists.org/codelist/opensafely/migration-status/03277ba3/",
-      "downloaded_at": "2026-03-26 16:04:16.382479Z",
-      "sha": "f71b5b916caff6c92326466f2ce05d040e778af5"
+      "id": "opensafely/migration-status/459d112c",
+      "url": "https://www.opencodelists.org/codelist/opensafely/migration-status/459d112c/",
+      "downloaded_at": "2026-08-03 12:16:00.993076Z",
+      "sha": "c83a36473a68705f30c337867ea4a5c6f8f4066f"
     },
     "opensafely-born-outside-the-uk.csv": {
       "id": "opensafely/born-outside-the-uk/51089538",
@@ -31,16 +31,16 @@
       "sha": "ecd46bc32ff596afcb298dc249588fbe0efc907b"
     },
     "opensafely-english-not-main-language.csv": {
-      "id": "opensafely/english-not-main-language/0eb92f0a",
-      "url": "https://www.opencodelists.org/codelist/opensafely/english-not-main-language/0eb92f0a/",
-      "downloaded_at": "2026-03-26 16:04:16.757432Z",
-      "sha": "881fb0517a7d48aedd6e458dbe1f11cea53758fe"
+      "id": "opensafely/english-not-main-language/2db2f6cf",
+      "url": "https://www.opencodelists.org/codelist/opensafely/english-not-main-language/2db2f6cf/",
+      "downloaded_at": "2026-08-03 12:16:01.555675Z",
+      "sha": "5946d7896fc087ea9853a0877a787cf89a7246bf"
     },
     "opensafely-interpreter-required.csv": {
-      "id": "opensafely/interpreter-required/5734c8b3",
-      "url": "https://www.opencodelists.org/codelist/opensafely/interpreter-required/5734c8b3/",
-      "downloaded_at": "2026-03-26 16:04:16.837247Z",
-      "sha": "9d4dafb36cf2896c418e1cff63bae31769e3a797"
+      "id": "opensafely/interpreter-required/46c26a04",
+      "url": "https://www.opencodelists.org/codelist/opensafely/interpreter-required/46c26a04/",
+      "downloaded_at": "2026-08-03 12:16:01.777824Z",
+      "sha": "5c17d81096990234b1917cfafcb76f64feec69d5"
     },
     "opensafely-british-ethnicities.csv": {
       "id": "opensafely/british-ethnicities/6a897fb0",

@@ -167,6 +167,27 @@ dataset.mig_status_6_cat_withdoe = migration_status_variables.build_mig_status_6
     migrant_indicators
 )
 
+# first migration code with no date restrictions 
+
+date_of_first_migration_code_no_restrictions = (
+    clinical_events
+            .where(clinical_events.snomedct_code.is_in(codelists.all_migrant_codes))
+            .sort_by(clinical_events.date)
+            .first_for_patient().date
+
+)
+
+dataset.date_of_first_migration_code_no_restrictions = date_of_first_migration_code_no_restrictions
+
+has_first_migration_code_no_restrictions = (
+    clinical_events
+                .where(clinical_events.snomedct_code.is_in(codelists.all_migrant_codes))
+                .sort_by(clinical_events.date)
+                .exists_for_patient()
+)
+
+dataset.has_first_migration_code_no_restrictions = has_first_migration_code_no_restrictions
+
 # number of migration codes per person
 
 number_of_migration_codes = (
