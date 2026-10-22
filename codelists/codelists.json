@@ -1,5 +1,11 @@
 {
   "files": {
+    "opensafely-date-of-uk-entry.csv": {
+      "id": "opensafely/date-of-uk-entry/64964d8a",
+      "url": "https://www.opencodelists.org/codelist/opensafely/date-of-uk-entry/64964d8a/",
+      "downloaded_at": "2026-10-22 11:45:41.465630+00:00Z",
+      "sha": "b0ff7e0849145ea32f7bf6233dd8eb04e0958cf3"
+    },
     "opensafely-ethnicity-snomed-0removed.csv": {
       "id": "opensafely/ethnicity-snomed-0removed/22911876",
       "url": "https://www.opencodelists.org/codelist/opensafely/ethnicity-snomed-0removed/22911876/",

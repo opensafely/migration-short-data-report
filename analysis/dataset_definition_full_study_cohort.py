@@ -5,10 +5,8 @@
 #############################################################################
 
 # This is a script to explore the migration status of all individuals who:
-#         1) was registered at anytime (2009-2025) AND
-#         2) had a first registration that was between their birth and death date 
+#         1) was alive and registered (at the same time) within the study period (2009-2025) AND
 #         2) do not have a disclosive sex AND
-#         4) did not die before or on 1st Jan 2009 (study start) AND 
 #         4) had a plausible age at the beginning of the study period  (i.e. not >110 years old in 2009)
 
 from pathlib import Path
@@ -17,58 +15,48 @@ from ehrql import create_dataset, codelist_from_csv, show, case, when, days
 from ehrql.tables.tpp import addresses, patients, practice_registrations, clinical_events, ons_deaths
 import codelists
 import migration_status_variables
+from utilities import date_of_death
 
 # Dates
 
 study_start_date = "2009-01-01"
 study_end_date = "2025-12-31" 
 
-date_of_first_practice_registration = (
-    practice_registrations.sort_by(practice_registrations.start_date)
-    .first_for_patient().start_date
-)
-
-end_date_of_latest_practice_registration = (
-    practice_registrations.sort_by(practice_registrations.end_date)
-    .last_for_patient().end_date
-)
-
-is_registered_at_any_time_during_study = (
-    # starts during period
-    date_of_first_practice_registration.is_on_or_between(
-        study_start_date,
-        study_end_date,
-    )
-    # ending during period
-    | end_date_of_latest_practice_registration.is_on_or_between(
-        study_start_date,
-        study_end_date,
-    )
-    # starting before and ending after (or ongoing)
-    | (
-        date_of_first_practice_registration.is_on_or_before(study_start_date)
+was_alive_and_registered_during_study = (
+    practice_registrations.where(
+        # Registration overlaps study period
+        practice_registrations.start_date.is_on_or_before(study_end_date)
         & (
-            end_date_of_latest_practice_registration.is_on_or_after(study_end_date)
-            | end_date_of_latest_practice_registration.is_null()
+            practice_registrations.end_date.is_on_or_after(study_start_date)
+            | practice_registrations.end_date.is_null()
         )
-    )
+
+        # Registration overlaps patient's lifetime
+        & (
+            practice_registrations.end_date.is_on_or_after(
+                patients.date_of_birth
+            )
+            | practice_registrations.end_date.is_null()
+        )
+        & (
+            practice_registrations.start_date.is_on_or_before(date_of_death)
+            | date_of_death.is_null()
+        )
+
+        # Patient born by study end
+        & patients.date_of_birth.is_on_or_before(study_end_date)
+
+        # Patient not deceased before study start
+        & (
+            date_of_death.is_on_or_after(study_start_date)
+            | date_of_death.is_null()
+        )
+    ).exists_for_patient()
 )
 
-has_first_registration_between_birth_and_death = (
-    # between dob and date of death
-    (date_of_first_practice_registration.is_on_or_between(patients.date_of_birth, patients.date_of_death)) | 
-    # after dob and date of death is null (still alive)
-    (date_of_first_practice_registration.is_on_or_after(patients.date_of_birth) & patients.date_of_death.is_null())
-)
-   
 
 has_non_disclosive_sex = (
     (patients.sex == "male") | (patients.sex == "female")
-)
-
-did_not_die_before_study_start = (
-    ((patients.date_of_death > study_start_date) | (patients.date_of_death.is_null())) &
-    ((ons_deaths.date > study_start_date) | (ons_deaths.date.is_null()))
 )
 
 was_not_over_110_at_study_start_or_less_than_0_at_end_date = (
@@ -76,10 +64,8 @@ was_not_over_110_at_study_start_or_less_than_0_at_end_date = (
 )
 
 dataset = create_dataset()
-dataset.define_population(is_registered_at_any_time_during_study & 
-                          has_first_registration_between_birth_and_death &
+dataset.define_population(was_alive_and_registered_during_study &
                           has_non_disclosive_sex & 
-                          did_not_die_before_study_start & 
                           was_not_over_110_at_study_start_or_less_than_0_at_end_date)
 
 # add variables 
@@ -123,49 +109,60 @@ dataset.latest_ethnicity_6_level_group = latest_ethnicity_6_level_group
 
 ## practice region (latest during the study period)
 
-dataset.region = (practice_registrations
-                  .sort_by(practice_registrations.start_date)
-                  .last_for_patient()
-                  .practice_nuts1_region_name)
+dataset.region = (
+    practice_registrations
+    .where(
+        practice_registrations.start_date.is_on_or_before(study_end_date)
+        & (
+            practice_registrations.end_date.is_on_or_after(study_start_date)
+            | practice_registrations.end_date.is_null()
+        )
+    )
+    .sort_by(practice_registrations.start_date)
+    .last_for_patient()
+    .practice_nuts1_region_name
+)
 
 ## imd
 
-address = (addresses
-           .sort_by(addresses.start_date)
-           .last_for_patient())
+address = (
+    addresses
+    .where(
+        addresses.start_date.is_on_or_before(study_end_date)
+        & (
+            addresses.end_date.is_on_or_after(study_start_date)
+            | addresses.end_date.is_null()
+        )
+    )
+    .sort_by(addresses.start_date)
+    .last_for_patient()
+)
 
 dataset.imd_decile = address.imd_decile
 dataset.imd_quintile = address.imd_quintile
 
 ## date of first practice registration
 
+date_of_first_practice_registration = (
+    practice_registrations
+    .sort_by(practice_registrations.start_date)
+    .first_for_patient()
+    .start_date
+)
+
 dataset.date_of_first_practice_registration = date_of_first_practice_registration
 
-dataset.date_of_death = patients.date_of_death
+dataset.date_of_death = date_of_death
 
 # migration status 
 
-migrant_indicators = migration_status_variables.build_migrant_indicators(study_end_date)
+migrant_indicators = migration_status_variables.build_migrant_indicators(study_end_date, date_of_death)
 
 for name, indicator in migrant_indicators.items():
     setattr(dataset, name, indicator)
 
-## consolidate migration indiciators into 2-cat, 3-cat and 6-cat variables
-
-dataset.mig_status_2_cat = migration_status_variables.build_mig_status_2_cat(migrant_indicators)
-dataset.mig_status_2_cat_withdoe = migration_status_variables.build_mig_status_2_cat_withdoe(migrant_indicators)
-
-dataset.mig_status_3_cat = migration_status_variables.build_mig_status_3_cat(
-    migrant_indicators)
 dataset.mig_status_3_cat_withdoe = migration_status_variables.build_mig_status_3_cat_withdoe(
     migrant_indicators)
-
-dataset.mig_status_6_cat = migration_status_variables.build_mig_status_6_cat(
-    migrant_indicators
-)
-dataset.mig_status_6_cat_withdoe = migration_status_variables.build_mig_status_6_cat_withdoe(
-    migrant_indicators
-)
 
 # first migration code with no date restrictions 
 
@@ -194,7 +191,7 @@ number_of_migration_codes = (
     clinical_events
             .where(clinical_events.snomedct_code.is_in(codelists.all_migrant_codes))
             .where(clinical_events.date.is_on_or_between(patients.date_of_birth, study_end_date))
-            .where((clinical_events.date.is_on_or_before(patients.date_of_death)) | (patients.date_of_death.is_null()))
+            .where((clinical_events.date.is_on_or_before(date_of_death)) | (date_of_death.is_null()))
             .count_for_patient()
 )
 dataset.number_of_migration_codes = number_of_migration_codes
@@ -205,7 +202,7 @@ number_of_migration_codes_withdoe = (
     clinical_events
             .where((clinical_events.snomedct_code.is_in(codelists.all_migrant_codes)) | (clinical_events.snomedct_code.is_in(date_of_entry_code))) 
             .where(clinical_events.date.is_on_or_between(patients.date_of_birth, study_end_date))
-            .where((clinical_events.date.is_on_or_before(patients.date_of_death)) | (patients.date_of_death.is_null()))
+            .where((clinical_events.date.is_on_or_before(date_of_death)) | (date_of_death.is_null()))
             .count_for_patient()
 )
 dataset.number_of_migration_codes_withdoe = number_of_migration_codes_withdoe
@@ -218,7 +215,7 @@ has_date_of_uk_entry = (
     clinical_events
     .where(clinical_events.snomedct_code.is_in(date_of_entry_code))
     .where(clinical_events.date.is_on_or_between(patients.date_of_birth, study_end_date))
-    .where((clinical_events.date.is_on_or_before(patients.date_of_death)) | (patients.date_of_death.is_null()))
+    .where((clinical_events.date.is_on_or_before(date_of_death)) | (date_of_death.is_null()))
     .exists_for_patient()
 )
 dataset.has_date_of_uk_entry = has_date_of_uk_entry
@@ -229,7 +226,7 @@ dataset.number_of_date_of_uk_entry_codes = (
     clinical_events
     .where(clinical_events.snomedct_code.is_in(date_of_entry_code))
     .where(clinical_events.date.is_on_or_between(patients.date_of_birth, study_end_date))
-    .where((clinical_events.date.is_on_or_before(patients.date_of_death)) | (patients.date_of_death.is_null()))
+    .where((clinical_events.date.is_on_or_before(date_of_death)) | (date_of_death.is_null()))
     .count_for_patient()
 )
 
@@ -238,7 +235,7 @@ dataset.number_of_date_of_uk_entry_codes = (
 date_of_earliest_date_of_uk_entry_code = (
     clinical_events.where(clinical_events.snomedct_code.is_in(date_of_entry_code))
     .where(clinical_events.date.is_on_or_between(patients.date_of_birth, study_end_date))
-    .where((clinical_events.date.is_on_or_before(patients.date_of_death)) | (patients.date_of_death.is_null()))
+    .where((clinical_events.date.is_on_or_before(date_of_death)) | (date_of_death.is_null()))
     .sort_by(clinical_events.date)
     .first_for_patient().date)
 dataset.date_of_earliest_date_of_uk_entry_code = date_of_earliest_date_of_uk_entry_code
@@ -263,7 +260,7 @@ dataset.date_of_entry_and_other_migration_code = case(
 date_of_first_migration_code = (
     clinical_events.where(clinical_events.snomedct_code.is_in(codelists.all_migrant_codes))
     .where(clinical_events.date.is_on_or_between(patients.date_of_birth, study_end_date))
-    .where((clinical_events.date.is_on_or_before(patients.date_of_death)) | (patients.date_of_death.is_null()))
+    .where((clinical_events.date.is_on_or_before(date_of_death)) | (date_of_death.is_null()))
     .sort_by(clinical_events.date)
     .first_for_patient().date)
 
@@ -272,17 +269,11 @@ dataset.date_of_first_migration_code = date_of_first_migration_code
 date_of_first_migration_code_withdoe = (
     clinical_events.where((clinical_events.snomedct_code.is_in(codelists.all_migrant_codes)) | (clinical_events.snomedct_code.is_in(date_of_entry_code))) 
     .where(clinical_events.date.is_on_or_between(patients.date_of_birth, study_end_date))
-    .where((clinical_events.date.is_on_or_before(patients.date_of_death)) | (patients.date_of_death.is_null()))
+    .where((clinical_events.date.is_on_or_before(date_of_death)) | (date_of_death.is_null()))
     .sort_by(clinical_events.date)
     .first_for_patient().date)
 
 dataset.date_of_first_migration_code_withdoe = date_of_first_migration_code_withdoe
-
-time_from_1st_pracreg_first_migration_code_days  = (date_of_first_migration_code - date_of_first_practice_registration).days
-time_from_1st_pracreg_first_migration_code_months  = (date_of_first_migration_code - date_of_first_practice_registration).months
-
-dataset.time_from_1st_pracreg_first_migration_code_days = time_from_1st_pracreg_first_migration_code_days
-dataset.time_from_1st_pracreg_first_migration_code_months  = time_from_1st_pracreg_first_migration_code_months 
 
 time_from_1st_pracreg_first_migration_code_days_withdoe  = (date_of_first_migration_code_withdoe - date_of_first_practice_registration).days
 time_from_1st_pracreg_first_migration_code_months_withdoe  = (date_of_first_migration_code_withdoe - date_of_first_practice_registration).months
@@ -291,12 +282,6 @@ dataset.time_from_1st_pracreg_first_migration_code_days_withdoe = time_from_1st_
 dataset.time_from_1st_pracreg_first_migration_code_months_withdoe  = time_from_1st_pracreg_first_migration_code_months_withdoe 
 
 # time from birth to first migration code 
-
-time_from_birth_first_migration_code_days  = (date_of_first_migration_code - patients.date_of_birth).days
-time_from_birth_first_migration_code_months  = (date_of_first_migration_code - patients.date_of_birth).months
-
-dataset.time_from_birth_first_migration_code_days = time_from_birth_first_migration_code_days
-dataset.time_from_birth_first_migration_code_months  = time_from_birth_first_migration_code_months 
 
 time_from_birth_first_migration_code_days_withdoe  = (date_of_first_migration_code_withdoe - patients.date_of_birth).days
 time_from_birth_first_migration_code_months_withdoe  = (date_of_first_migration_code_withdoe - patients.date_of_birth).months
@@ -311,7 +296,7 @@ dataset.time_from_birth_first_migration_code_months_withdoe  = time_from_birth_f
 date_of_first_cob_code = (
     clinical_events.where((clinical_events.snomedct_code.is_in(codelists.cob_migrant_codes))) 
     .where(clinical_events.date.is_on_or_between(patients.date_of_birth, study_end_date))
-    .where((clinical_events.date.is_on_or_before(patients.date_of_death)) | (patients.date_of_death.is_null()))
+    .where((clinical_events.date.is_on_or_before(date_of_death)) | (date_of_death.is_null()))
     .sort_by(clinical_events.date)
     .first_for_patient().date)
 
@@ -323,7 +308,7 @@ dataset.time_from_1st_pracreg_first_cob_code_months  = (date_of_first_cob_code -
 date_of_first_immig_status_excl_refugee_code = (
     clinical_events.where((clinical_events.snomedct_code.is_in(codelists.immigra_status_excl_ref_and_asylum_codes))) 
     .where(clinical_events.date.is_on_or_between(patients.date_of_birth, study_end_date))
-    .where((clinical_events.date.is_on_or_before(patients.date_of_death)) | (patients.date_of_death.is_null()))
+    .where((clinical_events.date.is_on_or_before(date_of_death)) | (date_of_death.is_null()))
     .sort_by(clinical_events.date)
     .first_for_patient().date)
 
@@ -335,7 +320,7 @@ dataset.time_from_1st_pracreg_first_immig_status_excl_refugee_code_months = (dat
 date_of_first_refugee_code = (
     clinical_events.where((clinical_events.snomedct_code.is_in(codelists.asylum_refugee_migrant_codes))) 
     .where(clinical_events.date.is_on_or_between(patients.date_of_birth, study_end_date))
-    .where((clinical_events.date.is_on_or_before(patients.date_of_death)) | (patients.date_of_death.is_null()))
+    .where((clinical_events.date.is_on_or_before(date_of_death)) | (date_of_death.is_null()))
     .sort_by(clinical_events.date)
     .first_for_patient().date)
 
@@ -347,7 +332,7 @@ dataset.time_from_1st_pracreg_first_refugee_code_months = (date_of_first_refugee
 date_of_first_language_code = (
     clinical_events.where((clinical_events.snomedct_code.is_in(codelists.english_not_main_language_excl_interpreter_migrant_codes))) 
     .where(clinical_events.date.is_on_or_between(patients.date_of_birth, study_end_date))
-    .where((clinical_events.date.is_on_or_before(patients.date_of_death)) | (patients.date_of_death.is_null()))
+    .where((clinical_events.date.is_on_or_before(date_of_death)) | (date_of_death.is_null()))
     .sort_by(clinical_events.date)
     .first_for_patient().date)
 
@@ -359,7 +344,7 @@ dataset.time_from_1st_pracreg_first_language_code_months = (date_of_first_langua
 date_of_first_interpreter_code = (
     clinical_events.where((clinical_events.snomedct_code.is_in(codelists.interpreter_migrant_codes))) 
     .where(clinical_events.date.is_on_or_between(patients.date_of_birth, study_end_date))
-    .where((clinical_events.date.is_on_or_before(patients.date_of_death)) | (patients.date_of_death.is_null()))
+    .where((clinical_events.date.is_on_or_before(date_of_death)) | (date_of_death.is_null()))
     .sort_by(clinical_events.date)
     .first_for_patient().date)
 
@@ -371,7 +356,7 @@ dataset.time_from_1st_pracreg_first_interpreter_code_months = (date_of_first_int
 date_of_first_trafficking_code = (
     clinical_events.where((clinical_events.snomedct_code.is_in(codelists.trafficking_codes))) 
     .where(clinical_events.date.is_on_or_between(patients.date_of_birth, study_end_date))
-    .where((clinical_events.date.is_on_or_before(patients.date_of_death)) | (patients.date_of_death.is_null()))
+    .where((clinical_events.date.is_on_or_before(date_of_death)) | (date_of_death.is_null()))
     .sort_by(clinical_events.date)
     .first_for_patient().date)
 
@@ -383,7 +368,7 @@ dataset.time_from_1st_pracreg_first_trafficking_code_months = (date_of_first_tra
 date_of_first_uk_cob_code = (
     clinical_events.where((clinical_events.snomedct_code.is_in(codelists.uk_cob_codes))) 
     .where(clinical_events.date.is_on_or_between(patients.date_of_birth, study_end_date))
-    .where((clinical_events.date.is_on_or_before(patients.date_of_death)) | (patients.date_of_death.is_null()))
+    .where((clinical_events.date.is_on_or_before(date_of_death)) | (date_of_death.is_null()))
     .sort_by(clinical_events.date)
     .first_for_patient().date)
 

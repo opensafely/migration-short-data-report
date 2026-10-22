@@ -13,75 +13,78 @@ migrant_flags = {
     "interpreter_required": codelists.interpreter_migrant_codes,
     "trafficking": codelists.trafficking_codes,
     "british_ethnicities": codelists.british_ethnicities_codes,
-    "date_of_uk_entry": ["860021000000109"]
+    "date_of_uk_entry": codelists.date_of_uk_entry
 }
 
-def build_migrant_indicators(date):
+
+def build_migrant_indicators(date, date_of_death):
 
     return {
         name: (
             clinical_events
             .where(clinical_events.snomedct_code.is_in(codes))
             .where(clinical_events.date.is_on_or_between(patients.date_of_birth, date))
-            .where((clinical_events.date.is_on_or_before(patients.date_of_death)) | (patients.date_of_death.is_null()))
+            .where((clinical_events.date.is_on_or_before(date_of_death)) | (date_of_death.is_null()))
             .exists_for_patient()
         )
         for name, codes in migrant_flags.items()
     }
 
-def build_mig_status_2_cat(migrant_indicators):
-    """
-    2-category migrant status:
-      - "Migrant" if migrant_indicators["any_migrant"] is True
-      - "Non-migrant" otherwise
-    """
-    migrant = migrant_indicators.get("any_migrant", False)
+# def build_mig_status_2_cat(migrant_indicators):
+#     """
+#     2-category migrant status:
+#       - "Migrant" if migrant_indicators["any_migrant"] is True
+#       - "Non-migrant" otherwise
+#     """
+#     migrant = migrant_indicators.get("any_migrant", False)
 
-    return case(
-        when(migrant).then("Migrant"),
-        otherwise="Non-migrant"
-    )
+#     return case(
+#         when(migrant).then("Migrant"),
+#         otherwise="Non-migrant"
+#     )
 
-def build_mig_status_2_cat_withdoe(migrant_indicators):
-    """
-    2-category migrant status:
-      - "Migrant" if migrant_indicators["any_migrant"] is True OR migrant_indicators["date_of_uk_entry"] is TRUE
-      - "Non-migrant" otherwise
-    """
-    migrant = migrant_indicators.get("any_migrant", False)
-    date_of_uk_entry  = migrant_indicators.get("date_of_uk_entry", False)
-    migrant_all = migrant | date_of_uk_entry
+# def build_mig_status_2_cat_withdoe(migrant_indicators):
+#     """
+#     2-category migrant status:
+#       - "Migrant" if migrant_indicators["any_migrant"] is True OR migrant_indicators["date_of_uk_entry"] is TRUE
+#       - "Non-migrant" otherwise
+#     """
+#     migrant = migrant_indicators.get("any_migrant", False)
+#     date_of_uk_entry  = migrant_indicators.get("date_of_uk_entry", False)
+#     migrant_all = migrant | date_of_uk_entry
 
 
-    return case(
-        when(migrant_all).then("Migrant"),
-        otherwise="Non-migrant"
-    )
+#     return case(
+#         when(migrant_all).then("Migrant"),
+#         otherwise="Non-migrant"
+#     )
 
-def build_mig_status_3_cat(migrant_indicators):
-    """
-    3-category migrant status:
-      - "Migrant" if migrant_indicators["migrant"]
-      - "Non-migrant" if born_in_uk OR british_ethnicities AND no migrant code)
-      - "Unknown" otherwise
-    """
-    migrant = migrant_indicators.get("any_migrant", False)
-    born_in_uk = migrant_indicators.get("born_in_uk", False)
-    british_ethnicities = migrant_indicators.get("british_ethnicities", False)
+# def build_mig_status_3_cat(migrant_indicators):
+#     """
+#     3-category migrant status:
+#       - "Migrant" if migrant_indicators["migrant"]
+#       - "Non-migrant" if born_in_uk OR british_ethnicities AND no migrant code)
+#       - "Unknown" otherwise
+#     """
+#     migrant = migrant_indicators.get("any_migrant", False)
+#     born_in_uk = migrant_indicators.get("born_in_uk", False)
+#     british_ethnicities = migrant_indicators.get("british_ethnicities", False)
 
-    non_migrant_cond = born_in_uk | ((british_ethnicities) & ~migrant)
+#     migrant_cond = migrant & ~born_in_uk
+#     non_migrant_cond = born_in_uk | ((british_ethnicities) & ~migrant)
 
-    return case(
-        when(migrant).then("Migrant"),
-        when(non_migrant_cond).then("Non-migrant"),
-        otherwise="Unknown"
-    )
+#     return case(
+#         when(migrant_cond).then("Migrant"),
+#         when(non_migrant_cond).then("Non-migrant"),
+#         otherwise="Unknown"
+#     )
+
 
 def build_mig_status_3_cat_withdoe(migrant_indicators):
     """
     3-category migrant status:
-      - "Migrant" if migrant_indicators["migrant"] OR migrant_indicators["date_of_uk_entry"] is TRUE
-      - "Non-migrant" if born_in_uk OR british_ethnicities AND no migrant code)
+      - "Migrant" if migrant_indicators["migrant"] OR migrant_indicators["date_of_uk_entry"] is TRUE AND no UK country of birth
+      - "Non-migrant" if born_in_uk OR (british_ethnicities AND no migrant code)
       - "Unknown" otherwise
     """
     migrant = migrant_indicators.get("any_migrant", False)
@@ -89,7 +92,7 @@ def build_mig_status_3_cat_withdoe(migrant_indicators):
     born_in_uk = migrant_indicators.get("born_in_uk", False)
     british_ethnicities = migrant_indicators.get("british_ethnicities", False)
 
-    migrant_cond = migrant | date_of_uk_entry
+    migrant_cond = (migrant | date_of_uk_entry) & ~born_in_uk
     non_migrant_cond = born_in_uk | ((british_ethnicities) & ~migrant_cond)
 
     return case(
@@ -98,75 +101,75 @@ def build_mig_status_3_cat_withdoe(migrant_indicators):
         otherwise="Unknown"
     )
 
-def build_mig_status_6_cat(migrant_indicators):
-    """
-    6-category migrant status (priority order):
-      - Definite migrant: not_born_in_uk
-      - Highly likely migrant: immig_status_excl_refugee_asylum OR refugee_asylum_status
-      - Likely migrant: english_not_main_language OR interpreter_required OR trafficking
-      - Definite non-migrant: born_in_uk 
-      - Likely non-migrant: british_ethnicities AND no migrant code 
-      - Unknown: no migrant codes
-    """
-    migrant = migrant_indicators.get("any_migrant", False)
-    not_born_in_uk = migrant_indicators.get("not_born_in_uk", False)
-    immig_excl = migrant_indicators.get("immig_status_excl_refugee_asylum", False)
-    refugee_asylum = migrant_indicators.get("refugee_asylum_status", False)
-    english_not_main = migrant_indicators.get("english_not_main_language", False)
-    interpreter_required = migrant_indicators.get("interpreter_required", False)
-    trafficking = migrant_indicators.get("trafficking", False)
-    born_in_uk = migrant_indicators.get("born_in_uk", False)
-    british_ethnicities = migrant_indicators.get("british_ethnicities", False)
+# def build_mig_status_6_cat(migrant_indicators):
+#     """
+#     6-category migrant status (priority order):
+#       - Definite migrant: not_born_in_uk
+#       - Highly likely migrant: immig_status_excl_refugee_asylum OR refugee_asylum_status
+#       - Likely migrant: english_not_main_language OR interpreter_required OR trafficking
+#       - Definite non-migrant: born_in_uk 
+#       - Likely non-migrant: british_ethnicities AND no migrant code 
+#       - Unknown: no migrant codes
+#     """
+#     migrant = migrant_indicators.get("any_migrant", False)
+#     not_born_in_uk = migrant_indicators.get("not_born_in_uk", False)
+#     immig_excl = migrant_indicators.get("immig_status_excl_refugee_asylum", False)
+#     refugee_asylum = migrant_indicators.get("refugee_asylum_status", False)
+#     english_not_main = migrant_indicators.get("english_not_main_language", False)
+#     interpreter_required = migrant_indicators.get("interpreter_required", False)
+#     trafficking = migrant_indicators.get("trafficking", False)
+#     born_in_uk = migrant_indicators.get("born_in_uk", False)
+#     british_ethnicities = migrant_indicators.get("british_ethnicities", False)
 
-    # Compose combined conditions
-    highly_likely = immig_excl | refugee_asylum
-    likely_migrant = english_not_main | interpreter_required | trafficking
-    likely_non_migrant = ((british_ethnicities) & ~migrant)
-    unknown = (~migrant)
+#     # Compose combined conditions
+#     highly_likely = immig_excl | refugee_asylum
+#     likely_migrant = english_not_main | interpreter_required | trafficking
+#     likely_non_migrant = ((british_ethnicities) & ~migrant)
+#     unknown = (~migrant)
 
-    return case(
-        when(not_born_in_uk).then("Definite migrant"),
-        when(born_in_uk).then("Definite non-migrant"),
-        when(highly_likely).then("Highly likely migrant"),
-        when(likely_migrant).then("Likely migrant"),
-        when(likely_non_migrant).then("Likely non-migrant"),
-        when(unknown).then("Unknown"),
-        otherwise="Error"
-    )   
+#     return case(
+#         when(not_born_in_uk).then("Definite migrant"),
+#         when(born_in_uk).then("Definite non-migrant"),
+#         when(highly_likely).then("Highly likely migrant"),
+#         when(likely_migrant).then("Likely migrant"),
+#         when(likely_non_migrant).then("Likely non-migrant"),
+#         when(unknown).then("Unknown"),
+#         otherwise="Error"
+#     )   
 
-def build_mig_status_6_cat_withdoe(migrant_indicators):
-    """
-    6-category migrant status (priority order):
-      - Definite migrant: not_born_in_uk
-      - Highly likely migrant: immig_status_excl_refugee_asylum OR refugee_asylum_status
-      - Likely migrant: english_not_main_language OR interpreter_required OR trafficking OR date_of_uk_entry
-      - Definite non-migrant: born_in_uk 
-      - Likely non-migrant: british_ethnicities AND no migrant code 
-      - Unknown: no migrant codes
-    """
-    migrant = migrant_indicators.get("any_migrant", False)
-    not_born_in_uk = migrant_indicators.get("not_born_in_uk", False)
-    immig_excl = migrant_indicators.get("immig_status_excl_refugee_asylum", False)
-    refugee_asylum = migrant_indicators.get("refugee_asylum_status", False)
-    english_not_main = migrant_indicators.get("english_not_main_language", False)
-    interpreter_required = migrant_indicators.get("interpreter_required", False)
-    trafficking = migrant_indicators.get("trafficking", False)
-    born_in_uk = migrant_indicators.get("born_in_uk", False)
-    british_ethnicities = migrant_indicators.get("british_ethnicities", False)
-    date_of_uk_entry = migrant_indicators.get("date_of_uk_entry", False)
+# def build_mig_status_6_cat_withdoe(migrant_indicators):
+#     """
+#     6-category migrant status (priority order):
+#       - Definite migrant: not_born_in_uk
+#       - Highly likely migrant: immig_status_excl_refugee_asylum OR refugee_asylum_status
+#       - Likely migrant: english_not_main_language OR interpreter_required OR trafficking OR date_of_uk_entry
+#       - Definite non-migrant: born_in_uk 
+#       - Likely non-migrant: british_ethnicities AND no migrant code 
+#       - Unknown: no migrant codes
+#     """
+#     migrant = migrant_indicators.get("any_migrant", False)
+#     not_born_in_uk = migrant_indicators.get("not_born_in_uk", False)
+#     immig_excl = migrant_indicators.get("immig_status_excl_refugee_asylum", False)
+#     refugee_asylum = migrant_indicators.get("refugee_asylum_status", False)
+#     english_not_main = migrant_indicators.get("english_not_main_language", False)
+#     interpreter_required = migrant_indicators.get("interpreter_required", False)
+#     trafficking = migrant_indicators.get("trafficking", False)
+#     born_in_uk = migrant_indicators.get("born_in_uk", False)
+#     british_ethnicities = migrant_indicators.get("british_ethnicities", False)
+#     date_of_uk_entry = migrant_indicators.get("date_of_uk_entry", False)
 
-    # Compose combined conditions
-    highly_likely = immig_excl | refugee_asylum
-    likely_migrant = english_not_main | interpreter_required | trafficking | date_of_uk_entry
-    likely_non_migrant = ((british_ethnicities) & ~migrant)
-    unknown = (~migrant)
+#     # Compose combined conditions
+#     highly_likely = immig_excl | refugee_asylum
+#     likely_migrant = english_not_main | interpreter_required | trafficking | date_of_uk_entry
+#     likely_non_migrant = ((british_ethnicities) & ~migrant)
+#     unknown = (~migrant)
 
-    return case(
-        when(not_born_in_uk).then("Definite migrant"),
-        when(born_in_uk).then("Definite non-migrant"),
-        when(highly_likely).then("Highly likely migrant"),
-        when(likely_migrant).then("Likely migrant"),
-        when(likely_non_migrant).then("Likely non-migrant"),
-        when(unknown).then("Unknown"),
-        otherwise="Error"
-    )   
+#     return case(
+#         when(not_born_in_uk).then("Definite migrant"),
+#         when(born_in_uk).then("Definite non-migrant"),
+#         when(highly_likely).then("Highly likely migrant"),
+#         when(likely_migrant).then("Likely migrant"),
+#         when(likely_non_migrant).then("Likely non-migrant"),
+#         when(unknown).then("Unknown"),
+#         otherwise="Error"
+#     )   

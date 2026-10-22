@@ -7,7 +7,7 @@
 # This is a script that uses measures to create an annual coding count of all migration-related codes 
 # in order to compare with this OCC paper: https://bjgpopen.org/content/early/2026/02/20/BJGPO.2025.0138
 
-from ehrql import create_measures, INTERVAL
+from ehrql import create_measures, INTERVAL, years
 from ehrql.tables.tpp import patients, practice_registrations, clinical_events, addresses
 import migration_status_variables
 from analysis import utilities 
@@ -17,15 +17,13 @@ measures = create_measures()
 measures.configure_dummy_data(population_size=1000)
 measures.configure_disclosure_control(enabled=True)  # enable on real data
 
-common = utilities.build_common_vars(INTERVAL)
-measures.define_defaults(intervals=common["intervals"])
-                        # group_by = common["subgroups"])
+
 
 # denominator is not default because for this I want number of people with a migrant code
 # in the given interval ONLY, whereas the default denominator is anyone registered and alive in 
 # the interval
 
-date_of_entry_code = ["860021000000109"]
+date_of_entry_code = codelists.date_of_uk_entry
 # note this code was not included in BJGPO migration codelist - I discovered it later
 
 migrant_codes_and_date_of_uk_entry = codelists.all_migrant_codes + date_of_entry_code
@@ -41,10 +39,12 @@ migration_codes_in_interval_incl_date_of_uk_entry = clinical_events.where(
 measures.define_measure(
     name="all_migration_codes_excl_date_of_uk_entry", 
     numerator=migration_codes_in_interval_excl_date_of_uk_entry.count_for_patient(),
-    denominator=migration_codes_in_interval_excl_date_of_uk_entry.exists_for_patient())
+    denominator=migration_codes_in_interval_excl_date_of_uk_entry.exists_for_patient(),
+    intervals=years(15).starting_on("2011-08-01"))
 
 measures.define_measure(
     name="all_migration_codes_incl_date_of_uk_entry", 
     numerator=migration_codes_in_interval_incl_date_of_uk_entry.count_for_patient(),
-    denominator=migration_codes_in_interval_incl_date_of_uk_entry.exists_for_patient())
+    denominator=migration_codes_in_interval_incl_date_of_uk_entry.exists_for_patient(),
+    intervals=years(15).starting_on("2011-08-01"))
 

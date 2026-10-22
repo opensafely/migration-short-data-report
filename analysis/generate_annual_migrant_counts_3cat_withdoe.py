@@ -3,6 +3,7 @@ from ehrql import create_measures, INTERVAL
 from ehrql.tables.tpp import patients, practice_registrations, clinical_events, addresses
 import migration_status_variables
 from analysis import utilities 
+from utilities import date_of_death
 
 measures = create_measures()
 measures.configure_dummy_data(population_size=1000)
@@ -15,7 +16,7 @@ subgroups = common["subgroups"]
 ethnicity = common["ethnicity"]
 
 # build base indicators and aggregated 3-category expression
-numerators_separate = migration_status_variables.build_migrant_indicators(INTERVAL.end_date)
+numerators_separate = migration_status_variables.build_migrant_indicators(INTERVAL.end_date, date_of_death)
 mig3_expr = migration_status_variables.build_mig_status_3_cat_withdoe(numerators_separate)
 
 # register one measure per label × subgroup
