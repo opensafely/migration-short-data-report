@@ -13,7 +13,7 @@ migrant_flags = {
     "interpreter_required": codelists.interpreter_migrant_codes,
     "trafficking": codelists.trafficking_codes,
     "british_ethnicities": codelists.british_ethnicities_codes,
-    "date_of_uk_entry": ["860021000000109"]
+    "date_of_uk_entry": codelists.date_of_uk_entry
 }
 
 
@@ -70,19 +70,21 @@ def build_mig_status_3_cat(migrant_indicators):
     born_in_uk = migrant_indicators.get("born_in_uk", False)
     british_ethnicities = migrant_indicators.get("british_ethnicities", False)
 
+    migrant_cond = migrant & ~born_in_uk
     non_migrant_cond = born_in_uk | ((british_ethnicities) & ~migrant)
 
     return case(
-        when(migrant).then("Migrant"),
+        when(migrant_cond).then("Migrant"),
         when(non_migrant_cond).then("Non-migrant"),
         otherwise="Unknown"
     )
 
+
 def build_mig_status_3_cat_withdoe(migrant_indicators):
     """
     3-category migrant status:
-      - "Migrant" if migrant_indicators["migrant"] OR migrant_indicators["date_of_uk_entry"] is TRUE
-      - "Non-migrant" if born_in_uk OR british_ethnicities AND no migrant code)
+      - "Migrant" if migrant_indicators["migrant"] OR migrant_indicators["date_of_uk_entry"] is TRUE AND no UK country of birth
+      - "Non-migrant" if born_in_uk OR (british_ethnicities AND no migrant code)
       - "Unknown" otherwise
     """
     migrant = migrant_indicators.get("any_migrant", False)
@@ -90,7 +92,7 @@ def build_mig_status_3_cat_withdoe(migrant_indicators):
     born_in_uk = migrant_indicators.get("born_in_uk", False)
     british_ethnicities = migrant_indicators.get("british_ethnicities", False)
 
-    migrant_cond = migrant | date_of_uk_entry
+    migrant_cond = (migrant | date_of_uk_entry) & ~born_in_uk
     non_migrant_cond = born_in_uk | ((british_ethnicities) & ~migrant_cond)
 
     return case(
