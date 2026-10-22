@@ -38,9 +38,7 @@ vars_to_summarise <- c(
 )
 
 mig_vars <- c(
-  "mig_status_2_cat_withdoe",
-  "mig_status_3_cat_withdoe",
-  "mig_status_6_cat_withdoe")
+  "mig_status_3_cat_withdoe")
 
 rounding <- function(vars) {
   case_when(vars == 0 ~ 0,

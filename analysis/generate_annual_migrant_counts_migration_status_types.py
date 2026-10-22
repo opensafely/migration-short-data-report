@@ -1,6 +1,7 @@
 from ehrql import create_measures, INTERVAL
 import migration_status_variables
 from analysis import utilities
+from utilities import date_of_death
 
 measures = create_measures()
 measures.configure_dummy_data(population_size=1000)
@@ -12,7 +13,7 @@ measures.define_defaults(denominator=common["denominator"], intervals=common["in
 subgroups = common["subgroups"]
 
 # build base indicators 
-numerators_separate = migration_status_variables.build_migrant_indicators(INTERVAL.end_date)
+numerators_separate = migration_status_variables.build_migrant_indicators(INTERVAL.end_date, date_of_death)
 
 print("Available numerator keys:", sorted(numerators_separate.keys()))
 

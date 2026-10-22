@@ -108,22 +108,7 @@ migrant_indicators = migration_status_variables.build_migrant_indicators(census_
 for name, indicator in migrant_indicators.items():
     setattr(dataset, name, indicator)
 
-# consolidate migration indiciators into 2-cat, 3-cat and 6-cat variables
-
-dataset.mig_status_2_cat = migration_status_variables.build_mig_status_2_cat(migrant_indicators)
-
-dataset.mig_status_3_cat = migration_status_variables.build_mig_status_3_cat(
-    migrant_indicators)
-
-dataset.mig_status_6_cat = migration_status_variables.build_mig_status_6_cat(
-    migrant_indicators)
-
-dataset.mig_status_2_cat_withdoe = migration_status_variables.build_mig_status_2_cat_withdoe(migrant_indicators)
-
 dataset.mig_status_3_cat_withdoe = migration_status_variables.build_mig_status_3_cat_withdoe(
-    migrant_indicators)
-
-dataset.mig_status_6_cat_withdoe = migration_status_variables.build_mig_status_6_cat_withdoe(
     migrant_indicators)
 
 dataset.configure_dummy_data(population_size=1000)

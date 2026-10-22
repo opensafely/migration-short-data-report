@@ -161,22 +161,8 @@ migrant_indicators = migration_status_variables.build_migrant_indicators(study_e
 for name, indicator in migrant_indicators.items():
     setattr(dataset, name, indicator)
 
-## consolidate migration indiciators into 2-cat, 3-cat and 6-cat variables
-
-dataset.mig_status_2_cat = migration_status_variables.build_mig_status_2_cat(migrant_indicators)
-dataset.mig_status_2_cat_withdoe = migration_status_variables.build_mig_status_2_cat_withdoe(migrant_indicators)
-
-dataset.mig_status_3_cat = migration_status_variables.build_mig_status_3_cat(
-    migrant_indicators)
 dataset.mig_status_3_cat_withdoe = migration_status_variables.build_mig_status_3_cat_withdoe(
     migrant_indicators)
-
-dataset.mig_status_6_cat = migration_status_variables.build_mig_status_6_cat(
-    migrant_indicators
-)
-dataset.mig_status_6_cat_withdoe = migration_status_variables.build_mig_status_6_cat_withdoe(
-    migrant_indicators
-)
 
 # first migration code with no date restrictions 
 
@@ -289,12 +275,6 @@ date_of_first_migration_code_withdoe = (
 
 dataset.date_of_first_migration_code_withdoe = date_of_first_migration_code_withdoe
 
-time_from_1st_pracreg_first_migration_code_days  = (date_of_first_migration_code - date_of_first_practice_registration).days
-time_from_1st_pracreg_first_migration_code_months  = (date_of_first_migration_code - date_of_first_practice_registration).months
-
-dataset.time_from_1st_pracreg_first_migration_code_days = time_from_1st_pracreg_first_migration_code_days
-dataset.time_from_1st_pracreg_first_migration_code_months  = time_from_1st_pracreg_first_migration_code_months 
-
 time_from_1st_pracreg_first_migration_code_days_withdoe  = (date_of_first_migration_code_withdoe - date_of_first_practice_registration).days
 time_from_1st_pracreg_first_migration_code_months_withdoe  = (date_of_first_migration_code_withdoe - date_of_first_practice_registration).months
 
@@ -302,12 +282,6 @@ dataset.time_from_1st_pracreg_first_migration_code_days_withdoe = time_from_1st_
 dataset.time_from_1st_pracreg_first_migration_code_months_withdoe  = time_from_1st_pracreg_first_migration_code_months_withdoe 
 
 # time from birth to first migration code 
-
-time_from_birth_first_migration_code_days  = (date_of_first_migration_code - patients.date_of_birth).days
-time_from_birth_first_migration_code_months  = (date_of_first_migration_code - patients.date_of_birth).months
-
-dataset.time_from_birth_first_migration_code_days = time_from_birth_first_migration_code_days
-dataset.time_from_birth_first_migration_code_months  = time_from_birth_first_migration_code_months 
 
 time_from_birth_first_migration_code_days_withdoe  = (date_of_first_migration_code_withdoe - patients.date_of_birth).days
 time_from_birth_first_migration_code_months_withdoe  = (date_of_first_migration_code_withdoe - patients.date_of_birth).months
