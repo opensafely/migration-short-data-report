@@ -33,13 +33,13 @@ actions:
       moderately_sensitive:
         csv: output/tables/demographics_full_study_cohort_3cat_withdoe.csv
 
-  generate_demographics_full_study_table_6cat_withdoe:
-    run: r:v2 analysis/process_full_cohort_data.R output/tables/demographics_full_study_cohort_6cat_withdoe.csv mig_status_6_cat_withdoe
-    needs:
-    - generate_full_study_cohort
-    outputs:
-      moderately_sensitive:
-        csv: output/tables/demographics_full_study_cohort_6cat_withdoe.csv
+  # generate_demographics_full_study_table_6cat_withdoe:
+  #   run: r:v2 analysis/process_full_cohort_data.R output/tables/demographics_full_study_cohort_6cat_withdoe.csv mig_status_6_cat_withdoe
+  #   needs:
+  #   - generate_full_study_cohort
+  #   outputs:
+  #     moderately_sensitive:
+  #       csv: output/tables/demographics_full_study_cohort_6cat_withdoe.csv
 
   generate_demographics_full_study_table_migration_types:
     run: r:v2 analysis/process_full_cohort_data_migration_types.R 
@@ -49,13 +49,13 @@ actions:
       moderately_sensitive:
         csv: output/tables/demographics_full_study_cohort_migration_types.csv
 
-  generate_demographics_uk_entry_cohort:
-    run: r:v2 analysis/process_date_of_uk_entry_cohort.R 
-    needs:
-    - generate_full_study_cohort
-    outputs:
-      moderately_sensitive:
-        csv: output/tables/demographics_date_of_uk_entry_and_no_other_migration_info_cohort.csv
+  # generate_demographics_uk_entry_cohort:
+  #   run: r:v2 analysis/process_date_of_uk_entry_cohort.R 
+  #   needs:
+  #   - generate_full_study_cohort
+  #   outputs:
+  #     moderately_sensitive:
+  #       csv: output/tables/demographics_date_of_uk_entry_and_no_other_migration_info_cohort.csv
 
   generate_demographics_census_2011_study_table_mig_3cat_withdoe:
     run: r:v2 analysis/process_census_cohort_data.R output/cohorts/census_2011_study_cohort.arrow output/tables/demographics_census_2011_cohort_3cat_withdoe.csv mig_status_3_cat_withdoe
@@ -65,13 +65,13 @@ actions:
       moderately_sensitive:
         csv: output/tables/demographics_census_2011_cohort_3cat_withdoe.csv
 
-  generate_demographics_census_2011_study_table_mig_6cat_withdoe:
-    run: r:v2 analysis/process_census_cohort_data.R output/cohorts/census_2011_study_cohort.arrow output/tables/demographics_census_2011_cohort_6cat_withdoe.csv mig_status_6_cat_withdoe
-    needs:
-    - generate_dataset_for_census_2011
-    outputs:
-      moderately_sensitive:
-        csv: output/tables/demographics_census_2011_cohort_6cat_withdoe.csv
+  # generate_demographics_census_2011_study_table_mig_6cat_withdoe:
+  #   run: r:v2 analysis/process_census_cohort_data.R output/cohorts/census_2011_study_cohort.arrow output/tables/demographics_census_2011_cohort_6cat_withdoe.csv mig_status_6_cat_withdoe
+  #   needs:
+  #   - generate_dataset_for_census_2011
+  #   outputs:
+  #     moderately_sensitive:
+  #       csv: output/tables/demographics_census_2011_cohort_6cat_withdoe.csv
 
   generate_demographics_census_2021_study_table_3cat_withdoe:
     run: r:v2 analysis/process_census_cohort_data.R output/cohorts/census_2021_study_cohort.arrow output/tables/demographics_census_2021_cohort_3cat_withdoe.csv mig_status_3_cat_withdoe
@@ -81,13 +81,13 @@ actions:
       moderately_sensitive:
         csv: output/tables/demographics_census_2021_cohort_3cat_withdoe.csv
   
-  generate_demographics_census_2021_study_table_6cat_withdoe:
-    run: r:v2 analysis/process_census_cohort_data.R output/cohorts/census_2021_study_cohort.arrow output/tables/demographics_census_2021_cohort_6cat_withdoe.csv mig_status_6_cat_withdoe
-    needs:
-    - generate_dataset_for_census_2021
-    outputs:
-      moderately_sensitive:
-        csv: output/tables/demographics_census_2021_cohort_6cat_withdoe.csv
+  # generate_demographics_census_2021_study_table_6cat_withdoe:
+  #   run: r:v2 analysis/process_census_cohort_data.R output/cohorts/census_2021_study_cohort.arrow output/tables/demographics_census_2021_cohort_6cat_withdoe.csv mig_status_6_cat_withdoe
+  #   needs:
+  #   - generate_dataset_for_census_2021
+  #   outputs:
+  #     moderately_sensitive:
+  #       csv: output/tables/demographics_census_2021_cohort_6cat_withdoe.csv
 
   generate_age_summary_census_2011_mig_3cat_withdoe:
     run: r:v2 analysis/census_cohort_age_summary.R output/cohorts/census_2011_study_cohort.arrow output/tables/age_summary_census_2011_cohort_3cat_withdoe.csv mig_status_3_cat_withdoe

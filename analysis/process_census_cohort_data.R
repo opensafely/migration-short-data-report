@@ -55,8 +55,8 @@ mig_vars <- args[[3]]
 
 table_freq_overall <- cohort %>%
   pivot_longer(
-    #cols = all_of(mig_vars),
-    cols = all_of("mig_status_3_cat"),
+    cols = all_of(mig_vars),
+    #cols = all_of("mig_status_3_cat"),
     names_to = "migration_scheme",
     values_to = "migration_status"
   ) %>%
@@ -85,8 +85,8 @@ table_freq <- cohort %>%
     values_to = "category"
   ) %>%
   pivot_longer(
-    #cols = all_of(mig_vars),
-    cols = all_of("mig_status_3_cat"),
+    cols = all_of(mig_vars),
+    #cols = all_of("mig_status_3_cat"),
     names_to = "migration_scheme",
     values_to = "migration_status"
   ) %>%
