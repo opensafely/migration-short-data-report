@@ -10,6 +10,7 @@ from ehrql.tables.tpp import addresses, patients, practice_registrations, clinic
 import codelists
 import migration_status_variables
 from argparse import ArgumentParser
+from utilities import date_of_death
 
 # Below code from https://github.com/opensafely/disease_incidence/blob/main/analysis/dataset_definition_demographics.py
 # Arguments (from project.yaml)
@@ -33,10 +34,14 @@ has_non_disclosive_sex = (
 )
 
 was_alive_on_census_date = (
-    (patients.is_alive_on(census_date))
+    patients.date_of_birth.is_on_or_before(census_date)
+    & (
+        date_of_death.is_after(census_date)
+        | date_of_death.is_null()
+    )
 )
 
-has_possible_age= ((patients.age_on(census_date) < 110) & (patients.age_on(census_date) > 0))
+has_possible_age= ((patients.age_on(census_date) <= 110) & (patients.age_on(census_date) >= 0))
 
 dataset = create_dataset()
 dataset.define_population(was_registered_on_census_date & 
@@ -81,6 +86,7 @@ dataset.imd_quintile = address.imd_quintile
 
 latest_ethnicity_code = (
     clinical_events.where(clinical_events.snomedct_code.is_in(codelists.ethnicity_16_level_codelist))
+    .where(clinical_events.date.is_on_or_before(census_date))
     .sort_by(clinical_events.date)
     .last_for_patient()
     .snomedct_code)
@@ -97,7 +103,7 @@ dataset.latest_ethnicity_6_level_group = latest_ethnicity_6_level_group
 
 # migration status 
 
-migrant_indicators = migration_status_variables.build_migrant_indicators(census_date)
+migrant_indicators = migration_status_variables.build_migrant_indicators(census_date, date_of_death)
 
 for name, indicator in migrant_indicators.items():
     setattr(dataset, name, indicator)
