@@ -18,6 +18,8 @@ from ehrql.tables.tpp import (
 )
 import migration_status_variables
 
+from utilities import date_of_death
+
 claim_permissions("appointments")
 
 measures = create_measures()
@@ -26,71 +28,58 @@ measures.configure_disclosure_control(enabled=True)
 
 # common denominator conditions
 
-was_alive_on_1Jan = patients.is_alive_on(INTERVAL.start_date)
+was_alive_and_registered_during_interval = (
+    practice_registrations.where(
+        # Registration overlaps interval
+        practice_registrations.start_date.is_on_or_before(INTERVAL.end_date)
+        & (
+            practice_registrations.end_date.is_on_or_after(INTERVAL.start_date)
+            | practice_registrations.end_date.is_null()
+        )
 
-was_registered_at_any_point_during_interval = practice_registrations.where(
-        # registered for the entire interval
-        ((practice_registrations.start_date.is_on_or_before(INTERVAL.start_date)) 
-        & (practice_registrations.end_date.is_on_or_after(INTERVAL.end_date))) |
-        
-        # registered during the interval and end date is after the interval end date
-        ((practice_registrations.start_date.is_after(INTERVAL.start_date))
-         & (practice_registrations.end_date.is_on_or_after(INTERVAL.end_date))) |
-         
-         # registered before the interval and registration is ongoing
-         ((practice_registrations.start_date.is_on_or_before(INTERVAL.start_date)) &
-          (practice_registrations.end_date.is_null())) |
-          
-          # registered after interval start date and registration is ongoing
-          ((practice_registrations.start_date.is_after(INTERVAL.start_date)) &
-           (practice_registrations.end_date.is_null())) |
-           
-           # registered before the interval start date and end date is before the end date, but after the start date 
-           ((practice_registrations.start_date.is_before(INTERVAL.start_date)) &
-           (practice_registrations.end_date.is_between_but_not_on(INTERVAL.start_date, INTERVAL.end_date))) |
-           
-           # registered for part of the interval only
-           ((practice_registrations.start_date.is_between_but_not_on(INTERVAL.start_date, INTERVAL.end_date)) &
-            (practice_registrations.end_date.is_between_but_not_on(INTERVAL.start_date, INTERVAL.end_date)))
+        # Registration overlaps patient's lifetime
+        & (
+            practice_registrations.end_date.is_on_or_after(patients.date_of_birth)
+            | practice_registrations.end_date.is_null()
+        )
+        & (
+            practice_registrations.start_date.is_on_or_before(date_of_death)
+            | date_of_death.is_null()
+        )
+
+        # Patient born by interval end
+        & patients.date_of_birth.is_on_or_before(INTERVAL.end_date)
+
+        # Patient not deceased before interval start
+        & (
+            date_of_death.is_on_or_after(INTERVAL.start_date)
+            | date_of_death.is_null()
+        )
     ).exists_for_patient()
+)
 
 has_recorded_sex = patients.sex.is_in(["male", "female"])
 
 has_possible_age = (
-        (patients.age_on(INTERVAL.start_date) < 110)
-        & (patients.age_on(INTERVAL.start_date) > 0)
-    )
+    (patients.age_on(INTERVAL.start_date) <= 110)
+    & (patients.age_on(INTERVAL.end_date) >= 0)
+)
 
-# migrant  = clinical_events.where(
-#         clinical_events.snomedct_code.is_in(codelists.all_migrant_codes)).where(
-#                 clinical_events.date.is_on_or_between(patients.date_of_birth, INTERVAL.end_date)).where(
-#                         (clinical_events.date.is_on_or_before(patients.date_of_death)) | (patients.date_of_death.is_null())).exists_for_patient()
-
-denominators_separate = migration_status_variables.build_migrant_indicators(INTERVAL.end_date)
+denominators_separate = migration_status_variables.build_migrant_indicators(INTERVAL.end_date, date_of_death)
 mig3_expr = migration_status_variables.build_mig_status_3_cat_withdoe(denominators_separate)
-
-migrant_denominator = (mig3_expr == "Migrant")
-
-migrant_denominator = (
-        was_alive_on_1Jan
-        & was_registered_at_any_point_during_interval
-        & has_recorded_sex
-        & has_possible_age
-        & migrant_denominator 
-    )
 
 # any planned primary care contacts during the interval 
 # code reference: https://github.com/opensafely/winter-pressures-phase-II/blob/main/analysis/appointments/app_measures.py (Accessed 18/06/26)
 planned_and_actual_encounters = appointments.where(
     appointments.start_date.is_during(INTERVAL) | 
-    appointments.seen_date.is_during(INTERVAL)).exists_for_patient() 
+    appointments.seen_date.is_during(INTERVAL)).count_for_patient() 
 
 planned_encounters_only = appointments.where(
-    appointments.start_date.is_during(INTERVAL)).exists_for_patient()
+    appointments.start_date.is_during(INTERVAL)).count_for_patient()
 
 labels = ["Migrant", "Non-migrant", "Unknown"]
 for label in labels:
-    migrant_denom = was_alive_on_1Jan & was_registered_at_any_point_during_interval & has_recorded_sex & has_possible_age & (mig3_expr == label)
+    migrant_denom = was_alive_and_registered_during_interval & has_recorded_sex & has_possible_age & (mig3_expr == label)
     safe_label = label.lower().replace("-", "_")
     name = f"planned_and_actual_primary_care_activity_{safe_label}"
     measures.define_measure(
@@ -101,7 +90,7 @@ for label in labels:
         )
 
 for label in labels:
-    migrant_denom = was_alive_on_1Jan & was_registered_at_any_point_during_interval & has_recorded_sex & has_possible_age & (mig3_expr == label)
+    migrant_denom = was_alive_and_registered_during_interval & has_recorded_sex & has_possible_age & (mig3_expr == label)
     safe_label = label.lower().replace("-", "_")
     name = f"planned_primary_care_activity_{safe_label}"
     measures.define_measure(
