@@ -16,14 +16,15 @@ migrant_flags = {
     "date_of_uk_entry": ["860021000000109"]
 }
 
-def build_migrant_indicators(date):
+
+def build_migrant_indicators(date, date_of_death):
 
     return {
         name: (
             clinical_events
             .where(clinical_events.snomedct_code.is_in(codes))
             .where(clinical_events.date.is_on_or_between(patients.date_of_birth, date))
-            .where((clinical_events.date.is_on_or_before(patients.date_of_death)) | (patients.date_of_death.is_null()))
+            .where((clinical_events.date.is_on_or_before(date_of_death)) | (date_of_death.is_null()))
             .exists_for_patient()
         )
         for name, codes in migrant_flags.items()

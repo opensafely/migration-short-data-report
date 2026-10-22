@@ -26,7 +26,7 @@ actions:
         dataset: output/cohorts/census_2011_study_cohort.arrow
 
   # generate_demographics_full_study_table_2cat:
-  #   run: r:latest analysis/process_full_cohort_data.R output/tables/demographics_full_study_cohort_2cat.csv mig_status_2_cat
+  #   run: r:v2 analysis/process_full_cohort_data.R output/tables/demographics_full_study_cohort_2cat.csv mig_status_2_cat
   #   needs:
   #   - generate_full_study_cohort
   #   outputs:
@@ -34,7 +34,7 @@ actions:
   #       csv: output/tables/demographics_full_study_cohort_2cat.csv
 
   # generate_demographics_full_study_table_3cat:
-  #   run: r:latest analysis/process_full_cohort_data.R output/tables/demographics_full_study_cohort_3cat.csv mig_status_3_cat
+  #   run: r:v2 analysis/process_full_cohort_data.R output/tables/demographics_full_study_cohort_3cat.csv mig_status_3_cat
   #   needs:
   #   - generate_full_study_cohort
   #   outputs:
@@ -42,7 +42,7 @@ actions:
   #       csv: output/tables/demographics_full_study_cohort_3cat.csv
 
   # generate_demographics_full_study_table_6cat:
-  #   run: r:latest analysis/process_full_cohort_data.R output/tables/demographics_full_study_cohort_6cat.csv mig_status_6_cat
+  #   run: r:v2 analysis/process_full_cohort_data.R output/tables/demographics_full_study_cohort_6cat.csv mig_status_6_cat
   #   needs:
   #   - generate_full_study_cohort
   #   outputs:
@@ -50,7 +50,7 @@ actions:
   #       csv: output/tables/demographics_full_study_cohort_6cat.csv
 
   # generate_demographics_full_study_table_2cat_withdoe:
-  #   run: r:latest analysis/process_full_cohort_data.R output/tables/demographics_full_study_cohort_2cat_withdoe.csv mig_status_2_cat_withdoe
+  #   run: r:v2 analysis/process_full_cohort_data.R output/tables/demographics_full_study_cohort_2cat_withdoe.csv mig_status_2_cat_withdoe
   #   needs:
   #   - generate_full_study_cohort
   #   outputs:
@@ -58,7 +58,7 @@ actions:
   #       csv: output/tables/demographics_full_study_cohort_2cat_withdoe.csv
 
   generate_demographics_full_study_table_3cat_withdoe:
-    run: r:latest analysis/process_full_cohort_data.R output/tables/demographics_full_study_cohort_3cat_withdoe.csv mig_status_3_cat_withdoe
+    run: r:v2 analysis/process_full_cohort_data.R output/tables/demographics_full_study_cohort_3cat_withdoe.csv mig_status_3_cat_withdoe
     needs:
     - generate_full_study_cohort
     outputs:
@@ -66,7 +66,7 @@ actions:
         csv: output/tables/demographics_full_study_cohort_3cat_withdoe.csv
 
   generate_demographics_full_study_table_6cat_withdoe:
-    run: r:latest analysis/process_full_cohort_data.R output/tables/demographics_full_study_cohort_6cat_withdoe.csv mig_status_6_cat_withdoe
+    run: r:v2 analysis/process_full_cohort_data.R output/tables/demographics_full_study_cohort_6cat_withdoe.csv mig_status_6_cat_withdoe
     needs:
     - generate_full_study_cohort
     outputs:
@@ -74,7 +74,7 @@ actions:
         csv: output/tables/demographics_full_study_cohort_6cat_withdoe.csv
 
   generate_demographics_full_study_table_migration_types:
-    run: r:latest analysis/process_full_cohort_data_migration_types.R 
+    run: r:v2 analysis/process_full_cohort_data_migration_types.R 
     needs:
     - generate_full_study_cohort
     outputs:
@@ -82,7 +82,7 @@ actions:
         csv: output/tables/demographics_full_study_cohort_migration_types.csv
 
   generate_demographics_uk_entry_cohort:
-    run: r:latest analysis/process_date_of_uk_entry_cohort.R 
+    run: r:v2 analysis/process_date_of_uk_entry_cohort.R 
     needs:
     - generate_full_study_cohort
     outputs:
@@ -90,7 +90,7 @@ actions:
         csv: output/tables/demographics_date_of_uk_entry_and_no_other_migration_info_cohort.csv
 
   # generate_demographics_census_2011_study_table_mig_2cat:
-  #   run: r:latest analysis/process_census_cohort_data.R output/cohorts/census_2011_study_cohort.arrow output/tables/demographics_census_2011_cohort_2cat.csv mig_status_2_cat
+  #   run: r:v2 analysis/process_census_cohort_data.R output/cohorts/census_2011_study_cohort.arrow output/tables/demographics_census_2011_cohort_2cat.csv mig_status_2_cat
   #   needs:
   #   - generate_dataset_for_census_2011
   #   outputs:
@@ -98,7 +98,7 @@ actions:
   #       csv: output/tables/demographics_census_2011_cohort_2cat.csv
 
   # generate_demographics_census_2011_study_table_mig_3cat:
-  #   run: r:latest analysis/process_census_cohort_data.R output/cohorts/census_2011_study_cohort.arrow output/tables/demographics_census_2011_cohort_3cat.csv mig_status_3_cat
+  #   run: r:v2 analysis/process_census_cohort_data.R output/cohorts/census_2011_study_cohort.arrow output/tables/demographics_census_2011_cohort_3cat.csv mig_status_3_cat
   #   needs:
   #   - generate_dataset_for_census_2011
   #   outputs:
@@ -106,7 +106,7 @@ actions:
   #       csv: output/tables/demographics_census_2011_cohort_3cat.csv
 
   # generate_demographics_census_2011_study_table_mig_6cat:
-  #   run: r:latest analysis/process_census_cohort_data.R output/cohorts/census_2011_study_cohort.arrow output/tables/demographics_census_2011_cohort_6cat.csv mig_status_6_cat
+  #   run: r:v2 analysis/process_census_cohort_data.R output/cohorts/census_2011_study_cohort.arrow output/tables/demographics_census_2011_cohort_6cat.csv mig_status_6_cat
   #   needs:
   #   - generate_dataset_for_census_2011
   #   outputs:
@@ -114,7 +114,7 @@ actions:
   #       csv: output/tables/demographics_census_2011_cohort_6cat.csv
 
   # generate_demographics_census_2021_study_table_2cat:
-  #   run: r:latest analysis/process_census_cohort_data.R output/cohorts/census_2021_study_cohort.arrow output/tables/demographics_census_2021_cohort_2cat.csv mig_status_2_cat
+  #   run: r:v2 analysis/process_census_cohort_data.R output/cohorts/census_2021_study_cohort.arrow output/tables/demographics_census_2021_cohort_2cat.csv mig_status_2_cat
   #   needs:
   #   - generate_dataset_for_census_2021
   #   outputs:
@@ -122,7 +122,7 @@ actions:
   #       csv: output/tables/demographics_census_2021_cohort_2cat.csv
 
   # generate_demographics_census_2021_study_table_3cat:
-  #   run: r:latest analysis/process_census_cohort_data.R output/cohorts/census_2021_study_cohort.arrow output/tables/demographics_census_2021_cohort_3cat.csv mig_status_3_cat
+  #   run: r:v2 analysis/process_census_cohort_data.R output/cohorts/census_2021_study_cohort.arrow output/tables/demographics_census_2021_cohort_3cat.csv mig_status_3_cat
   #   needs:
   #   - generate_dataset_for_census_2021
   #   outputs:
@@ -130,7 +130,7 @@ actions:
   #       csv: output/tables/demographics_census_2021_cohort_3cat.csv
   
   # generate_demographics_census_2021_study_table_6cat:
-  #   run: r:latest analysis/process_census_cohort_data.R output/cohorts/census_2021_study_cohort.arrow output/tables/demographics_census_2021_cohort_6cat.csv mig_status_6_cat
+  #   run: r:v2 analysis/process_census_cohort_data.R output/cohorts/census_2021_study_cohort.arrow output/tables/demographics_census_2021_cohort_6cat.csv mig_status_6_cat
   #   needs:
   #   - generate_dataset_for_census_2021
   #   outputs:
@@ -138,7 +138,7 @@ actions:
   #       csv: output/tables/demographics_census_2021_cohort_6cat.csv
 
   # generate_demographics_census_2011_study_table_mig_2cat_withdoe:
-  #   run: r:latest analysis/process_census_cohort_data.R output/cohorts/census_2011_study_cohort.arrow output/tables/demographics_census_2011_cohort_2cat_withdoe.csv mig_status_2_cat_withdoe
+  #   run: r:v2 analysis/process_census_cohort_data.R output/cohorts/census_2011_study_cohort.arrow output/tables/demographics_census_2011_cohort_2cat_withdoe.csv mig_status_2_cat_withdoe
   #   needs:
   #   - generate_dataset_for_census_2011
   #   outputs:
@@ -146,7 +146,7 @@ actions:
   #       csv: output/tables/demographics_census_2011_cohort_2cat_withdoe.csv
 
   generate_demographics_census_2011_study_table_mig_3cat_withdoe:
-    run: r:latest analysis/process_census_cohort_data.R output/cohorts/census_2011_study_cohort.arrow output/tables/demographics_census_2011_cohort_3cat_withdoe.csv mig_status_3_cat_withdoe
+    run: r:v2 analysis/process_census_cohort_data.R output/cohorts/census_2011_study_cohort.arrow output/tables/demographics_census_2011_cohort_3cat_withdoe.csv mig_status_3_cat_withdoe
     needs:
     - generate_dataset_for_census_2011
     outputs:
@@ -154,7 +154,7 @@ actions:
         csv: output/tables/demographics_census_2011_cohort_3cat_withdoe.csv
 
   generate_demographics_census_2011_study_table_mig_6cat_withdoe:
-    run: r:latest analysis/process_census_cohort_data.R output/cohorts/census_2011_study_cohort.arrow output/tables/demographics_census_2011_cohort_6cat_withdoe.csv mig_status_6_cat_withdoe
+    run: r:v2 analysis/process_census_cohort_data.R output/cohorts/census_2011_study_cohort.arrow output/tables/demographics_census_2011_cohort_6cat_withdoe.csv mig_status_6_cat_withdoe
     needs:
     - generate_dataset_for_census_2011
     outputs:
@@ -162,7 +162,7 @@ actions:
         csv: output/tables/demographics_census_2011_cohort_6cat_withdoe.csv
 
   # generate_demographics_census_2021_study_table_2cat_withdoe:
-  #   run: r:latest analysis/process_census_cohort_data.R output/cohorts/census_2021_study_cohort.arrow output/tables/demographics_census_2021_cohort_2cat_withdoe.csv mig_status_2_cat_withdoe
+  #   run: r:v2 analysis/process_census_cohort_data.R output/cohorts/census_2021_study_cohort.arrow output/tables/demographics_census_2021_cohort_2cat_withdoe.csv mig_status_2_cat_withdoe
   #   needs:
   #   - generate_dataset_for_census_2021
   #   outputs:
@@ -170,7 +170,7 @@ actions:
   #       csv: output/tables/demographics_census_2021_cohort_2cat_withdoe.csv
 
   generate_demographics_census_2021_study_table_3cat_withdoe:
-    run: r:latest analysis/process_census_cohort_data.R output/cohorts/census_2021_study_cohort.arrow output/tables/demographics_census_2021_cohort_3cat_withdoe.csv mig_status_3_cat_withdoe
+    run: r:v2 analysis/process_census_cohort_data.R output/cohorts/census_2021_study_cohort.arrow output/tables/demographics_census_2021_cohort_3cat_withdoe.csv mig_status_3_cat_withdoe
     needs:
     - generate_dataset_for_census_2021
     outputs:
@@ -178,7 +178,7 @@ actions:
         csv: output/tables/demographics_census_2021_cohort_3cat_withdoe.csv
   
   generate_demographics_census_2021_study_table_6cat_withdoe:
-    run: r:latest analysis/process_census_cohort_data.R output/cohorts/census_2021_study_cohort.arrow output/tables/demographics_census_2021_cohort_6cat_withdoe.csv mig_status_6_cat_withdoe
+    run: r:v2 analysis/process_census_cohort_data.R output/cohorts/census_2021_study_cohort.arrow output/tables/demographics_census_2021_cohort_6cat_withdoe.csv mig_status_6_cat_withdoe
     needs:
     - generate_dataset_for_census_2021
     outputs:
@@ -186,7 +186,7 @@ actions:
         csv: output/tables/demographics_census_2021_cohort_6cat_withdoe.csv
 
   generate_age_summary_census_2011_mig_3cat_withdoe:
-    run: r:latest analysis/census_cohort_age_summary.R output/cohorts/census_2011_study_cohort.arrow output/tables/age_summary_census_2011_cohort_3cat_withdoe.csv mig_status_3_cat_withdoe
+    run: r:v2 analysis/census_cohort_age_summary.R output/cohorts/census_2011_study_cohort.arrow output/tables/age_summary_census_2011_cohort_3cat_withdoe.csv mig_status_3_cat_withdoe
     needs:
     - generate_dataset_for_census_2011
     outputs:
@@ -194,7 +194,7 @@ actions:
         csv: output/tables/age_summary_census_2011_cohort_3cat_withdoe.csv
 
   generate_age_summary_census_2021_mig_3cat_withdoe:
-    run: r:latest analysis/census_cohort_age_summary.R output/cohorts/census_2021_study_cohort.arrow output/tables/age_summary_census_2021_cohort_3cat_withdoe.csv mig_status_3_cat_withdoe
+    run: r:v2 analysis/census_cohort_age_summary.R output/cohorts/census_2021_study_cohort.arrow output/tables/age_summary_census_2021_cohort_3cat_withdoe.csv mig_status_3_cat_withdoe
     needs:
     - generate_dataset_for_census_2021
     outputs:
@@ -202,7 +202,7 @@ actions:
         csv: output/tables/age_summary_census_2021_cohort_3cat_withdoe.csv
 
   generate_date_of_uk_entry_description:
-    run: r:latest analysis/date_of_entry_to_uk.R
+    run: r:v2 analysis/date_of_entry_to_uk.R
     needs:
     - generate_full_study_cohort
     outputs:
@@ -210,7 +210,7 @@ actions:
         csv: output/tables/date_of_uk_entry_description.csv
 
   generate_date_of_uk_entry_description_combinations:
-    run: r:latest analysis/date_of_entry_to_uk_combinations.R
+    run: r:v2 analysis/date_of_entry_to_uk_combinations.R
     needs:
     - generate_full_study_cohort
     outputs:
@@ -260,7 +260,7 @@ actions:
         csv: output/tables/annual_counts/migration_status_types/*.csv
 
   generate_migration_coding_summary:
-    run: r:latest analysis/migration_coding.R
+    run: r:v2 analysis/migration_coding.R
     needs:
     - generate_full_study_cohort
     outputs:
@@ -268,7 +268,7 @@ actions:
         csv: output/tables/migration_coding_summary.csv
 
   generate_migration_code_combinations_summary:
-    run: r:latest analysis/migration_coding_combinations.R
+    run: r:v2 analysis/migration_coding_combinations.R
     needs:
     - generate_full_study_cohort
     outputs:
@@ -276,7 +276,7 @@ actions:
         csv: output/tables/migration_code_combinations_summary.csv
 
   generate_date_variable_checks_summary:
-    run: r:latest analysis/date_variable_checks.R
+    run: r:v2 analysis/date_variable_checks.R
     needs:
     - generate_full_study_cohort
     outputs:
@@ -296,7 +296,7 @@ actions:
         csv: output/tables/annual_counts/primary_care_comparison.csv
 
   generate_histogram_migration_codes_without_date_restrictions:
-    run: r:latest analysis/histogram_migration_codes_without_date_restrictions.r
+    run: r:v2 analysis/histogram_migration_codes_without_date_restrictions.r
     needs:
     - generate_full_study_cohort
     outputs:
@@ -304,7 +304,7 @@ actions:
         png: output/figures/histogram_migration_coding_no_restrictions.png
 
   generate_summary_migration_codes_without_date_restrictions:
-    run: r:latest analysis/summary_migration_codes_without_date_restrictions.r
+    run: r:v2 analysis/summary_migration_codes_without_date_restrictions.r
     needs:
     - generate_full_study_cohort
     outputs:

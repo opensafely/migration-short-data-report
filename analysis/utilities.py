@@ -5,7 +5,7 @@
 #############################################################################
 
 from ehrql import case, when, years
-from ehrql.tables.tpp import addresses, practice_registrations, clinical_events, patients
+from ehrql.tables.tpp import addresses, practice_registrations, clinical_events, patients, ons_deaths
 import codelists
 
 def build_common_vars(INTERVAL):
@@ -114,3 +114,24 @@ def build_common_vars(INTERVAL):
         "region": region,
     }
 
+date_of_death = case(
+    when(
+        patients.date_of_death.is_not_null()
+        & ons_deaths.date.is_not_null()
+        & (patients.date_of_death <= ons_deaths.date)
+    ).then(patients.date_of_death),
+
+    when(
+        patients.date_of_death.is_not_null()
+        & ons_deaths.date.is_not_null()
+        & (ons_deaths.date < patients.date_of_death)
+    ).then(ons_deaths.date),
+
+    when(patients.date_of_death.is_not_null()).then(
+        patients.date_of_death
+    ),
+
+    when(ons_deaths.date.is_not_null()).then(
+        ons_deaths.date
+    ),
+)
