@@ -8,48 +8,72 @@ from ehrql import case, when, years
 from ehrql.tables.tpp import addresses, practice_registrations, clinical_events, patients, ons_deaths
 import codelists
 
-def build_common_vars(INTERVAL):
-    # -------------------
-    # Denominator 
-    # -------------------
-    was_alive_on_1Jan = patients.is_alive_on(INTERVAL.start_date)
+date_of_death = case(
+    when(
+        patients.date_of_death.is_not_null()
+        & ons_deaths.date.is_not_null()
+        & (patients.date_of_death <= ons_deaths.date)
+    ).then(patients.date_of_death),
 
-    was_registered_at_any_point_during_interval = practice_registrations.where(
-        # registered for the entire interval
-        ((practice_registrations.start_date.is_on_or_before(INTERVAL.start_date)) 
-        & (practice_registrations.end_date.is_on_or_after(INTERVAL.end_date))) |
-        
-        # registered during the interval and end date is after the interval end date
-        ((practice_registrations.start_date.is_after(INTERVAL.start_date))
-         & (practice_registrations.end_date.is_on_or_after(INTERVAL.end_date))) |
-         
-         # registered before the interval and registration is ongoing
-         ((practice_registrations.start_date.is_on_or_before(INTERVAL.start_date)) &
-          (practice_registrations.end_date.is_null())) |
-          
-          # registered after interval start date and registration is ongoing
-          ((practice_registrations.start_date.is_after(INTERVAL.start_date)) &
-           (practice_registrations.end_date.is_null())) |
-           
-           # registered before the interval start date and end date is before the end date, but after the start date 
-           ((practice_registrations.start_date.is_before(INTERVAL.start_date)) &
-           (practice_registrations.end_date.is_between_but_not_on(INTERVAL.start_date, INTERVAL.end_date))) |
-           
-           # registered for part of the interval only
-           ((practice_registrations.start_date.is_between_but_not_on(INTERVAL.start_date, INTERVAL.end_date)) &
-            (practice_registrations.end_date.is_between_but_not_on(INTERVAL.start_date, INTERVAL.end_date)))
-    ).exists_for_patient()
+    when(
+        patients.date_of_death.is_not_null()
+        & ons_deaths.date.is_not_null()
+        & (ons_deaths.date < patients.date_of_death)
+    ).then(ons_deaths.date),
+
+    when(patients.date_of_death.is_not_null()).then(
+        patients.date_of_death
+    ),
+
+    when(ons_deaths.date.is_not_null()).then(
+        ons_deaths.date
+    ),
+)
+
+def build_common_vars(INTERVAL):
+
+    eligible_registration = (
+        practice_registrations.where(
+            # Registration overlaps interval
+            practice_registrations.start_date.is_on_or_before(INTERVAL.end_date)
+            & (
+                practice_registrations.end_date.is_on_or_after(INTERVAL.start_date)
+                | practice_registrations.end_date.is_null()
+            )
+
+            # Registration overlaps patient's lifetime
+            & (
+                practice_registrations.end_date.is_on_or_after(
+                    patients.date_of_birth
+                )
+                | practice_registrations.end_date.is_null()
+            )
+            & (
+                practice_registrations.start_date.is_on_or_before(date_of_death)
+                | date_of_death.is_null()
+            )
+
+            # Patient born by interval end
+            & patients.date_of_birth.is_on_or_before(INTERVAL.end_date)
+
+            # Patient not deceased before interval start
+            & (
+                date_of_death.is_on_or_after(INTERVAL.start_date)
+                | date_of_death.is_null()
+            )
+    ))
+
+    was_alive_and_registered_during_interval = (eligible_registration.exists_for_patient())
 
     has_recorded_sex = patients.sex.is_in(["male", "female"])
 
     has_possible_age = (
-        (patients.age_on(INTERVAL.start_date) < 110)
-        & (patients.age_on(INTERVAL.start_date) > 0)
+        (patients.age_on(INTERVAL.start_date) <= 110)
+        & (patients.age_on(INTERVAL.end_date) >= 0)
     )
 
     denominator = (
-        was_alive_on_1Jan
-        & was_registered_at_any_point_during_interval
+        was_alive_and_registered_during_interval
         & has_recorded_sex
         & has_possible_age
     )
@@ -57,7 +81,12 @@ def build_common_vars(INTERVAL):
     # -------------------
     # Subgroup variables
     # -------------------
-    age = patients.age_on(INTERVAL.start_date)
+    age_reference_date = case(when(date_of_death.is_on_or_before(INTERVAL.end_date)
+    ).then(date_of_death),
+    otherwise=INTERVAL.end_date)
+
+    age = patients.age_on(age_reference_date)
+
     age_band = case(
         when(age < 16).then("0-15"),
         when((age >= 16) & (age < 25)).then("16-24"),
@@ -80,15 +109,41 @@ def build_common_vars(INTERVAL):
         .when_null_then("unknown")
     )
 
-    address = addresses.for_patient_on(INTERVAL.start_date)
-    imd_quintile = address.imd_quintile
+    eligible_addresses = addresses.where(
+    # Address overlaps interval
+    addresses.start_date.is_on_or_before(INTERVAL.end_date)
+    & (
+        addresses.end_date.is_on_or_after(INTERVAL.start_date)
+        | addresses.end_date.is_null()
+    )
+    # Address overlaps patient's lifetime
+    & (
+        addresses.end_date.is_on_or_after(patients.date_of_birth)
+        | addresses.end_date.is_null()
+    )
+    & (addresses.start_date.is_on_or_before(date_of_death)
+        | date_of_death.is_null()
+    )
+    # Patient born by interval end
+    & patients.date_of_birth.is_on_or_before(INTERVAL.end_date)
+    # Patient not deceased before interval start
+    & (date_of_death.is_on_or_after(INTERVAL.start_date)
+        | date_of_death.is_null()
+    ))
+
+    imd_quintile = (
+    eligible_addresses
+    .sort_by(addresses.start_date)
+    .last_for_patient()
+    .imd_quintile)
 
     region = (
-        practice_registrations
-        .for_patient_on(INTERVAL.start_date)
-        .practice_nuts1_region_name
-        .when_null_then("unknown")
-    )
+    eligible_registration
+    .sort_by(practice_registrations.start_date)
+    .last_for_patient()
+    .practice_nuts1_region_name
+    .when_null_then("unknown")
+)
 
     subgroups = {
         "": {},
@@ -114,24 +169,3 @@ def build_common_vars(INTERVAL):
         "region": region,
     }
 
-date_of_death = case(
-    when(
-        patients.date_of_death.is_not_null()
-        & ons_deaths.date.is_not_null()
-        & (patients.date_of_death <= ons_deaths.date)
-    ).then(patients.date_of_death),
-
-    when(
-        patients.date_of_death.is_not_null()
-        & ons_deaths.date.is_not_null()
-        & (ons_deaths.date < patients.date_of_death)
-    ).then(ons_deaths.date),
-
-    when(patients.date_of_death.is_not_null()).then(
-        patients.date_of_death
-    ),
-
-    when(ons_deaths.date.is_not_null()).then(
-        ons_deaths.date
-    ),
-)
