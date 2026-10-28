@@ -45,6 +45,7 @@ vars_to_summarise <- c(
   "sex",
   "region",
   "latest_ethnicity_6_level_group",
+  "latest_ethnicity_16_level_group",
   "imd_quintile"
 )
 
