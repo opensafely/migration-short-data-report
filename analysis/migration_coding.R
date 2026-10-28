@@ -29,13 +29,13 @@ cohort <- read_feather(cohort_file) %>%
     )
   )
 
-vars_to_summarise <- c(
-  "year_of_birth_band",
-  "sex",
-  "region",
-  "latest_ethnicity_6_level_group",
-  "imd_quintile"
-)
+# vars_to_summarise <- c(
+#   "year_of_birth_band",
+#   "sex",
+#   "region",
+#   "latest_ethnicity_6_level_group",
+#   "imd_quintile"
+# )
 
 mig_vars <- c(
   "mig_status_3_cat_withdoe")
@@ -59,6 +59,8 @@ migration_coding_summary <- cohort %>%
     median_migration_codes_withdoe = median(number_of_migration_codes_withdoe, na.rm = TRUE),
     q25_migration_codes_withdoe = quantile(number_of_migration_codes_withdoe, 0.25, na.rm = TRUE),
     q75_migration_codes_withdoe = quantile(number_of_migration_codes_withdoe, 0.75, na.rm = TRUE),
+    mean_migration_codes_withdoe = mean(number_of_migration_codes_withdoe, na.rm = TRUE),
+    sd_migration_codes_withdoe = sd(number_of_migration_codes_withdoe, na.rm = TRUE),
 
     median_time_from_1st_pracreg_first_migration_code_days_withdoe = median(time_from_1st_pracreg_first_migration_code_days_withdoe, na.rm = TRUE),
     q25_time_from_1st_pracreg_first_migration_code_days_withdoe = quantile(time_from_1st_pracreg_first_migration_code_days_withdoe, 0.25, na.rm = TRUE),
