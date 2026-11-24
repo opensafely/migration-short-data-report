@@ -17,8 +17,6 @@ measures = create_measures()
 measures.configure_dummy_data(population_size=1000)
 measures.configure_disclosure_control(enabled=True)  # enable on real data
 
-
-
 # denominator is not default because for this I want number of people with a migrant code
 # in the given interval ONLY, whereas the default denominator is anyone registered and alive in 
 # the interval
@@ -36,10 +34,14 @@ migration_codes_in_interval_incl_date_of_uk_entry = clinical_events.where(
     clinical_events.snomedct_code.is_in(migrant_codes_and_date_of_uk_entry)).where(
         clinical_events.date.is_during(INTERVAL))
 
+all_snomed_codes_in_interval = clinical_events.where(
+    clinical_events.date.is_during(INTERVAL)
+)
+
 measures.define_measure(
-    name="all_migration_codes_excl_date_of_uk_entry", 
+    name="all_migration_codes_vs_all_snomed_codes", 
     numerator=migration_codes_in_interval_excl_date_of_uk_entry.count_for_patient(),
-    denominator=migration_codes_in_interval_excl_date_of_uk_entry.exists_for_patient(),
+    denominator=all_snomed_codes_in_interval.exists_for_patient(),
     intervals=years(15).starting_on("2011-08-01"))
 
 measures.define_measure(
